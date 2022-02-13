@@ -1,17 +1,20 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace AwesomeToon {
-    struct LightSet {
+namespace AwesomeToon
+{
+    struct LightSet
+    {
         public int id;
-        public Light light;
+        public Light light; //directioanl light dir =0
         public Vector3 dir;
         public Color color;
         public float atten;
         public float inView;
 
-        public LightSet(Light newLight) {
+        public LightSet(Light newLight)
+        {
             light = newLight;
             id = newLight.GetInstanceID();
             dir = Vector3.zero;
@@ -25,9 +28,10 @@ namespace AwesomeToon {
 
 
     [ExecuteInEditMode]
-    public class AwesomeToonHelper : MonoBehaviour {
+    public class shader : MonoBehaviour
+    {
 
-       
+
         [SerializeField] Material material = null;
         [SerializeField] bool instanceMaterial = true;
         [SerializeField] Vector3 meshCenter = Vector3.zero;
@@ -38,31 +42,37 @@ namespace AwesomeToon {
         [SerializeField] LayerMask raycastMask = new LayerMask();
         [SerializeField] float raycastFadeSpeed = 10f;
 
-        
+
         Vector3 posAbs;
         Dictionary<int, LightSet> lightSets;
 
-       
+
         Material materialInstance;
         SkinnedMeshRenderer skinRenderer;
         MeshRenderer meshRenderer;
 
-        void Start() {
+        void Start()
+        {
             Init();
             GetLights();
         }
 
-        void OnValidate() {
+        void OnValidate()
+        {
             Init();
             Update();
         }
 
-        void Init() {
+        void Init()
+        {
             if (!material) return;
-            if (instanceMaterial) {
+            if (instanceMaterial)
+            {
                 materialInstance = new Material(material);
-                materialInstance.name = "Instance of " + material.name;
-            } else {
+                materialInstance.name = "Instance of " + material.name;  //apply the materail to the object
+            }
+            else
+            {
                 materialInstance = material;
             }
 
@@ -73,8 +83,10 @@ namespace AwesomeToon {
         }
 
         // NOTE: If your game loads lights dynamically, this should be called to init new lights
-        public void GetLights() {
-            if (lightSets == null) {
+        public void GetLights()
+        {
+            if (lightSets == null)
+            {
                 lightSets = new Dictionary<int, LightSet>();
             }
 
@@ -82,47 +94,57 @@ namespace AwesomeToon {
             List<int> newIds = new List<int>();
 
             // Initialise new lights
-            foreach (Light light in lights) {
+            foreach (Light light in lights)
+            {
                 int id = light.GetInstanceID();
                 newIds.Add(id);
-                if (!lightSets.ContainsKey(id)) {
+                if (!lightSets.ContainsKey(id))
+                {
                     lightSets.Add(id, new LightSet(light));
                 }
             }
 
             // Remove old lights
             List<int> oldIds = new List<int>(lightSets.Keys);
-            foreach (int id in oldIds) {
-                if (!newIds.Contains(id)) {
+            foreach (int id in oldIds)
+            {
+                if (!newIds.Contains(id))
+                {
                     lightSets.Remove(id);
                 }
             }
         }
 
-        void Update() {
+        void Update()
+        {
             posAbs = transform.position + meshCenter;
 
             // Always update lighting while in editor
-            if (Application.isEditor && !Application.isPlaying) {
+            if (Application.isEditor && !Application.isPlaying)
+            {
                 GetLights();
             }
 
             UpdateMaterial();
         }
 
-        void UpdateMaterial() {
+        void UpdateMaterial()
+        {
             if (!material) return;
 
             // Refresh light data
             List<LightSet> sortedLights = new List<LightSet>();
-            if (lightSets != null) {
-                foreach (LightSet lightSet in lightSets.Values) {
+            if (lightSets != null)
+            {
+                foreach (LightSet lightSet in lightSets.Values)
+                {
                     sortedLights.Add(CalcLight(lightSet));
                 }
             }
 
             // Sort lights by brightness
-            sortedLights.Sort((x, y) => {
+            sortedLights.Sort((x, y) =>
+            {
                 float yBrightness = y.color.grayscale * y.atten;
                 float xBrightness = x.color.grayscale * x.atten;
                 return yBrightness.CompareTo(xBrightness);
@@ -130,7 +152,8 @@ namespace AwesomeToon {
 
             // Apply lighting
             int i = 1;
-            foreach (LightSet lightSet in sortedLights) {
+            foreach (LightSet lightSet in sortedLights)
+            {
                 if (i > maxLights) break;
                 if (lightSet.atten <= Mathf.Epsilon) break;
 
@@ -144,29 +167,34 @@ namespace AwesomeToon {
             }
 
             // Turn off the remaining light slots
-            while (i <= maxLights) {
+            while (i <= maxLights)
+            {
                 materialInstance.SetVector($"_L{i}_dir", Vector3.up);
                 materialInstance.SetColor($"_L{i}_color", Color.black);
                 i++;
             }
 
             // Store updated light data
-            foreach (LightSet lightSet in sortedLights) {
+            foreach (LightSet lightSet in sortedLights)
+            {
                 lightSets[lightSet.id] = lightSet;
             }
         }
 
-        LightSet CalcLight(LightSet lightSet) {
+        LightSet CalcLight(LightSet lightSet)
+        {
             Light light = lightSet.light;
             float inView = 1.1f;
             float dist;
 
-            if (!light.isActiveAndEnabled) {
+            if (!light.isActiveAndEnabled)
+            {
                 lightSet.atten = 0f;
                 return lightSet;
             }
 
-            switch (light.type) {
+            switch (light.type)
+            {
                 case LightType.Directional:
                     lightSet.dir = light.transform.forward * -1f;
                     inView = TestInView(lightSet.dir, 100f);
@@ -209,24 +237,30 @@ namespace AwesomeToon {
             return lightSet;
         }
 
-        float TestInView(Vector3 dir, float dist) {
+        float TestInView(Vector3 dir, float dist)
+        {
             if (!raycast) return 1.1f;
             RaycastHit hit;
-            if (Physics.Raycast(posAbs, dir, out hit, dist, raycastMask)) {
+            if (Physics.Raycast(posAbs, dir, out hit, dist, raycastMask))
+            {
                 Debug.DrawRay(posAbs, dir.normalized * hit.distance, Color.red);
                 return -0.1f;
-            } else {
+            }
+            else
+            {
                 Debug.DrawRay(posAbs, dir.normalized * dist, Color.green);
                 return 1.1f;
             }
         }
 
-        // Ref - Light Attenuation calc: https://forum.unity.com/threads/light-attentuation-equation.16006/#post-3354254
-        float CalcAttenuation(float dist) {
+        // Ref - Light Attenuation calc: 
+        float CalcAttenuation(float dist)
+        {
             return Mathf.Clamp01(1.0f / (1.0f + 25f * dist * dist) * Mathf.Clamp01((1f - dist) * 5f));
         }
 
-        private void OnDrawGizmosSelected() {
+        private void OnDrawGizmosSelected()
+        {
             Gizmos.DrawWireSphere(posAbs, 0.1f);
         }
     }

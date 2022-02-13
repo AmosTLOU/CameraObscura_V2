@@ -10,7 +10,7 @@ public class light_flickering : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isflickering==false)
+        if (isflickering == false)
         {
             StartCoroutine(lightflicker());
         }
@@ -20,7 +20,7 @@ public class light_flickering : MonoBehaviour
     {
         isflickering = true;
         this.gameObject.GetComponent<Light>().enabled = false;
-        timedelay = Random.Range(0.01f,0.2f);
+        timedelay = Random.Range(0.01f, 0.2f);
         yield return new WaitForSeconds(timedelay);
         this.gameObject.GetComponent<Light>().enabled = true;
         timedelay = Random.Range(0.01f, 0.2f);
