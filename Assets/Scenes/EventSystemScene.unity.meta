@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Scenes/EventSystemScene.unity.meta
 guid: 5427d144d97cc804c841961fd39a3c52
+=======
+guid: 9dbe22c0d69681f43ad6f3e19909d117
+>>>>>>> 74ad320 (Made new "ArtTest" scene to test lighting and shader materials.):Assets/Scenes/ArtTest.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

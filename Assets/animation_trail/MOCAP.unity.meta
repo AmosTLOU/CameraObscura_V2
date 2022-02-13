@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/animation_trail/MOCAP.unity.meta
 guid: 1949ccf98948d6e48827f6a98af2a9a3
 DefaultImporter:
+=======
+guid: b17040b00258d3d43b64321b7c7f3db1
+PrefabImporter:
+>>>>>>> 74ad320 (Made new "ArtTest" scene to test lighting and shader materials.):Assets/shader_file/FidoraTest_Low.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
