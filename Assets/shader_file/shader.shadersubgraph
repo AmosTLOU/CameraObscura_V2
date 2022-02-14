@@ -1233,8 +1233,6 @@
         "m_GuidSerialized": "e59478f3-1264-4736-9004-2b5aa429cb9e"
     },
     "m_Name": "Fresnel Size",
-    "m_DefaultRefNameVersion": 0,
-    "m_RefNameGeneratedByDisplayName": "",
     "m_DefaultReferenceName": "Vector1_1431D892",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
@@ -2217,8 +2215,6 @@
         "m_GuidSerialized": "1fb192c9-7957-4810-9bcb-ad8c4934dcc7"
     },
     "m_Name": "Light Dir",
-    "m_DefaultRefNameVersion": 0,
-    "m_RefNameGeneratedByDisplayName": "",
     "m_DefaultReferenceName": "Vector3_FEFB7F68",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
@@ -2944,8 +2940,6 @@
         "m_GuidSerialized": "82dfa0ec-a6f9-4466-a678-97eeb013301d"
     },
     "m_Name": "Light Color",
-    "m_DefaultRefNameVersion": 0,
-    "m_RefNameGeneratedByDisplayName": "",
     "m_DefaultReferenceName": "Vector4_D503119C",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
@@ -3101,8 +3095,6 @@
         "m_GuidSerialized": "318f0f3b-274d-4299-b894-cf8cfa67bca3"
     },
     "m_Name": "Shading Gradient",
-    "m_DefaultRefNameVersion": 0,
-    "m_RefNameGeneratedByDisplayName": "",
     "m_DefaultReferenceName": "Texture2D_73021B24",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
@@ -3201,8 +3193,6 @@
         "m_GuidSerialized": "2608be8c-a171-4686-be3c-57090305b24f"
     },
     "m_Name": "Gloss intensity",
-    "m_DefaultRefNameVersion": 0,
-    "m_RefNameGeneratedByDisplayName": "",
     "m_DefaultReferenceName": "Vector4_752D3319",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
@@ -4711,8 +4701,6 @@
         "m_GuidSerialized": "cedfb078-156c-42c8-a27e-9bb74b1a90bb"
     },
     "m_Name": "Fresnel Angle",
-    "m_DefaultRefNameVersion": 0,
-    "m_RefNameGeneratedByDisplayName": "",
     "m_DefaultReferenceName": "Vector1_C2B7F43A",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
@@ -4861,8 +4849,6 @@
         "m_GuidSerialized": "93f4d4fe-c69b-42fb-8fd3-a9e9c7fe9f4e"
     },
     "m_Name": "Gloss size",
-    "m_DefaultRefNameVersion": 0,
-    "m_RefNameGeneratedByDisplayName": "",
     "m_DefaultReferenceName": "Vector1_55629F98",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
@@ -5526,8 +5512,6 @@
         "m_GuidSerialized": "c8f370bf-21c4-4b8b-9b48-6670e0999649"
     },
     "m_Name": "Fresnel Intensity",
-    "m_DefaultRefNameVersion": 0,
-    "m_RefNameGeneratedByDisplayName": "",
     "m_DefaultReferenceName": "Vector4_453A6B1F",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
