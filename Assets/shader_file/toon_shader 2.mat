@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: toon_shader
+  m_Name: toon_shader 2
   m_Shader: {fileID: -6465566751694194690, guid: e0dee5987dc0e0846ab3d6dee2036af3, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -44,7 +44,7 @@ Material:
     - Vector1_3C3B6420: -1
     - Vector1_9605CCA4: 10
     m_Colors:
-    - Color_6A162E48: {r: 0.066037714, g: 0.066037714, b: 0.066037714, a: 0}
+    - Color_6A162E48: {r: 0.254717, g: 0.254717, b: 0.254717, a: 0}
     - Color_6C9C775A: {r: 1, g: 1, b: 1, a: 0}
     - Color_9A9462B: {r: 0, g: 0, b: 0, a: 0}
     - Color_D2A04608: {r: 1, g: 1, b: 1, a: 0}
