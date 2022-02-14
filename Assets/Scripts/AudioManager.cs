@@ -13,10 +13,10 @@ public class AudioManager : MonoBehaviour
     public AudioClip mysterySuspense;
     public AudioClip creepyTensionBuildup;
 
-    bool suspensePianoPlayed = false;
-    bool mysterySuspensePlayed = false;
-    bool creepyTensionBuildubPlayed = false;
-    bool heartbeatsPlayed = false;
+    bool m_suspensePianoPlayed = false;
+    bool m_mysterySuspensePlayed = false;
+    bool m_creepyTensionBuildubPlayed = false;
+    bool m_heartbeatsPlayed = false;
 
     void Start()
     {
@@ -36,40 +36,40 @@ public class AudioManager : MonoBehaviour
 
     public void PlayHeartBeats()
     {
-        if (!heartbeatsPlayed)
+        if (!m_heartbeatsPlayed)
         {
             audioSource.clip = heartbeats;
             audioSource.Play();
-            heartbeatsPlayed = true;
+            m_heartbeatsPlayed = true;
         }
     }
 
     public void PlaySuspensePiano()
     {
-        if(!suspensePianoPlayed)
+        if(!m_suspensePianoPlayed)
         {
             audioSource.clip = suspensePiano;
             audioSource.Play();
-            suspensePianoPlayed = true;
+            m_suspensePianoPlayed = true;
         }
     }
 
     public void PlayMysterySuspense()
     {
-        if (!mysterySuspensePlayed)
+        if (!m_mysterySuspensePlayed)
         {
             audioSource.clip = mysterySuspense;
             audioSource.Play();
-            mysterySuspensePlayed = true;
+            m_mysterySuspensePlayed = true;
         }
     }
 
     public void PlayCreepyTensionBuildup(float delay)
     {
-        if (!creepyTensionBuildubPlayed)
+        if (!m_creepyTensionBuildubPlayed)
         {
             StartCoroutine("PlayAfterDelay", delay);
-            creepyTensionBuildubPlayed = true;
+            m_creepyTensionBuildubPlayed = true;
         }
     }
 

@@ -36,65 +36,65 @@ public class PhotoGallery : MonoBehaviour
     public Image ImageRedCircle;
     public GameObject HintDetails;
 
-    GameManager _gameManager;
+    GameManager m_gameManager;
 
-    float _scaleX;
-    float _scaleY;
-    DuLNode _headNode;
-    DuLNode _tailNode;
-    DuLNode _curNode;
-    int _cntPhoto;
-    int _curIndex;
-    string _pathPhotos;
+    float m_scaleX;
+    float m_scaleY;
+    DuLNode m_headNode;
+    DuLNode m_tailNode;
+    DuLNode m_curNode;
+    int m_cntPhoto;
+    int m_curIndex;
+    string m_pathPhotos;
 
 
     private void Start()
     {
-        _gameManager = FindObjectOfType<GameManager>();
+        m_gameManager = FindObjectOfType<GameManager>();
 
         TextIndexOfPhoto.text = "";
         HintDetails.SetActive(false);
 
         // since the viewPos is normalized, we need the scale to put the red cirlce on the right position
-        _scaleX = (Screen.width + ImageDisplay.GetComponent<RectTransform>().rect.width)/2;
-        _scaleY = (Screen.height + ImageDisplay.GetComponent<RectTransform>().rect.height)/2;
-        _headNode = null;
-        _tailNode = null;
-        _cntPhoto = 0;
-        _curIndex = -1;
+        m_scaleX = (Screen.width + ImageDisplay.GetComponent<RectTransform>().rect.width)/2;
+        m_scaleY = (Screen.height + ImageDisplay.GetComponent<RectTransform>().rect.height)/2;
+        m_headNode = null;
+        m_tailNode = null;
+        m_cntPhoto = 0;
+        m_curIndex = -1;
 
         // Clear the photos from the last time when game restarts
-        _pathPhotos = Application.dataPath + "/SavedFiles/Photos/";
-        if (Directory.Exists(_pathPhotos)) 
+        m_pathPhotos = Application.dataPath + "/SavedFiles/Photos/";
+        if (Directory.Exists(m_pathPhotos)) 
         {
             Debug.Log("Clearing Old Photos.");
-            Directory.Delete(_pathPhotos); 
+            Directory.Delete(m_pathPhotos); 
         }
         Debug.Log("Creating a new gallery.");
-        Directory.CreateDirectory(_pathPhotos);
+        Directory.CreateDirectory(m_pathPhotos);
     }
 
     // Save the screenshot
     public void Capture()
     {
         //string strDateAndTime = System.DateTime.Now.ToString();
-        ScreenCapture.CaptureScreenshot(_pathPhotos + _cntPhoto + ".png");
-        if (_headNode == null)
+        ScreenCapture.CaptureScreenshot(m_pathPhotos + m_cntPhoto + ".png");
+        if (m_headNode == null)
         {
-            _headNode = new DuLNode(_cntPhoto.ToString(), Phase.NullPhase);
-            _tailNode = _headNode;
-            _headNode.Next = _tailNode;
-            _tailNode.Prev = _headNode;
+            m_headNode = new DuLNode(m_cntPhoto.ToString(), Phase.NullPhase);
+            m_tailNode = m_headNode;
+            m_headNode.Next = m_tailNode;
+            m_tailNode.Prev = m_headNode;
         }
         else
         {
-            _tailNode.Next = new DuLNode(_cntPhoto.ToString(), Phase.NullPhase);
-            _tailNode.Next.Prev = _tailNode;
-            _tailNode = _tailNode.Next;
-            _tailNode.Next = _headNode;
-            _headNode.Prev = _tailNode;
+            m_tailNode.Next = new DuLNode(m_cntPhoto.ToString(), Phase.NullPhase);
+            m_tailNode.Next.Prev = m_tailNode;
+            m_tailNode = m_tailNode.Next;
+            m_tailNode.Next = m_headNode;
+            m_headNode.Prev = m_tailNode;
         }
-        _cntPhoto++;
+        m_cntPhoto++;
     }
 
     // Show a full picture
@@ -106,7 +106,7 @@ public class PhotoGallery : MonoBehaviour
         if (node != null && 0 <= index)
         {
             byte[] bytes;
-            bytes = System.IO.File.ReadAllBytes(_pathPhotos + node.StrName + ".png");
+            bytes = System.IO.File.ReadAllBytes(m_pathPhotos + node.StrName + ".png");
             Texture2D textureLoad = new Texture2D(1, 1);
             textureLoad.LoadImage(bytes);
             if (textureLoad)
@@ -119,62 +119,62 @@ public class PhotoGallery : MonoBehaviour
                 //Debug.Log("Load Picture Failure");
                 return;
             }
-            TextIndexOfPhoto.text = (index + 1) + " / " + _cntPhoto;
-            if (node.HasClue && node.PhaseBelongTo <= _gameManager.GetPhase())
+            TextIndexOfPhoto.text = (index + 1) + " / " + m_cntPhoto;
+            if (node.HasClue && node.PhaseBelongTo <= m_gameManager.GetPhase())
             {
                 TextHintMessage.gameObject.SetActive(true);
                 ImageRedCircle.gameObject.SetActive(true);
-                ImageRedCircle.rectTransform.anchoredPosition = new Vector2((2f * node.ViewPos.x - 1f) * _scaleX, (2f * node.ViewPos.y - 1f) * _scaleY);
+                ImageRedCircle.rectTransform.anchoredPosition = new Vector2((2f * node.ViewPos.x - 1f) * m_scaleX, (2f * node.ViewPos.y - 1f) * m_scaleY);
             }            
         }
     }
 
     public void EnterGallery()
     {
-        _curNode = _tailNode;
-        _curIndex = _cntPhoto-1;
-        Show(_curNode, _curIndex);
+        m_curNode = m_tailNode;
+        m_curIndex = m_cntPhoto-1;
+        Show(m_curNode, m_curIndex);
     }
 
     public void ShowNextPhoto()
     {
-        if (_curNode == null)
+        if (m_curNode == null)
             return;
-        _curIndex++;
-        _curIndex %= _cntPhoto;
-        _curNode = _curNode.Next;
-        Show(_curNode, _curIndex);
+        m_curIndex++;
+        m_curIndex %= m_cntPhoto;
+        m_curNode = m_curNode.Next;
+        Show(m_curNode, m_curIndex);
     }
 
     public void ShowPrevPhoto()
     {
-        if (_curNode == null)
+        if (m_curNode == null)
             return;
-        _curIndex--;
-        if (_curIndex < 0)
-            _curIndex = _cntPhoto - 1;
-        _curNode = _curNode.Prev;
-        Show(_curNode, _curIndex);
+        m_curIndex--;
+        if (m_curIndex < 0)
+            m_curIndex = m_cntPhoto - 1;
+        m_curNode = m_curNode.Prev;
+        Show(m_curNode, m_curIndex);
     }
 
     public void AddPromptToPhoto(Vector3 viewPos, string clueName, Phase phaseBelongTo)
     {
-        if(_tailNode == null)
+        if(m_tailNode == null)
         {
             Debug.Log("Clue is captured, but fail to take a photo.");
             return;
         }
-        _tailNode.HasClue = true;
-        _tailNode.ViewPos = viewPos;
-        _tailNode.ClueName = clueName;
-        _tailNode.PhaseBelongTo = phaseBelongTo;
+        m_tailNode.HasClue = true;
+        m_tailNode.ViewPos = viewPos;
+        m_tailNode.ClueName = clueName;
+        m_tailNode.PhaseBelongTo = phaseBelongTo;
     }
 
     public void OpenOrCloseDetails()
     {
-        if (_curNode.HasClue)
+        if (m_curNode.HasClue)
         {
-            if(_curNode.ClueName == "Clue_Poster")
+            if(m_curNode.ClueName == "Clue_Poster")
                 HintDetails.SetActive(!HintDetails.activeInHierarchy);
         }
     }
