@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 //using UnityEngine.Windows;
 using System.IO;
+using Core;
+using EventSystem.Data;
 
 // Use DulNode structure to view and scroll photos
 [HideInInspector]
@@ -155,6 +157,15 @@ public class PhotoGallery : MonoBehaviour
             m_curIndex = m_cntPhoto - 1;
         m_curNode = m_curNode.Prev;
         Show(m_curNode, m_curIndex);
+    }
+
+    public void OnSwipePhoto(IGameEventData data){
+        if (!Utils.TryConvertVal(data, out SwipePhotoEventData result)){
+            return;
+        }
+
+        if (result.Left) ShowPrevPhoto();
+        else ShowNextPhoto();
     }
 
     public void AddPromptToPhoto(Vector3 viewPos, string clueName, Phase phaseBelongTo)
