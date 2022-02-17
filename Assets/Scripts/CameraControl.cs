@@ -16,29 +16,29 @@ public class CameraControl : MonoBehaviour
     [SerializeField]
     InputHandler inputHandler;
 
-    GameManager _gameManager;
-    Camera _mainCamera;
+    GameManager m_gameManager;
+    Camera m_mainCamera;
 
-    Vector3 _camRot;
-    Vector3 _camPos;
-    float _camFOV;
-    Vector3 _camInitialPos;
-    Vector3 _camInitialRot;
-    float _camInitialFOV;
+    Vector3 m_camRot;
+    Vector3 m_camPos;
+    float m_camFOV;
+    Vector3 m_camInitialPos;
+    Vector3 m_camInitialRot;
+    float m_camInitialFOV;
 
 
     private void Start()
     {
-        _gameManager = FindObjectOfType<GameManager>();
-        _mainCamera = Camera.main;
+        m_gameManager = FindObjectOfType<GameManager>();
+        m_mainCamera = Camera.main;
 
-        _camPos = transform.position;
-        _camRot = transform.eulerAngles;
-        _camFOV = _mainCamera.fieldOfView;
+        m_camPos = transform.position;
+        m_camRot = transform.eulerAngles;
+        m_camFOV = m_mainCamera.fieldOfView;
 
-        _camInitialPos = transform.position;
-        _camInitialRot = transform.eulerAngles;
-        _camInitialFOV = _mainCamera.fieldOfView;
+        m_camInitialPos = transform.position;
+        m_camInitialRot = transform.eulerAngles;
+        m_camInitialFOV = m_mainCamera.fieldOfView;
     }
 
     private void Update()
@@ -46,13 +46,13 @@ public class CameraControl : MonoBehaviour
         // Reset to initial status
         if (Input.GetKeyDown(KeyCode.R))
         {
-            _camRot = _camInitialRot;
-            _camPos = _camInitialPos;
-            _camFOV = _camInitialFOV;
+            m_camRot = m_camInitialRot;
+            m_camPos = m_camInitialPos;
+            m_camFOV = m_camInitialFOV;
             return;
         }
         // If not in shoot state, it is not allowed to operate the camera.
-        if(_gameManager.GetGameState() != GameState.Shoot)
+        if(m_gameManager.GetGameState() != GameState.Shoot)
         {
             return;
         }
@@ -62,24 +62,24 @@ public class CameraControl : MonoBehaviour
         var rotationValues = inputHandler.GetRotationValues();
         float offset_r_y = IsKbMouseEnabled ? Input.GetAxis("Mouse X") : -rotationValues.z;
         float offset_r_x = IsKbMouseEnabled ? Input.GetAxis("Mouse Y") : -rotationValues.x;
-        _camRot.x -= SpeedRotateXY * offset_r_x * Time.deltaTime;
-        _camRot.y += SpeedRotateXY * offset_r_y * Time.deltaTime;
+        m_camRot.x -= SpeedRotateXY * offset_r_x * Time.deltaTime;
+        m_camRot.y += SpeedRotateXY * offset_r_y * Time.deltaTime;
 
         // Set new position
         float offset_pos_x = Input.GetAxis("Horizontal");
         float offset_pos_y = Input.GetAxis("Vertical");
-        _camPos.x += offset_pos_x * Time.deltaTime;
-        _camPos.x = Mathf.Clamp(_camPos.x, _camInitialPos.x - MaxOffsetPosX, _camInitialPos.x + MaxOffsetPosX);
-        _camPos.y += offset_pos_y * Time.deltaTime;
-        _camPos.y = Mathf.Clamp(_camPos.y, _camInitialPos.y - MaxOffsetPosY, _camInitialPos.y + MaxOffsetPosY);
+        m_camPos.x += offset_pos_x * Time.deltaTime;
+        m_camPos.x = Mathf.Clamp(m_camPos.x, m_camInitialPos.x - MaxOffsetPosX, m_camInitialPos.x + MaxOffsetPosX);
+        m_camPos.y += offset_pos_y * Time.deltaTime;
+        m_camPos.y = Mathf.Clamp(m_camPos.y, m_camInitialPos.y - MaxOffsetPosY, m_camInitialPos.y + MaxOffsetPosY);
 
         // Set new FOV (zoom)
         float offset_zoom = Input.GetAxis("Mouse ScrollWheel");
-        _camFOV -= SpeedZoom * offset_zoom * Time.deltaTime; ;
-        _camFOV = Mathf.Clamp(_camFOV, MinFOV, MaxFOV);
+        m_camFOV -= SpeedZoom * offset_zoom * Time.deltaTime; ;
+        m_camFOV = Mathf.Clamp(m_camFOV, MinFOV, MaxFOV);
 
-        transform.eulerAngles = _camRot;
-        transform.position = _camPos;
-        Camera.main.fieldOfView = _camFOV;
+        transform.eulerAngles = m_camRot;
+        transform.position = m_camPos;
+        Camera.main.fieldOfView = m_camFOV;
     }
 }

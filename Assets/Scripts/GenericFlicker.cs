@@ -7,25 +7,25 @@ public class GenericFlicker : MonoBehaviour
     public float FlickerRate;
     public GameObject TargetGo;
 
-    float _lastTimeFlick;
-    bool _selfActive;
+    float m_lastTimeFlick;
+    bool m_selfActive;
     
     // Start is called before the first frame update
     void Start()
     {
-        _lastTimeFlick = float.NegativeInfinity;
+        m_lastTimeFlick = float.NegativeInfinity;
         TargetGo.SetActive(true);
-        _selfActive = true;
+        m_selfActive = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(_lastTimeFlick + FlickerRate < Time.time)
+        if(m_lastTimeFlick + FlickerRate < Time.time)
         {
-            _lastTimeFlick = Time.time;
-            _selfActive = !_selfActive;
-            TargetGo.SetActive(_selfActive);
+            m_lastTimeFlick = Time.time;
+            m_selfActive = !m_selfActive;
+            TargetGo.SetActive(m_selfActive);
         }
     }
 }
