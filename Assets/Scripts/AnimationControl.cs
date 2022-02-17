@@ -40,7 +40,7 @@ public class AnimationControl : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("Current is " + m_current);
+        // Debug.Log("Current is " + m_current);
 
         if (m_phaseManager.GetPhase() == Phase.Killing1)
             Killing();

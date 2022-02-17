@@ -93,7 +93,7 @@ public class PhaseManager : MonoBehaviour
         //Room3,
         //Killing3,
 
-        Debug.Log("Phase is " + m_phase);
+        // Debug.Log("Phase is " + m_phase);
 
         if (m_onTransition)
             return;
