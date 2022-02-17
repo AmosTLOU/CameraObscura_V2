@@ -58,8 +58,8 @@ public class PhaseManager : MonoBehaviour
     int m_cntTotalClues;
 
     bool m_onTransition;
-    float m_time_AboutToKill_begin;
-    float m_time_AboutToKill;
+    //float m_time_AboutToKill_begin;
+    //float m_time_AboutToKill;
 
     private void Start()
     {
@@ -78,8 +78,8 @@ public class PhaseManager : MonoBehaviour
         m_cntTotalClues = m_isClueFound.Length;
 
         m_onTransition = false;
-        m_time_AboutToKill_begin = -1f;
-        m_time_AboutToKill = 3f;
+        //m_time_AboutToKill_begin = -1f;
+        //m_time_AboutToKill = 3f;
     }
 
     private void Update()

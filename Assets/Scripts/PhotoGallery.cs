@@ -101,7 +101,7 @@ public class PhotoGallery : MonoBehaviour
         //string strDateAndTime = System.DateTime.Now.ToString();
         ScreenCapture.CaptureScreenshot(m_pathPhotos + m_cntPhoto + ".png");
         m_photos.Add(new Photo(m_cntPhoto.ToString()));
-        Debug.Log("Capture");
+        //Debug.Log("Capture");
         m_cntPhoto++;
     }
 
