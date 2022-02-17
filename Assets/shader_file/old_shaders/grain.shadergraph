@@ -169,8 +169,6 @@
         "m_GuidSerialized": "ae18bea1-930f-48cb-81d0-7531fb5f9f55"
     },
     "m_Name": "scale",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "scale",
     "m_DefaultReferenceName": "scale",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
