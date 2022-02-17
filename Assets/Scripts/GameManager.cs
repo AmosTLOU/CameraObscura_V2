@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using EventSystem.Data;
 using UnityEngine;
 
 [HideInInspector]
@@ -29,7 +30,8 @@ public class GameManager : MonoBehaviour
     bool m_justTaken;
 
     [SerializeField] private InputHandler inputHandler;
-
+    [SerializeField] private EventSystem.GameEvent _swipePhotosEvent;
+    
     void Start()
     {
         m_mainCamera = Camera.main;
@@ -120,12 +122,14 @@ public class GameManager : MonoBehaviour
             // Scroll pictures, left-ward
             else if (Input.GetKeyDown(KeyCode.LeftArrow) || inputHandler.isLeftButtonDown)
             {
-                m_photoGallery.ShowPrevPhoto();
+                _swipePhotosEvent.Raise(new SwipePhotoEventData{Left = true});
+                //m_photoGallery.ShowPrevPhoto();
             }
             // Scroll pictures, right-ward
             else if (Input.GetKeyDown(KeyCode.RightArrow) || inputHandler.isRightButtonDown)
             {
-                m_photoGallery.ShowNextPhoto();
+                _swipePhotosEvent.Raise(new SwipePhotoEventData{Left = false});
+                //m_photoGallery.ShowNextPhoto();
             }
         }
     }
