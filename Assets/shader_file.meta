@@ -1,9 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 <<<<<<< HEAD:Assets/Materials/Old.meta
 guid: bd48794c32f53c340a5d4e8b00aa53ac
 =======
 guid: 9347aa0f44ae01a4dbbc6b0bdc2e0216
 >>>>>>> 6caaa04 (Added a shader_file folder and included the latest shader. Deleted the old folder as it was all mess):Assets/shader_file.meta
+=======
+guid: 9347aa0f44ae01a4dbbc6b0bdc2e0216
+>>>>>>> 3299a55 (Moved Assets)
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
