@@ -1,5 +1,10 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/animation_trail/MOCAP.unity.meta
 guid: 1949ccf98948d6e48827f6a98af2a9a3
+=======
+guid: 161acf41f74ad844db1227985c195cf2
+folderAsset: yes
+>>>>>>> testing/art_and_shaders:Assets/Objects/claqueta-clapperboard/source/claqueta FBX.fbm.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

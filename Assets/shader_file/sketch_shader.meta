@@ -1,6 +1,10 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/shader_file/sketch_shader.meta
 guid: 50715f6bf80d9fe4e9e11edf04c6eb83
 folderAsset: yes
+=======
+guid: 9dbe22c0d69681f43ad6f3e19909d117
+>>>>>>> testing/art_and_shaders:Assets/Scenes/ArtTest.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
