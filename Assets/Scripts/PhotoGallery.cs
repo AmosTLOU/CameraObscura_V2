@@ -56,7 +56,6 @@ public class PhotoGallery : MonoBehaviour
     public Image ImageRedCircle;
     public GameObject HintDetails;
 
-    GameManager m_gameManager;
     List<Photo> m_photos;
     float m_scaleX;
     float m_scaleY;
@@ -70,7 +69,6 @@ public class PhotoGallery : MonoBehaviour
 
     private void Start()
     {
-        m_gameManager = FindObjectOfType<GameManager>();
         m_photos = new List<Photo>();
 
         TextIndexOfPhoto.text = "";
@@ -128,7 +126,7 @@ public class PhotoGallery : MonoBehaviour
                 return;
             }
             TextIndexOfPhoto.text = (index + 1) + " / " + m_cntPhoto;
-            if (m_photos[index].HasClue && m_photos[index].PhaseBelongTo <= m_gameManager.GetPhase())
+            if (m_photos[index].HasClue && m_photos[index].PhaseBelongTo <= GameManager.instance.GetPhase())
             {
                 TextHintMessage.gameObject.SetActive(true);
                 ImageRedCircle.gameObject.SetActive(true);

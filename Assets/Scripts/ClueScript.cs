@@ -11,13 +11,10 @@ public class ClueScript : MonoBehaviour
     // 0 -> must be at the center; 1 -> okay if close to the edges 
     [Range(0, 1)]
     float m_evidenceDetectArea;
-
-    GameManager m_gameManager;
     Camera m_mainCamera;    
 
     void Start()
     {
-        m_gameManager = FindObjectOfType<GameManager>();
         m_mainCamera = Camera.main;
         m_evidenceDetectArea = 0.3f;
     }
@@ -26,13 +23,13 @@ public class ClueScript : MonoBehaviour
     {
         Vector3 viewPos = m_mainCamera.WorldToViewportPoint(transform.position);
         // If zoom in close enough while photographing, then the clue is considered detected
-        if(IsClueDetectionEnabled && m_mainCamera.fieldOfView < MaxDetectFOV && PhaseBelongTo <= m_gameManager.GetPhase())
+        if(IsClueDetectionEnabled && m_mainCamera.fieldOfView < MaxDetectFOV && PhaseBelongTo <= GameManager.instance.GetPhase())
         {
             float extraRange = (1f - m_evidenceDetectArea) / 2f;
             if (extraRange <= viewPos.x  && viewPos.x <= (1f - extraRange) &&
                extraRange <= viewPos.y && viewPos.y <= (1f - extraRange))
             {
-                m_gameManager.FindClue(viewPos, gameObject.name, PhaseBelongTo);
+                GameManager.instance.FindClue(viewPos, gameObject.name, PhaseBelongTo);
                 Debug.Log("Clue '" + gameObject.name + "' captured");
             }
         }

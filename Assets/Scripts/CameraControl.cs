@@ -11,14 +11,9 @@ public class CameraControl : MonoBehaviour
     public float SpeedRotateZ;
     public float MinFOV;
     public float MaxFOV;
-    public bool IsKbMouseEnabled;
 
-    [SerializeField]
-    InputHandler inputHandler;
-
-    GameManager m_gameManager;
+    [SerializeField] InputHandler inputHandler;
     Camera m_mainCamera;
-
     Vector3 m_camRot;
     Vector3 m_camPos;
     float m_camFOV;
@@ -26,10 +21,8 @@ public class CameraControl : MonoBehaviour
     Vector3 m_camInitialRot;
     float m_camInitialFOV;
 
-
     private void Start()
     {
-        m_gameManager = FindObjectOfType<GameManager>();
         m_mainCamera = Camera.main;
 
         m_camPos = transform.position;
@@ -52,16 +45,18 @@ public class CameraControl : MonoBehaviour
             return;
         }
         // If not in shoot state, it is not allowed to operate the camera.
-        if(m_gameManager.GetGameState() != GameState.Shoot)
+        if(GameManager.instance.GetGameState() != GameState.Shoot)
         {
             return;
         }
 
+        bool isHeadsetMounted = GameManager.instance.IsHeadsetMounted();
+
         // If in shoot state, it is free to go.
         // Set new rotation
         var rotationValues = inputHandler.GetRotationValues();
-        float offset_r_y = IsKbMouseEnabled ? Input.GetAxis("Mouse X") : -rotationValues.z;
-        float offset_r_x = IsKbMouseEnabled ? Input.GetAxis("Mouse Y") : -rotationValues.x;
+        float offset_r_y = !isHeadsetMounted ? Input.GetAxis("Mouse X") : -rotationValues.z;
+        float offset_r_x = !isHeadsetMounted ? Input.GetAxis("Mouse Y") : -rotationValues.x;
         m_camRot.x -= SpeedRotateXY * offset_r_x * Time.deltaTime;
         m_camRot.y += SpeedRotateXY * offset_r_y * Time.deltaTime;
 
@@ -74,7 +69,7 @@ public class CameraControl : MonoBehaviour
         m_camPos.y = Mathf.Clamp(m_camPos.y, m_camInitialPos.y - MaxOffsetPosY, m_camInitialPos.y + MaxOffsetPosY);
 
         // Set new FOV (zoom)
-        float offset_zoom = Input.GetAxis("Mouse ScrollWheel");
+        float offset_zoom = !isHeadsetMounted ? Input.GetAxis("Mouse ScrollWheel") : inputHandler.GetZoomValue();
         m_camFOV -= SpeedZoom * offset_zoom * Time.deltaTime; ;
         m_camFOV = Mathf.Clamp(m_camFOV, MinFOV, MaxFOV);
 

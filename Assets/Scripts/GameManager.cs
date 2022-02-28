@@ -14,6 +14,7 @@ public enum GameState
 // GameManager Class, charge of input and interaction
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
     public Canvas CanvasShoot;
     public Canvas CanvasGallery;
     public GameEvent CameraCaptureEvent;
@@ -29,11 +30,21 @@ public class GameManager : MonoBehaviour
     float m_lastCaptureTime;
     bool m_justTaken;
 
+    //headset mount flag
+    bool isHeadsetMounted = false;
+
     [SerializeField] private InputHandler inputHandler;
     [SerializeField] private EventSystem.GameEvent _swipePhotosEvent;
+
+    private void Awake() 
+    {
+        instance = this;
+    }
     
     void Start()
     {
+        OVRManager.HMDMounted += HandleHMDMounted;
+        OVRManager.HMDUnmounted += HandleHMDUnmounted;
         m_mainCamera = Camera.main;
         m_gameState = GameState.Shoot;
         m_phaseManager = FindObjectOfType<PhaseManager>();
@@ -163,5 +174,22 @@ public class GameManager : MonoBehaviour
         go.SetActive(true);
         yield return new WaitForSeconds(timeAppearing);
         go.SetActive(false);
+    }
+
+    void HandleHMDMounted()
+    {
+        isHeadsetMounted = true;
+        CanvasShoot.enabled = true;
+    }
+
+    void HandleHMDUnmounted()
+    {
+        isHeadsetMounted = false;
+        CanvasShoot.enabled = false;
+    }
+
+    public bool IsHeadsetMounted()
+    {
+        return isHeadsetMounted;
     }
 }
