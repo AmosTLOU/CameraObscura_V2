@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class CameraControl : MonoBehaviour
 {
-    public float MaxOffsetPosX;
-    public float MaxOffsetPosY;
     public float SpeedZoom;
     public float SpeedRotateXY;
-    public float SpeedRotateZ;
     public float MinFOV;
     public float MaxFOV;
 
@@ -23,15 +20,15 @@ public class CameraControl : MonoBehaviour
 
     private void Start()
     {
-        m_mainCamera = Camera.main;
+        // m_mainCamera = this.GetComponent<Camera>();
 
-        m_camPos = transform.position;
-        m_camRot = transform.eulerAngles;
-        m_camFOV = m_mainCamera.fieldOfView;
+        // m_camPos = transform.position;
+        // m_camRot = transform.eulerAngles;
+        // m_camFOV = m_mainCamera.fieldOfView;
 
-        m_camInitialPos = transform.position;
-        m_camInitialRot = transform.eulerAngles;
-        m_camInitialFOV = m_mainCamera.fieldOfView;
+        // m_camInitialPos = transform.position;
+        // m_camInitialRot = transform.eulerAngles;
+        // m_camInitialFOV = m_mainCamera.fieldOfView;
     }
 
     private void Update()
@@ -61,20 +58,23 @@ public class CameraControl : MonoBehaviour
         m_camRot.y += SpeedRotateXY * offset_r_y * Time.deltaTime;
 
         // Set new position
-        float offset_pos_x = Input.GetAxis("Horizontal");
-        float offset_pos_y = Input.GetAxis("Vertical");
-        m_camPos.x += offset_pos_x * Time.deltaTime;
-        m_camPos.x = Mathf.Clamp(m_camPos.x, m_camInitialPos.x - MaxOffsetPosX, m_camInitialPos.x + MaxOffsetPosX);
-        m_camPos.y += offset_pos_y * Time.deltaTime;
-        m_camPos.y = Mathf.Clamp(m_camPos.y, m_camInitialPos.y - MaxOffsetPosY, m_camInitialPos.y + MaxOffsetPosY);
+        // float offset_pos_x = Input.GetAxis("Horizontal");
+        // float offset_pos_y = Input.GetAxis("Vertical");
+        // m_camPos.x += offset_pos_x * Time.deltaTime;
+        // m_camPos.x = Mathf.Clamp(m_camPos.x, m_camInitialPos.x - MaxOffsetPosX, m_camInitialPos.x + MaxOffsetPosX);
+        // m_camPos.y += offset_pos_y * Time.deltaTime;
+        // m_camPos.y = Mathf.Clamp(m_camPos.y, m_camInitialPos.y - MaxOffsetPosY, m_camInitialPos.y + MaxOffsetPosY);
 
         // Set new FOV (zoom)
-        float offset_zoom = !isHeadsetMounted ? Input.GetAxis("Mouse ScrollWheel") : inputHandler.GetZoomValue();
-        m_camFOV -= SpeedZoom * offset_zoom * Time.deltaTime; ;
-        m_camFOV = Mathf.Clamp(m_camFOV, MinFOV, MaxFOV);
+        float offset_zoom = Input.GetAxis("Mouse ScrollWheel");
+        m_camFOV += SpeedZoom * offset_zoom * Time.deltaTime; ;
+        m_camFOV = Mathf.Clamp(m_camFOV, MaxFOV, MinFOV);
 
-        transform.eulerAngles = m_camRot;
-        transform.position = m_camPos;
-        Camera.main.fieldOfView = m_camFOV;
+        if(!isHeadsetMounted)
+        {
+            transform.eulerAngles = m_camRot;
+            transform.position = m_camPos;
+        }
+        this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, m_camFOV);
     }
 }

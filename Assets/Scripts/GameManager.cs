@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
 
     //headset mount flag
     bool isHeadsetMounted = false;
+    [SerializeField] GameObject vrController;
 
     [SerializeField] private InputHandler inputHandler;
     [SerializeField] private EventSystem.GameEvent _swipePhotosEvent;
