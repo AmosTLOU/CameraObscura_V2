@@ -17,4 +17,8 @@ MonoBehaviour:
   image: {fileID: 0}
   isSuspect: 0
   dead: 0
-  notes: []
+  startNotes:
+  - Basic First Note
+  - what's up
+  notes:
+  - Basic First Note
