@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     Camera m_mainCamera;
     GameState m_gameState;
     PhaseManager m_phaseManager;
-    PhotoGallery m_photoGallery;
+    [SerializeField] PhotoGallery m_photoGallery;
     float m_lastCaptureTime;
     bool m_justTaken;
 
@@ -49,7 +49,6 @@ public class GameManager : MonoBehaviour
         m_mainCamera = Camera.main;
         m_gameState = GameState.Shoot;
         m_phaseManager = FindObjectOfType<PhaseManager>();
-        m_photoGallery = FindObjectOfType<PhotoGallery>();
 
         m_lastCaptureTime = float.NegativeInfinity;
         m_justTaken = false;

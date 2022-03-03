@@ -648,14 +648,14 @@ MonoBehaviour:
   JumpForce: 0.3
   RotationAmount: 1.5
   RotationRatchet: 45
-  SnapRotation: 1
+  SnapRotation: 0
   RotateAroundGuardianCenter: 0
   FixedSpeedSteps: 0
   HmdResetsY: 1
   HmdRotatesY: 1
   GravityModifier: 0
   useProfileData: 1
-  EnableLinearMovement: 1
+  EnableLinearMovement: 0
   EnableRotation: 1
   RotationEitherThumbstick: 0
 --- !u!114 &7079542411531248103
@@ -671,7 +671,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quitKey: 27
-  fadeInTexture: {fileID: 0}
+  fadeInTexture: {fileID: 2800000, guid: a025c23fceb7d4966b603419f551ce99, type: 3}
   speedRotationIncrement: 0.05
   layerName: Default
 --- !u!114 &7079542411531150521
@@ -698,10 +698,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 612e6f29f7b937c4697e8049ca348a36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpeedZoom: 0
+  SpeedZoom: 5000
   SpeedRotateXY: 0
-  MinFOV: 0
-  MaxFOV: 0
+  MinFOV: -44
+  MaxFOV: -15
   inputHandler: {fileID: 0}
 --- !u!1 &7079542411521589321
 GameObject:
@@ -1013,7 +1013,7 @@ PrefabInstance:
     - target: {fileID: 1376405893917093013, guid: 63ebf83ab0759cd439ee25a8f341f7af, type: 3}
       propertyPath: InstanceCameraControl
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4032637177313404396}
     - target: {fileID: 1376405893917093014, guid: 63ebf83ab0759cd439ee25a8f341f7af, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1052,15 +1052,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1376405893917093014, guid: 63ebf83ab0759cd439ee25a8f341f7af, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.00096758595
+      value: 0.00045
       objectReference: {fileID: 0}
     - target: {fileID: 1376405893917093014, guid: 63ebf83ab0759cd439ee25a8f341f7af, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.00096758595
+      value: 0.00045
       objectReference: {fileID: 0}
     - target: {fileID: 1376405893917093014, guid: 63ebf83ab0759cd439ee25a8f341f7af, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.00096758595
+      value: 0.00045
       objectReference: {fileID: 0}
     - target: {fileID: 1376405893917093014, guid: 63ebf83ab0759cd439ee25a8f341f7af, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1092,7 +1092,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1376405893917093014, guid: 63ebf83ab0759cd439ee25a8f341f7af, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.14
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1376405893917093014, guid: 63ebf83ab0759cd439ee25a8f341f7af, type: 3}
       propertyPath: m_AnchoredPosition.y

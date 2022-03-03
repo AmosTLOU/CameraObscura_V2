@@ -16,7 +16,7 @@ public class CameraControl : MonoBehaviour
     float m_camFOV;
     Vector3 m_camInitialPos;
     Vector3 m_camInitialRot;
-    float m_camInitialFOV;
+    float m_camInitialFOV = 0.2f;
 
     private void Start()
     {
@@ -67,14 +67,14 @@ public class CameraControl : MonoBehaviour
 
         // Set new FOV (zoom)
         float offset_zoom = Input.GetAxis("Mouse ScrollWheel");
-        m_camFOV += SpeedZoom * offset_zoom * Time.deltaTime; ;
-        m_camFOV = Mathf.Clamp(m_camFOV, MaxFOV, MinFOV);
+        m_camFOV -= SpeedZoom * offset_zoom * Time.deltaTime; ;
+        m_camFOV = Mathf.Clamp(m_camFOV, MinFOV, MaxFOV);
 
-        if(!isHeadsetMounted)
-        {
-            transform.eulerAngles = m_camRot;
-            transform.position = m_camPos;
-        }
+        // if(!isHeadsetMounted)
+        // {
+        //     transform.eulerAngles = m_camRot;
+        //     transform.position = m_camPos;
+        // }
         this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, m_camFOV);
     }
 }
