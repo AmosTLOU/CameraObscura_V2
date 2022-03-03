@@ -2,6 +2,7 @@
 using EventSystem.Data;
 using UnityEngine;
 using UnityEngine.Events;
+using Utility;
 
 namespace EventSystem {
     public class GameEventListener : MonoBehaviour {
@@ -20,7 +21,7 @@ namespace EventSystem {
         }
         
         public void OnEventRaised(IGameEventData data = null) {
-            Log.I($"GameObject {gameObject.name} handling event {gameEvent.name}", "EVENT");
+            Log.I($"GameObject {gameObject.name.Italic()} handling event {gameEvent.name.Italic()}", "EventListener");
             response.Invoke(data);
         }
     }
