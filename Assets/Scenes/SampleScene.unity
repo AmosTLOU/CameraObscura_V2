@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.0073639643, g: 0.0029602593, b: 0.0038555493, a: 1}
+  m_IndirectSpecularColor: {r: 0.005894129, g: 0.0058934563, b: 0.0058934563, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2530,7 +2530,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &703447545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3457,6 +3457,7 @@ GameObject:
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
   - component: {fileID: 963194231}
+  - component: {fileID: 963194230}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3497,7 +3498,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 0.00001
+  field of view: 5
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -3542,15 +3543,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 612e6f29f7b937c4697e8049ca348a36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxOffsetPosX: 0.8
-  MaxOffsetPosY: 0.7
-  SpeedZoom: 5000
-  SpeedRotateXY: 50
-  SpeedRotateZ: 50
-  MinFOV: 3
-  MaxFOV: 24
-  IsKbMouseEnabled: 1
-  inputHandler: {fileID: 1707601688}
+  MaxOffsetPosX: 0
+  MaxOffsetPosY: 0
+  SpeedZoom: 0
+  SpeedRotateXY: 0
+  SpeedRotateZ: 0
+  MinFOV: 2
+  MaxFOV: 10
+  gyroInput: {fileID: 963194230}
+--- !u!114 &963194230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85c89169ae8cf7e4086493c17dc2327a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &963194231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16083,6 +16095,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8de9252346990354b99cc3e0cd62f897, type: 3}
       propertyPath: m_Name
       value: Player Room
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8de9252346990354b99cc3e0cd62f897, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8de9252346990354b99cc3e0cd62f897, type: 3}

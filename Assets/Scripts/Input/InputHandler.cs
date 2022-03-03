@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.IO.Ports;
 
 public class InputHandler : MonoBehaviour
 {
@@ -17,12 +16,9 @@ public class InputHandler : MonoBehaviour
 
     private float prevPitch, prevRoll, prevYaw, prevDistance;
 
-    SerialPort port = new SerialPort("COM3", 115200);
     void Start()
     {
-        port.Open();
-        port.ReadTimeout = 1;
-        port.NewLine = "\n";
+
     }
 
     void FixedUpdate()
@@ -36,19 +32,7 @@ public class InputHandler : MonoBehaviour
 
     void Update()
     {
-        if (port.IsOpen && port.BytesToRead > 32)
-        {
-            try
-            {
-                string input = port.ReadLine();
-                var inputMeta = input.Split(':');
-                SetInputData(inputMeta);
-            }
-            catch (System.Exception ex)
-            {
-                print("Could not read from serial port: " + ex.Message);
-            }
-        }
+
     }
 
     public Vector3 GetRotationValues()
