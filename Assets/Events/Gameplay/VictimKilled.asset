@@ -9,16 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8858d19a400847578689e1a4e43e7e0e, type: 3}
-  m_Name: Character1
+  m_Script: {fileID: 11500000, guid: 2066b0edddd44717884fe8be7e37be5f, type: 3}
+  m_Name: VictimKilled
   m_EditorClassIdentifier: 
-  id: 
-  characterName: 
-  image: {fileID: 0}
-  isSuspect: 0
-  dead: 0
-  startNotes:
-  - Basic First Note
-  - what's up
-  notes:
-  - Basic First Note

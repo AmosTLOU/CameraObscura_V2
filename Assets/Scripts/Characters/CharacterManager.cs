@@ -2,22 +2,27 @@
 using System.Collections.Generic;
 using Core;
 using UnityEngine;
+using UnityEngine.Serialization;
 using CharacterInfo = Characters.Data.CharacterInfo;
 
 namespace Characters {
     public class CharacterManager : SingletonBehaviour<CharacterManager> {
-        [SerializeField] private List<CharacterInfo> _characters = new List<CharacterInfo>();
+        [SerializeField] private List<BaseCharacter> characters = new List<BaseCharacter>();
+
+        private Dictionary<string, BaseCharacter> _characters = new Dictionary<string, BaseCharacter>();
 
         private void Start(){
-            _characters[0].AddNote("hello there");
+            foreach (var character in characters){
+                var id = character.Info.ID;
+                if (_characters.ContainsKey(id)){
+                    Log.E($"Two characters have the same id {id}");
+                }
+                _characters[id] = character;
+            }
         }
 
-        private static int c = 1;
-        private void Update(){
-            if (c++ % 100 == 0){
-                c -= 100;
-                _characters[0].AddNote($"hello there {_characters[0].Notes.Count}");
-            }
+        public BaseCharacter GetCharacter(string id){
+            return _characters[id];
         }
     }
 }
