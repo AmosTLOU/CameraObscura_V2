@@ -35,6 +35,7 @@ public class Photo
 {
     public string FileName { get; set; }
     public bool HasClue { get; set; }
+    public bool IsSuspect { get; set; }
     public string ClueName { get; set; }
     public Phase PhaseBelongTo { get; set; }
     public string SuspectName { get; set; }
@@ -42,6 +43,7 @@ public class Photo
     public Photo(string i_FileName)
     {
         FileName = i_FileName;
+        IsSuspect = false;
         HasClue = false;
         ClueName = "";
         SuspectName = "";

@@ -19,7 +19,7 @@ public class EB_Test : MonoBehaviour
         p_banana.SuspectName = "Chef";
 
         p_knife = new Photo(Application.dataPath + "/SavedFiles/Photos/knife");
-        p_knife.SuspectName = "Chef";
+        p_knife.SuspectName = "none";
 
         p_shoes = new Photo(Application.dataPath + "/SavedFiles/Photos/shoes");
         p_shoes.SuspectName = "Dancer";
