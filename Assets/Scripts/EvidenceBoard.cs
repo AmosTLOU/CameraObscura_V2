@@ -59,17 +59,18 @@ public class EvidenceBoard : Core.SingletonBehaviour<EvidenceBoard>
         GameObject NewObj = new GameObject(); //Create the GameObject
         RawImage NewImage = NewObj.AddComponent<RawImage>(); //Add the Image Component script
         NewImage.texture = LoadTexture(i_photo.FileName);
-        
+        NewObj.AddComponent<UI.Draggable>();
         NewObj.transform.SetParent(i_victim.transform); //Assign the newly created Image GameObject as a Child of the Parent Panel.
         NewObj.SetActive(true); //Activate the GameObject
 
-        int childcount = i_victim.GetComponent<RectTransform>().childCount;
+        int childcount = i_victim.GetComponent<RectTransform>().childCount - 1;
 
         float degree = Mathf.PI * 2 / childcount;
 
-        for(int i = 0; i < childcount; i++)
+        for(int i = 0; i <= childcount; i++)
         {
             RectTransform child = i_victim.GetComponent<RectTransform>().GetChild(i) as RectTransform;
+            if (child.name == "Collider") continue;
             child.localPosition = new Vector3(picsDistance * Mathf.Cos(degree * i), picsDistance * Mathf.Sin(degree * i), 0);//Vector3(Mathf.Cos(degree * i), Mathf.Sin(degree * i), 0);
             child.localRotation = new Quaternion(0, 0, 0, 0);
             child.localScale = new Vector3(1, 1, 1);
