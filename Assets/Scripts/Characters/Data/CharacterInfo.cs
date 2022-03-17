@@ -6,16 +6,18 @@ using Utility;
 
 namespace Characters.Data {
     [CreateAssetMenu(fileName = "CharacterInfo", menuName = "Data/Character", order = 0)]
-    public class CharacterInfo : ScriptableObject {
+    public class CharacterInfo : ScriptableObjectDef {
         // Read-only properties: Only set through editor
         [SerializeField] private string id;
         [SerializeField] private string characterName;
         [SerializeField] private Sprite image;
         
         // Can be set throughout the gameplay
-        [SerializeField] private bool isSuspect;
-        [SerializeField] private bool dead;
-        [SerializeField] private List<string> notes = new List<string>();
+        [SerializeField] private bool isSuspect = false;
+        [SerializeField] private bool dead = false;
+        [SerializeField] private List<string> startNotes = new List<string>();
+        
+        private List<string> notes = new List<string>();
         
         // Getters
         public string ID => id;
@@ -28,8 +30,10 @@ namespace Characters.Data {
         public void AddNote(string note) {
             notes.Add(note);
         }
-        private void OnValidate(){
-            Log.I("Character info change".Color(Color.red));
+
+        protected override void ResetData(){
+            notes.Clear();
+            notes.AddRange(startNotes);
         }
     }
 }
