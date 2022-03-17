@@ -59,6 +59,7 @@ public class EvidenceBoard : Core.SingletonBehaviour<EvidenceBoard>
         GameObject NewObj = new GameObject(); //Create the GameObject
         RawImage NewImage = NewObj.AddComponent<RawImage>(); //Add the Image Component script
         NewImage.texture = LoadTexture(i_photo.FileName);
+        
         NewObj.transform.SetParent(i_victim.transform); //Assign the newly created Image GameObject as a Child of the Parent Panel.
         NewObj.SetActive(true); //Activate the GameObject
 
