@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Core;
 using CharacterInfo = Characters.Data.CharacterInfo;
+using Utility;
 
 public class EvidenceBoard : Core.SingletonBehaviour<EvidenceBoard>
 {
@@ -14,6 +15,8 @@ public class EvidenceBoard : Core.SingletonBehaviour<EvidenceBoard>
     [SerializeField] GameObject chef;
     [SerializeField] GameObject dancer;
     [SerializeField] GameObject none;
+
+    [SerializeField] RectTransform chefBound;
 
     [SerializeField] float picsDistance;
     [SerializeField] Vector2 pictureSize = new Vector2(50, 50);
@@ -54,6 +57,21 @@ public class EvidenceBoard : Core.SingletonBehaviour<EvidenceBoard>
         }
     }
 
+    public void ImageDrop(RectTransform rectTransform)
+    {
+        //Log.I("enter image drop");
+        if (rectTransform.Overlaps(chefBound)) {
+            Log.I($"Incoming:: {printRT(rectTransform)}");
+            Log.I($"ChefBounds:: {printRT(chefBound)}");
+            Log.I("overlap!".Color("green"));
+        }
+        
+    }
+    private string printRT(RectTransform rt)
+    {
+        return $"Center={rt.rect.center} position={rt.position} worldPos= Height = {rt.sizeDelta.x} Width = {rt.sizeDelta.y}";
+    }
+
     void AddPhotoToVictim(GameObject i_victim, Photo i_photo)
     {
         GameObject NewObj = new GameObject(); //Create the GameObject
@@ -62,7 +80,7 @@ public class EvidenceBoard : Core.SingletonBehaviour<EvidenceBoard>
         NewObj.AddComponent<UI.Draggable>();
         NewObj.transform.SetParent(i_victim.transform); //Assign the newly created Image GameObject as a Child of the Parent Panel.
         NewObj.SetActive(true); //Activate the GameObject
-
+        
         int childcount = i_victim.GetComponent<RectTransform>().childCount - 1;
 
         float degree = Mathf.PI * 2 / childcount;
