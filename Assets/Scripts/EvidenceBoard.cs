@@ -18,6 +18,8 @@ public class EvidenceBoard : Core.SingletonBehaviour<EvidenceBoard>
 
     [SerializeField] RectTransform chefBound;
 
+    [SerializeField] GameObject photoPrefab;
+
     [SerializeField] float picsDistance;
     [SerializeField] Vector2 pictureSize = new Vector2(50, 50);
 
@@ -74,21 +76,26 @@ public class EvidenceBoard : Core.SingletonBehaviour<EvidenceBoard>
 
     void AddPhotoToVictim(GameObject i_victim, Photo i_photo)
     {
-        GameObject NewObj = new GameObject(); //Create the GameObject
-        RawImage NewImage = NewObj.AddComponent<RawImage>(); //Add the Image Component script
-        NewImage.texture = LoadTexture(i_photo.FileName);
-        NewObj.AddComponent<UI.Draggable>();
-        NewObj.transform.SetParent(i_victim.transform); //Assign the newly created Image GameObject as a Child of the Parent Panel.
-        NewObj.SetActive(true); //Activate the GameObject
-        
+        GameObject NewObj = Instantiate(photoPrefab, i_victim.transform, false); ; //Create the GameObject
+        //RawImage NewImage = NewObj.AddComponent<RawImage>(); //Add the Image Component script
+        NewObj.GetComponent<RawImage>().texture = LoadTexture(i_photo.FileName);
+        //NewObj.AddComponent<UI.Draggable>();
+        //NewObj.transform.SetParent(i_victim.transform); //Assign the newly created Image GameObject as a Child of the Parent Panel.
+        //NewObj.SetActive(true); //Activate the GameObject
+
+        SortPhoto(i_victim.transform);
+    }
+
+    public void SortPhoto(Transform i_victim)
+    {
         int childcount = i_victim.GetComponent<RectTransform>().childCount - 1;
 
         float degree = Mathf.PI * 2 / childcount;
 
-        for(int i = 0; i <= childcount; i++)
+        for (int i = 0; i <= childcount; i++)
         {
             RectTransform child = i_victim.GetComponent<RectTransform>().GetChild(i) as RectTransform;
-            if (child.name == "Collider") continue;
+            if (child.name == "Bound") continue;
             child.localPosition = new Vector3(picsDistance * Mathf.Cos(degree * i), picsDistance * Mathf.Sin(degree * i), 0);//Vector3(Mathf.Cos(degree * i), Mathf.Sin(degree * i), 0);
             child.localRotation = new Quaternion(0, 0, 0, 0);
             child.localScale = new Vector3(1, 1, 1);
@@ -115,11 +122,10 @@ public class EvidenceBoard : Core.SingletonBehaviour<EvidenceBoard>
 
     void RandomPlace(Photo i_photo)
     {
-        GameObject NewObj = new GameObject(); //Create the GameObject
-        RawImage NewImage = NewObj.AddComponent<RawImage>(); //Add the Image Component script
-        NewImage.texture = LoadTexture(i_photo.FileName);
-        NewObj.transform.SetParent(this.transform); //Assign the newly created Image GameObject as a Child of the Parent Panel.
-        NewObj.SetActive(true); //Activate the GameObject
+
+        GameObject NewObj = Instantiate(photoPrefab, this.transform, false); ; //Create the GameObject
+        //RawImage NewImage = NewObj.AddComponent<RawImage>(); //Add the Image Component script
+        NewObj.GetComponent<RawImage>().texture = LoadTexture(i_photo.FileName);
 
         RectTransform rect = NewObj.GetComponent<RectTransform>();
         float width = this.GetComponent<RectTransform>().sizeDelta.x / 2;

@@ -17,13 +17,13 @@ namespace UI {
 
         public void OnPointerUp(PointerEventData eventData)
         {
-            Log.I("pointer up");
-            EvidenceBoard.Instance.ImageDrop(GetComponent<RectTransform>());
+            //Log.I("pointer up");
+            //EvidenceBoard.Instance.ImageDrop(GetComponent<RectTransform>());
         }
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            Log.I("pointer down");
+            //Log.I("pointer down");
         }
     }
 }
