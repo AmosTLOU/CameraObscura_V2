@@ -9,6 +9,9 @@ public class EB_Test : MonoBehaviour
     public bool knife;
     public bool shoes;
 
+    //public GameObject p1;
+    //public GameObject p2;
+
     Photo p_banana;
     Photo p_knife;
     Photo p_shoes;
@@ -23,6 +26,10 @@ public class EB_Test : MonoBehaviour
 
         p_shoes = new Photo(Application.dataPath + "/SavedFiles/Photos/shoes");
         p_shoes.SuspectName = "Dancer";
+
+        //Debug.Log(p1.transform.localPosition);
+
+        //Debug.Log(p2.transform.localPosition);
     }
 
     // Update is called once per frame

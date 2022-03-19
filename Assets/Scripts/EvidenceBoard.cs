@@ -79,6 +79,7 @@ public class EvidenceBoard : Core.SingletonBehaviour<EvidenceBoard>
         GameObject NewObj = Instantiate(photoPrefab, i_victim.transform, false); ; //Create the GameObject
         //RawImage NewImage = NewObj.AddComponent<RawImage>(); //Add the Image Component script
         NewObj.GetComponent<RawImage>().texture = LoadTexture(i_photo.FileName);
+        NewObj.GetComponent<UI.Draggable>().AddLine();
         //NewObj.AddComponent<UI.Draggable>();
         //NewObj.transform.SetParent(i_victim.transform); //Assign the newly created Image GameObject as a Child of the Parent Panel.
         //NewObj.SetActive(true); //Activate the GameObject
@@ -95,11 +96,13 @@ public class EvidenceBoard : Core.SingletonBehaviour<EvidenceBoard>
         for (int i = 0; i <= childcount; i++)
         {
             RectTransform child = i_victim.GetComponent<RectTransform>().GetChild(i) as RectTransform;
-            if (child.name == "Bound") continue;
+            Debug.Log(child.name);
+            if (!child.name.Contains("Photo")) continue;
             child.localPosition = new Vector3(picsDistance * Mathf.Cos(degree * i), picsDistance * Mathf.Sin(degree * i), 0);//Vector3(Mathf.Cos(degree * i), Mathf.Sin(degree * i), 0);
             child.localRotation = new Quaternion(0, 0, 0, 0);
             child.localScale = new Vector3(1, 1, 1);
             child.sizeDelta = pictureSize;
+            child.GetComponent<UI.Draggable>().UpdateLine();
         }
     }
 
