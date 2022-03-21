@@ -8,8 +8,8 @@ public class AnimationControl : MonoBehaviour
     public GameObject GoBloodOnWindow1;
     public GameObject GoBloodOnWindow3;
     public GameObject[] points;
-    public GameObject opening_cam; //opening
-    public GameObject main_cam; //opening
+    //public GameObject opening_cam; //opening
+    //public GameObject main_cam; //opening
     public Transform KillerTransform;
     public Animator KillerAnimator;
     public Animator Victim1Animator;
@@ -57,10 +57,10 @@ public class AnimationControl : MonoBehaviour
 
     IEnumerator DelayBeforeFallDown()
     {
-        opening_cam.SetActive(true);    //opening
-        yield return new WaitForSeconds(2f);  //opening
-        opening_cam.SetActive(false);  //opening
-        main_cam.SetActive(true);  //opening
+        //opening_cam.SetActive(true);    //opening
+        //yield return new WaitForSeconds(2f);  //opening
+        //opening_cam.SetActive(false);  //opening
+        //main_cam.SetActive(true);  //opening
 
         KillerAnimator.SetInteger("StateIndex", 1);
         yield return new WaitForSeconds(3.5f);
