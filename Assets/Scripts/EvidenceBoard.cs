@@ -14,9 +14,10 @@ public class EvidenceBoard : Core.SingletonBehaviour<EvidenceBoard>
 
     [SerializeField] GameObject chef;
     [SerializeField] GameObject dancer;
-    [SerializeField] GameObject none;
+    [SerializeField] GameObject killer;
+    [SerializeField] GameObject others;
 
-    [SerializeField] RectTransform chefBound;
+    //[SerializeField] RectTransform chefBound;
 
     [SerializeField] GameObject photoPrefab;
 
@@ -50,25 +51,29 @@ public class EvidenceBoard : Core.SingletonBehaviour<EvidenceBoard>
                 case "Dancer":
                     AddPhotoToVictim(dancer, i_photo);
                     break;
+                case "Killer":
+                    AddPhotoToRow(killer, i_photo);
+                    break;
                 default:
+                    AddPhotoToRow(others, i_photo);
                     //evidences not related to any victims
-                    RandomPlace(i_photo);
+                    //RandomPlace(i_photo);
                     break;
 
             }
         }
     }
 
-    public void ImageDrop(RectTransform rectTransform)
-    {
-        //Log.I("enter image drop");
-        if (rectTransform.Overlaps(chefBound)) {
-            Log.I($"Incoming:: {printRT(rectTransform)}");
-            Log.I($"ChefBounds:: {printRT(chefBound)}");
-            Log.I("overlap!".Color("green"));
-        }
+    //public void ImageDrop(RectTransform rectTransform)
+    //{
+    //    //Log.I("enter image drop");
+    //    if (rectTransform.Overlaps(chefBound)) {
+    //        Log.I($"Incoming:: {printRT(rectTransform)}");
+    //        Log.I($"ChefBounds:: {printRT(chefBound)}");
+    //        Log.I("overlap!".Color("green"));
+    //    }
         
-    }
+    //}
     private string printRT(RectTransform rt)
     {
         return $"Center={rt.rect.center} position={rt.position} worldPos= Height = {rt.sizeDelta.x} Width = {rt.sizeDelta.y}";
@@ -76,7 +81,7 @@ public class EvidenceBoard : Core.SingletonBehaviour<EvidenceBoard>
 
     void AddPhotoToVictim(GameObject i_victim, Photo i_photo)
     {
-        GameObject NewObj = Instantiate(photoPrefab, i_victim.transform, false); ; //Create the GameObject
+        GameObject NewObj = Instantiate(photoPrefab, i_victim.transform, false); //Create the GameObject
         //RawImage NewImage = NewObj.AddComponent<RawImage>(); //Add the Image Component script
         NewObj.GetComponent<RawImage>().texture = LoadTexture(i_photo.FileName);
         NewObj.GetComponent<UI.Draggable>().AddLine();
@@ -85,6 +90,24 @@ public class EvidenceBoard : Core.SingletonBehaviour<EvidenceBoard>
         //NewObj.SetActive(true); //Activate the GameObject
 
         SortPhoto(i_victim.transform);
+    }
+
+    void AddPhotoToRow(GameObject i_obj, Photo i_photo)
+    {
+        GameObject NewObj = Instantiate(photoPrefab, i_obj.transform, false);
+        NewObj.GetComponent<RawImage>().texture = LoadTexture(i_photo.FileName);
+
+        RectTransform rect = NewObj.GetComponent<RectTransform>();
+        float width = pictureSize.x / 2;
+        int childNum = i_obj.transform.childCount;
+        float x = -i_obj.GetComponent<RectTransform>().sizeDelta.x/2 + width + (childNum - 1) * (pictureSize.x + 5);
+        Debug.Log(childNum + " / " + x);
+        //float height = this.GetComponent<RectTransform>().sizeDelta.y / 2;
+
+        rect.sizeDelta = pictureSize;
+        rect.localRotation = new Quaternion(0, 0, 0, 0);
+        rect.localScale = new Vector3(1, 1, 1);
+        rect.localPosition = new Vector3(x, 0, 0);
     }
 
     public void SortPhoto(Transform i_victim)
@@ -96,7 +119,7 @@ public class EvidenceBoard : Core.SingletonBehaviour<EvidenceBoard>
         for (int i = 0; i <= childcount; i++)
         {
             RectTransform child = i_victim.GetComponent<RectTransform>().GetChild(i) as RectTransform;
-            Debug.Log(child.name);
+            
             if (!child.name.Contains("Photo")) continue;
             child.localPosition = new Vector3(picsDistance * Mathf.Cos(degree * i), picsDistance * Mathf.Sin(degree * i), 0);//Vector3(Mathf.Cos(degree * i), Mathf.Sin(degree * i), 0);
             child.localRotation = new Quaternion(0, 0, 0, 0);
