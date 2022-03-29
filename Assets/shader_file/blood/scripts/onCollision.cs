@@ -22,7 +22,9 @@ public class onCollision : MonoBehaviour
 
         Material[] materials = bloodmat.materials;
         materials[1] = null;
-        bloodmat.materials = materials; 
+        bloodmat.materials = materials; //the last line to set the changed materials again to the object
+
+
         
 
 
