@@ -1,22 +1,23 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
-public class GameEventListener : MonoBehaviour
+public class GameEventListenerOld : MonoBehaviour
 {
-    [Tooltip("Event to register with.")]
-    public GameEvent Event;
+    [FormerlySerializedAs("Event")] [Tooltip("Event to register with.")]
+    public GameEventOld eventOld;
 
     [Tooltip("Response to invoke when Event is raised.")]
     public UnityEvent Response;
 
     private void OnEnable()
     {
-        Event.RegisterListener(this);
+        eventOld.RegisterListener(this);
     }
 
     private void OnDisable()
     {
-        Event.UnregisterListener(this);
+        eventOld.UnregisterListener(this);
     }
 
     public void OnEventRaised()

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using EventSystem.Data;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [HideInInspector]
 public enum GameState
@@ -16,7 +17,7 @@ public class GameManager : MonoBehaviour
 {
     public Canvas CanvasShoot;
     public Canvas CanvasGallery;
-    public GameEvent CameraCaptureEvent;
+    [FormerlySerializedAs("CameraCaptureEvent")] public GameEventOld cameraCaptureEventOld;
     public float RateCapture;
     public AudioSource AudioPlayer;
     public AudioClip SFXClick;
@@ -93,7 +94,7 @@ public class GameManager : MonoBehaviour
                 AudioPlayer.Play();
                 VideoPlayer.gameObject.SetActive(true);
                 m_photoGallery.Capture();
-                CameraCaptureEvent.Raise();
+                cameraCaptureEventOld.Raise();
                 m_justTaken = true;
             }
             if(RateCapture + m_lastCaptureTime < Time.time)

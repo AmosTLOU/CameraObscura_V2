@@ -2,13 +2,13 @@
 using UnityEngine;
 
 [CreateAssetMenu]
-public class GameEvent : ScriptableObject
+public class GameEventOld : ScriptableObject
 {
     /// <summary>
     /// The list of listeners that this event will notify if it is raised.
     /// </summary>
-    private readonly List<GameEventListener> eventListeners = 
-        new List<GameEventListener>();
+    private readonly List<GameEventListenerOld> eventListeners = 
+        new List<GameEventListenerOld>();
 
     public void Raise()
     {
@@ -16,13 +16,13 @@ public class GameEvent : ScriptableObject
             eventListeners[i].OnEventRaised();
     }
 
-    public void RegisterListener(GameEventListener listener)
+    public void RegisterListener(GameEventListenerOld listener)
     {
         if (!eventListeners.Contains(listener))
             eventListeners.Add(listener);
     }
 
-    public void UnregisterListener(GameEventListener listener)
+    public void UnregisterListener(GameEventListenerOld listener)
     {
         if (eventListeners.Contains(listener))
             eventListeners.Remove(listener);
