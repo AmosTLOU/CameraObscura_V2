@@ -6,7 +6,7 @@ using Utility;
 
 namespace EventSystem {
     public class GameEventListener : MonoBehaviour {
-        [Tooltip("Event to register with.")] 
+        [Tooltip("Event that is being listened to")] 
         public GameEvent gameEvent;
 
         [Tooltip("Response to invoke when Event is raised.")]
@@ -21,7 +21,7 @@ namespace EventSystem {
         }
         
         public void OnEventRaised(IGameEventData data = null) {
-            Log.I($"GameObject {gameObject.name.Italic()} handling event {gameEvent.name.Italic()}", "EventListener");
+            Log.I($"{gameObject.name.Color("red")} handling event {gameEvent.name.Color("red")}", "EventListener");
             response.Invoke(data);
         }
     }

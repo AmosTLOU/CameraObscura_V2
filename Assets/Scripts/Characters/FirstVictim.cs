@@ -1,6 +1,5 @@
 ﻿using Core;
 using EventSystem.Data;
-using UnityEngine;
 
 namespace Characters {
     public class FirstVictim : BaseCharacter {

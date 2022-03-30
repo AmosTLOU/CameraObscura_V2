@@ -33,7 +33,8 @@ namespace Core {
 
         private static Dictionary<string, LogParams> _colors = new Dictionary<string, LogParams>{
             {"EventRaised", new LogParams(Color.red, true)},
-            {"EventListener", new LogParams(Color.cyan, true)}
+            {"EventListener", new LogParams(Color.cyan, true)},
+            {Constants.TagTimeline, new LogParams(Color.magenta, true)}
         };
         
         public static void setLogLevel(LogLevel l) {

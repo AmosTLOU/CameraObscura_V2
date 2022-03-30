@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2066b0edddd44717884fe8be7e37be5f, type: 3}
-  m_Name: CameraFlash
+  m_Name: In_CameraFlash
   m_EditorClassIdentifier: 
