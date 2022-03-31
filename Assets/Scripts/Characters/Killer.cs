@@ -1,74 +1,128 @@
 ﻿using System.Collections;
 using Core;
+using EventSystem;
 using EventSystem.Data;
+using Unity.Burst;
 using UnityEngine;
 using Utility;
+using World;
 
 namespace Characters {
     public class Killer : BaseCharacter {
-        [SerializeField] private EventSystem.GameEvent killVictimEvent;
-
+        [SerializeField] private GameEvent victimKilledEvent;
+        [SerializeField] private GameEvent killerDoneForDayEvent;
+        
         private Coroutine rampageRoutine;
         private Coroutine killingRoutine;
         private bool isHiding = true;
-        
+        private bool _killing = false;
+
         public void OnNightStart(IGameEventData data){
             // killingRoutine = StartCoroutine(KillVictim());
         }
 
         #region Killer Actions
-        public void StartRampage(IGameEventData data){
-            Log.I("Killer about to go on rampage", Constants.TagTimeline);
+        public void OnEventPlayerWakeUp(IGameEventData data){
+            Log.Info("Killer about to go on rampage", Constants.TagTimeline);
             // Wait for some time and start for building 4;
-            Log.I($"Rampage Day {data}");
-            StartCoroutine(KillInBuilding1());
-        }
-        #region Killer Actions -> Day 1
-        private void RampageDay1(IGameEventData data){
-            Log.I("Killer about to go on rampage", Constants.TagTimeline);
-            // Wait for some time and start for building 4;
-            StartCoroutine(KillInBuilding1());
+            
+            Utils.TryConvertVal(data, out MiniGameStateEventData gsData);
+            Log.Info($"Killer Rampage Day {gsData.DayNumber}");
+            switch (gsData.DayNumber){
+                case 1:
+                    rampageRoutine = StartCoroutine(RampageDay1());
+                    break;
+                default:
+                    Log.Err($"Action not found for Day {gsData.DayNumber}");
+                    break;
+            }
         }
         
-        private IEnumerator KillInBuilding1(){
+        #region Killer Sequence -> Day 1
+        
+        private IEnumerator RampageDay1(){
             // Move to the first location
-            Log.D("Killer moving towards the first building", Constants.TagTimeline);
+            Log.Debug("Killer moving towards the first building", Constants.TagTimeline);
+            yield return new WaitForSeconds(2f);
+            Log.Debug("Killer in position", Constants.TagTimeline);
+            _killing = true;
+            killingRoutine = StartCoroutine(KillBuilding1Victim());
+            yield return killingRoutine;
+            _killing = false;
             
-            // Play the animation and wait till it moves to the next location
-            Log.D("");
-            yield return null;
+            Log.Debug("Killer moving towards the second building", Constants.TagTimeline);
+            yield return new WaitForSeconds(2f);
+            Log.Debug("Killer in position", Constants.TagTimeline);
+            _killing = true;
+            killingRoutine = StartCoroutine(KillInBuilding4());
+            yield return killingRoutine;
+            _killing = false;
+            
+            Log.Debug("Killer moving towards the third building", Constants.TagTimeline);
+            yield return new WaitForSeconds(2f);
+            Log.Debug("Killer in position", Constants.TagTimeline);
+            _killing = true;
+            killingRoutine = StartCoroutine(KillInBuilding2());
+            yield return killingRoutine;
+            _killing = false;
+
+            killerDoneForDayEvent.Raise();
+        }
+
+        private IEnumerator KillBuilding1Victim(){
+            yield return new WaitForSeconds(3f);
+            
+            // killVictimEvent.Raise(new VictimKilledEventData{victimId = WorldManager.Instance.GetHouse()});
+            victimKilledEvent.Raise(new VictimKilledEventData{victimId = "vic1"});
+            Log.Debug("Victim=vic1 Killed, Restart Game!", Constants.TagTimeline);
+            // StopCoroutine(rampageRoutine);
         }
 
         private IEnumerator KillInBuilding4(){
-            // Move
-            yield return null;
+            yield return new WaitForSeconds(3f);
+            
+            // killVictimEvent.Raise(new VictimKilledEventData{victimId = WorldManager.Instance.GetHouse()});
+            victimKilledEvent.Raise(new VictimKilledEventData{victimId = "vic2"});
+            Log.Debug("Victim=vic2 Killed, Restart Game! vic2", Constants.TagTimeline);
+            // StopCoroutine(rampageRoutine);
         }
 
         private IEnumerator KillInBuilding2(){
-            // Move
-            yield return null;
-        }
-        #endregion
-        
-        
-        private IEnumerator KillVictim(){
             yield return new WaitForSeconds(3f);
-            killVictimEvent.Raise(new VictimKilledEventData{victimId = "vic1"});
+            
+            // killVictimEvent.Raise(new VictimKilledEventData{victimId = WorldManager.Instance.GetHouse()});
+            victimKilledEvent.Raise(new VictimKilledEventData{victimId = "vic3"});
+            Log.Debug("Victim=vic3 Killed, Restart Game!", Constants.TagTimeline);
+            // StopCoroutine(rampageRoutine);
         }
         #endregion
 
-        public void OnCameraFlash(IGameEventData d){
+        #region Killer Sequence -> Day 2
+        #endregion
+        
+        #region Killer Sequence -> Day 3
+        #endregion
+        
+        #endregion
+
+        public void OnEventCameraFlash(IGameEventData d){
             Utils.TryConvertVal(d, out CameraFlashEventData data);
-            Log.I("Checking for flashed at right place");
+            if (!_killing){
+                Log.Debug("Camera Flash during non-killing phase", Constants.TagTimeline);
+                return;
+            }
+            
+            Log.Info("Conditional checking camera flash data at right place");
             StopCoroutine(killingRoutine);
-            Log.I("Stopped Killing, Running Away".Color("green"));
+            _killing = false;
+            Log.Info("Stopped Killing, Killer Running Away", Constants.TagTimeline);
         }
 
         public void Interrupted(){
-            Log.I("Checking for interrupted");
+            Log.Info("Checking for interrupted");
             
             // Add check
-            Log.I("Successfully interrupted");
+            Log.Info("Successfully interrupted");
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 
 namespace EventSystem.Data {
     /**
@@ -9,6 +10,17 @@ namespace EventSystem.Data {
 
     public struct EmptyGameEventData : IGameEventData {
         
+    }
+
+    /// <summary>
+    /// Contains the short game state data. Used for basic data info.
+    /// WorldManager.Instance.GetMiniGameState() can be used to get the current mini game state
+    /// </summary>
+    public struct MiniGameStateEventData : IGameEventData {
+        public bool NewGame;
+        public bool Restart;
+        public int DayNumber;
+        public bool IsNight;
     }
 
     public struct TimeEventData : IGameEventData {
@@ -28,6 +40,7 @@ namespace EventSystem.Data {
         public bool debug;
     }
     public struct CameraFlashEventData : IGameEventData {
+        public bool debug;
         public Vector2 location;
     }
 }

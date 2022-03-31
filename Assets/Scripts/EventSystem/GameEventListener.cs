@@ -21,7 +21,7 @@ namespace EventSystem {
         }
         
         public void OnEventRaised(IGameEventData data = null) {
-            Log.I($"{gameObject.name.Color("red")} handling event {gameEvent.name.Color("red")}", "EventListener");
+            Log.Info($"{gameObject.name.Color("red")} handling event {gameEvent.name.Color("red")}", "EventListener");
             response.Invoke(data);
         }
     }

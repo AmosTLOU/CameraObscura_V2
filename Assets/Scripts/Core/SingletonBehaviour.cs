@@ -6,9 +6,9 @@ namespace Core {
         public virtual void Awake() {
             if (Instance != null && Instance != this) {
                 Destroy(this);
-                Log.E($"Singleton type {typeof(T)} already exists");
+                Log.Err($"Singleton type {typeof(T)} already exists");
             } else {
-                Log.I($"Singleton type {typeof(T)} is created");
+                Log.Info($"Singleton type {typeof(T)} is created");
                 Instance = (T) this;
             }
         }

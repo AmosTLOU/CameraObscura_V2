@@ -7,10 +7,10 @@ using UnityEngine;
 namespace GameInput {
     public class InputDebugger : SingletonBehaviour<InputDebugger> {
 
-        [SerializeField] private GameEvent cameraClickEvent;
+        [SerializeField] private GameEvent cameraFlashEvent;
         private void Update(){
             if (Input.GetKeyDown(KeyCode.P)){
-                cameraClickEvent.Raise(new CameraClickEventData{debug = true});
+                cameraFlashEvent.Raise(new CameraFlashEventData{debug = true});
             }
         }
     }

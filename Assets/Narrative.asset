@@ -9,12 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8858d19a400847578689e1a4e43e7e0e, type: 3}
-  m_Name: Chef
+  m_Script: {fileID: 11500000, guid: 218598902916422b896138d850eeaa68, type: 3}
+  m_Name: Narrative
   m_EditorClassIdentifier: 
-  id: chef
-  characterName: Dave
-  image: {fileID: 0}
-  isSuspect: 0
-  dead: 0
-  startNotes: []
+  speakerName: UNKNOWN
+  text: Sample Text
+  voice: {fileID: 0}

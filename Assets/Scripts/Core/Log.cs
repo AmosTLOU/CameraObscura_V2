@@ -41,32 +41,32 @@ namespace Core {
             level = l;
         }
 		
-        public static void T(string message, string tag = "[Default]") {
+        public static void Trace(string message, string tag = "[Default]") {
             if (level > LogLevel.TRACE) return;
-            Debug.Log($"[T] [{tag}]: {message}");
+            UnityEngine.Debug.Log($"[T] [{tag}]: {message}");
         }
 		
-        public static void D(string message, string tag = "[Default]") {
+        public static void Debug(string message, string tag = "[Default]") {
             if (level > LogLevel.DEBUG) return;
-            Debug.Log($"<color=green>[DEBUG] [{tag}]: {message}</color>");
+            UnityEngine.Debug.Log($"<color=green>[DEBUG]</color>{ApplyFormatting(tag, LogLevel.INFO, message)}");
         }
 		
-        public static void I(string message, string tag = "Default") {
+        public static void Info(string message, string tag = "Default") {
             if (level > LogLevel.INFO) return;
-            Debug.Log($"[INFO] {ApplyFormatting(tag, LogLevel.INFO, message)}");
+            UnityEngine.Debug.Log($"[INFO] {ApplyFormatting(tag, LogLevel.INFO, message)}");
         }
 		
-        public static void W(string message, string tag = "[Default]") {
+        public static void Warn(string message, string tag = "[Default]") {
             if (level > LogLevel.WARN) return;
-            Debug.LogWarning($"[WARN] [{tag}]: {message}");
+            UnityEngine.Debug.LogWarning($"[WARN] [{tag}]: {message}");
         }
-        public static void E(string message, string tag = "[Default]") {
+        public static void Err(string message, string tag = "[Default]") {
             if (level > LogLevel.ERROR) return;
-            Debug.LogError($"[ERR] [{tag}]: {message}");
+            UnityEngine.Debug.LogError($"[ERR] [{tag}]: {message}");
         }
-        public static void F(string tag, string message) {
+        public static void Fatal(string tag, string message) {
             // if (level > LogLevel.INFO) return;
-            Debug.LogError($"[Fatal] [{tag}]: {message}");
+            UnityEngine.Debug.LogError($"[Fatal] [{tag}]: {message}".Size(20));
         }
 
         private static string ApplyFormatting(string tag, LogLevel level, string message){

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8858d19a400847578689e1a4e43e7e0e, type: 3}
   m_Name: Dancer
   m_EditorClassIdentifier: 
-  id: vic1
+  id: dancer
   characterName: Dave
   image: {fileID: 0}
   isSuspect: 0

@@ -8,23 +8,23 @@ namespace Characters {
             if (nightStart.dayNumber != 1){
                 return;
             }
-            Log.I("Taking Nap");
+            Log.Info("Taking Nap");
         }
 
         public void Killed(IGameEventData d){
             Utils.TryConvertVal(d, out VictimKilledEventData data);
             if (data.victimId.Equals(Info.ID)) {
-                Log.I("Killed");
+                Log.Info("Killed");
             } else {
-                Log.I("someone else killed");
+                Log.Info("someone else killed");
             }
         }
 
         public void Interrupted(){
-            Log.I("Checking for interrupted");
+            Log.Info("Checking for interrupted");
             
             // Add check
-            Log.I("Successfully interrupted");
+            Log.Info("Successfully interrupted");
         }
     }
 }

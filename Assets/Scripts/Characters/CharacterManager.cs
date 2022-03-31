@@ -15,7 +15,7 @@ namespace Characters {
             foreach (var character in characters){
                 var id = character.Info.ID;
                 if (_characters.ContainsKey(id)){
-                    Log.E($"Two characters have the same id {id}");
+                    Log.Err($"Two characters have the same id {id}");
                 }
                 _characters[id] = character;
             }

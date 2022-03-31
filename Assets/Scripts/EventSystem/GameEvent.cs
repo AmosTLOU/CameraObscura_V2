@@ -13,7 +13,7 @@ namespace EventSystem {
             new List<GameEventListener>();
 
         public void Raise(IGameEventData data = null) {
-            Log.I($"Event={name}", "EventRaised");
+            Log.Info($"Event={name}", "EventRaised");
             for(int i = _eventListeners.Count -1; i >= 0; i--)
                 _eventListeners[i].OnEventRaised(data);
         }
