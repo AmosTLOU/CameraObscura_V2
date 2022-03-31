@@ -72,6 +72,7 @@ namespace Characters {
         private IEnumerator KillBuilding1Victim(){
             yield return new WaitForSeconds(3f);
             
+            // yield return
             // killVictimEvent.Raise(new VictimKilledEventData{victimId = WorldManager.Instance.GetHouse()});
             victimKilledEvent.Raise(new VictimKilledEventData{victimId = "vic1"});
             Log.Debug("Victim=vic1 Killed, Restart Game!", Constants.TagTimeline);
