@@ -47,7 +47,6 @@ public class LoadingGame : MonoBehaviour
     public void LoadGame()
     {
         AnimatorClickToStart.SetBool("Start", true);
-        StartCoroutine(EnlargeScreen());
-                
+        StartCoroutine(EnlargeScreen());                
     }
 }
