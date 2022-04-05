@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Node = UnityEngine.XR.XRNode;
 
 public class CameraControl2 : MonoBehaviour
 {
@@ -59,9 +60,13 @@ public class CameraControl2 : MonoBehaviour
 
         // If in shoot state, it is free to go.
         // Set new rotation
+        bool isHeadsetMounted = GameManager.instance.IsHeadsetMounted();
         var rotationValues = inputHandler.GetRotationValues();
-        float offset_r_y = IsKbMouseEnabled ? Input.GetAxis("Mouse X") : -rotationValues.z;
-        float offset_r_x = IsKbMouseEnabled ? Input.GetAxis("Mouse Y") : -rotationValues.x;
+        Quaternion centerEyeRotation = Quaternion.identity;
+        if (OVRNodeStateProperties.GetNodeStatePropertyQuaternion(Node.CenterEye, NodeStatePropertyType.Orientation, OVRPlugin.Node.EyeCenter, OVRPlugin.Step.Render, out centerEyeRotation))
+					Debug.Log(centerEyeRotation.eulerAngles);
+        float offset_r_y = !isHeadsetMounted ? Input.GetAxis("Mouse X") : rotationValues.x;
+        float offset_r_x = !isHeadsetMounted ? Input.GetAxis("Mouse Y") : rotationValues.y;
         m_camRot.x -= SpeedRotateXY * offset_r_x * Time.deltaTime;
         m_camRot.y += SpeedRotateXY * offset_r_y * Time.deltaTime;
 

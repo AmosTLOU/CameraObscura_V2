@@ -642,21 +642,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0950df82e7936c84983497630bde5b54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Acceleration: 0.1
-  Damping: 0.3
+  Acceleration: 0
+  Damping: 5
   BackAndSideDampen: 0.5
   JumpForce: 0.3
-  RotationAmount: 1.5
+  RotationAmount: 0
   RotationRatchet: 45
   SnapRotation: 0
   RotateAroundGuardianCenter: 0
   FixedSpeedSteps: 0
   HmdResetsY: 1
-  HmdRotatesY: 1
+  HmdRotatesY: 0
   GravityModifier: 0
-  useProfileData: 1
+  useProfileData: 0
   EnableLinearMovement: 0
-  EnableRotation: 1
+  EnableRotation: 0
   RotationEitherThumbstick: 0
 --- !u!114 &7079542411531248103
 MonoBehaviour:
@@ -693,12 +693,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7079542411521589319}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 612e6f29f7b937c4697e8049ca348a36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpeedZoom: 5000
+  SpeedZoom: 0
   SpeedRotateXY: 0
   MinFOV: -44
   MaxFOV: -15
