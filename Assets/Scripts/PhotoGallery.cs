@@ -35,14 +35,18 @@ public class Photo
 {
     public string FileName { get; set; }
     public bool HasClue { get; set; }
+    public bool IsSuspect { get; set; }
     public string ClueName { get; set; }
     public Phase PhaseBelongTo { get; set; }
+    public string SuspectName { get; set; }
     public Vector3 ViewPos { get; set; }
     public Photo(string i_FileName)
     {
         FileName = i_FileName;
+        IsSuspect = false;
         HasClue = false;
         ClueName = "";
+        SuspectName = "";
         PhaseBelongTo = Phase.NullPhase;
         ViewPos = Vector3.zero;
     }
@@ -89,7 +93,7 @@ public class PhotoGallery : MonoBehaviour
         if (Directory.Exists(m_pathPhotos)) 
         {
             Debug.Log("Clearing Old Photos.");
-            Directory.Delete(m_pathPhotos, true); 
+            //Directory.Delete(m_pathPhotos, true); 
         }
         Debug.Log("Creating a new gallery.");
         Directory.CreateDirectory(m_pathPhotos);
