@@ -134,7 +134,7 @@ Material:
     - scale: 1
     m_Colors:
     - Color_00b2d676f3094b5092ca029c875a2575: {r: 456.3032, g: 456.3032, b: 456.3032, a: 0}
-    - Color_7abfdfe87fe344dc96b2bae4b4171145: {r: 37.71148, g: 37.71148, b: 37.71148, a: 0}
+    - Color_7abfdfe87fe344dc96b2bae4b4171145: {r: 0, g: 0, b: 0, a: 0}
     - Vector2_a17cb90b698440a49e0714bc53a2b516: {r: 1, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
