@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Scripts/EventSystem.meta
+guid: 5893f839dfc8c004daecc51c2db036d3
+=======
+guid: 7043a9abe6622ba4dbb1ffa26ddb86b7
+>>>>>>> 6caaa04 (Added a shader_file folder and included the latest shader. Deleted the old folder as it was all mess):Assets/shader_file/Extra.meta
+folderAsset: yes
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: bd48794c32f53c340a5d4e8b00aa53ac
+<<<<<<< HEAD:Assets/Materials/Old.meta
+guid: e0ae2ece4dce001438440ce323938b1c
+=======
+guid: 9347aa0f44ae01a4dbbc6b0bdc2e0216
+>>>>>>> 6caaa04 (Added a shader_file folder and included the latest shader. Deleted the old folder as it was all mess):Assets/shader_file.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
