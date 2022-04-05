@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Core;
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour
-{
+public class AudioManager : SingletonBehaviour<AudioManager> {
     public AudioSource bgAudioSource;
     public AudioSource audioSource;
     public AudioClip bgMusic;
@@ -18,16 +18,7 @@ public class AudioManager : MonoBehaviour
     bool m_creepyTensionBuildubPlayed = false;
     bool m_heartbeatsPlayed = false;
 
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
-
+    
     public void PlayEndScream()
     {
         audioSource.clip = endScream;
