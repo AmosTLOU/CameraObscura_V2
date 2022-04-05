@@ -141,7 +141,7 @@ public class EvidenceBoard : Core.SingletonBehaviour<EvidenceBoard>
         }
         else
         {
-            Log.E("failed to load picture");
+            Log.Err("failed to load picture");
             return null;
         }
     }
