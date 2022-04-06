@@ -61,14 +61,19 @@ public class CameraControl2 : MonoBehaviour
         // If in shoot state, it is free to go.
         // Set new rotation
         bool isHeadsetMounted = GameManager.instance.IsHeadsetMounted();
-        var rotationValues = inputHandler.GetRotationValues();
-        Quaternion centerEyeRotation = Quaternion.identity;
-        if (OVRNodeStateProperties.GetNodeStatePropertyQuaternion(Node.CenterEye, NodeStatePropertyType.Orientation, OVRPlugin.Node.EyeCenter, OVRPlugin.Step.Render, out centerEyeRotation))
-					Debug.Log(centerEyeRotation.eulerAngles);
-        float offset_r_y = !isHeadsetMounted ? Input.GetAxis("Mouse X") : rotationValues.x;
-        float offset_r_x = !isHeadsetMounted ? Input.GetAxis("Mouse Y") : rotationValues.y;
-        m_camRot.x -= SpeedRotateXY * offset_r_x * Time.deltaTime;
-        m_camRot.y += SpeedRotateXY * offset_r_y * Time.deltaTime;
+        if(isHeadsetMounted)
+        {
+            Quaternion centerEyeRotation = Quaternion.identity;
+            if (OVRNodeStateProperties.GetNodeStatePropertyQuaternion(Node.CenterEye, NodeStatePropertyType.Orientation, OVRPlugin.Node.EyeCenter, OVRPlugin.Step.Render, out centerEyeRotation))
+                m_camRot = centerEyeRotation.eulerAngles;
+        }
+        else
+        {
+            float offset_r_y = Input.GetAxis("Mouse X");
+            float offset_r_x = Input.GetAxis("Mouse Y");
+            m_camRot.x -= SpeedRotateXY * offset_r_x * Time.deltaTime;
+            m_camRot.y += SpeedRotateXY * offset_r_y * Time.deltaTime;
+        }
 
         // Set new position
         float offset_pos_x = Input.GetAxis("Horizontal");
