@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using CharacterInfo = Characters.Data.CharacterInfo;
 
 namespace Characters {
@@ -10,5 +11,10 @@ namespace Characters {
         [SerializeField] private CharacterInfo info;
         
         public CharacterInfo Info => info;
+        protected Animator _animator;
+
+        protected void Awake(){
+            _animator = GetComponent<Animator>();
+        }
     }
 }
