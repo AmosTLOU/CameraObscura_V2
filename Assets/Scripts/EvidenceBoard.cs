@@ -148,7 +148,6 @@ public class EvidenceBoard : Core.SingletonBehaviour<EvidenceBoard>
 
     void RandomPlace(Photo i_photo)
     {
-
         GameObject NewObj = Instantiate(photoPrefab, this.transform, false); ; //Create the GameObject
         //RawImage NewImage = NewObj.AddComponent<RawImage>(); //Add the Image Component script
         NewObj.GetComponent<RawImage>().texture = LoadTexture(i_photo.FileName);
