@@ -10,7 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2066b0edddd44717884fe8be7e37be5f, type: 3}
-  m_Name: G_GameBegin
+  m_Name: G_BeatStart
   m_EditorClassIdentifier: 
-  developerDescription: At the Start of the Game. Typically after some delay as soon
-    as the scene starts
+  developerDescription: Indicates the Start of each beat

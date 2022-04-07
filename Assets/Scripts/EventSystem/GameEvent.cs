@@ -6,6 +6,9 @@ using UnityEngine;
 namespace EventSystem {
     [CreateAssetMenu(fileName = "GameEvent", menuName = "Events/GameEvent", order = 0)]
     public class GameEvent : ScriptableObject {
+#if UNITY_EDITOR
+        [Multiline] public string developerDescription = "";
+#endif
         /// <summary>
         /// The list of listeners that this event will notify if it is raised.
         /// </summary>

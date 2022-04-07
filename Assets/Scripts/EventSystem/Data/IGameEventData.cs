@@ -12,6 +12,7 @@ namespace EventSystem.Data {
         
     }
 
+    
     /// <summary>
     /// Contains the short game state data. Used for basic data info.
     /// WorldManager.Instance.GetMiniGameState() can be used to get the current mini game state
@@ -21,6 +22,10 @@ namespace EventSystem.Data {
         public bool Restart;
         public int DayNumber;
         public bool IsNight;
+    }
+
+    public struct BeatStartEventData : IGameEventData {
+        public GameBeat Beat;
     }
 
     public struct TimeEventData : IGameEventData {
