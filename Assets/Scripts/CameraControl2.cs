@@ -85,7 +85,14 @@ public class CameraControl2 : MonoBehaviour
 
         // Set new FOV (zoom)
         float offset_zoom = Input.GetAxis("Mouse ScrollWheel");
-        m_camFOV -= SpeedZoom * offset_zoom * Time.deltaTime; ;
+        if(isHeadsetMounted)
+        {
+            m_camFOV = inputHandler.GetZoomValue()+5;
+        }
+        else
+        {
+            m_camFOV -= SpeedZoom * offset_zoom * Time.deltaTime;
+        }
         m_camFOV = Mathf.Clamp(m_camFOV, MinFOV, MaxFOV);
 
         transform.eulerAngles = m_camRot;

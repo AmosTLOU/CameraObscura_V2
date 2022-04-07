@@ -2852,8 +2852,8 @@ MonoBehaviour:
   SpeedZoom: 5000
   SpeedRotateXY: 30
   SpeedRotateZ: 30
-  MinFOV: 3
-  MaxFOV: 24
+  MinFOV: 5
+  MaxFOV: 30
   IsKbMouseEnabled: 1
   inputHandler: {fileID: 1707601688}
 --- !u!114 &963194231
@@ -4013,8 +4013,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1338065111}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 80.25, y: 16.071, z: -43.515266}
-  m_LocalScale: {x: 1.9512479, y: 1.1024, z: 1.1024}
+  m_LocalPosition: {x: 80.2, y: 15.9, z: -42.8}
+  m_LocalScale: {x: 5.1133685, y: 2.8889089, z: 2.8889089}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 12
@@ -5637,7 +5637,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1707601687}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20b2dbb62f41d5b47849946703e0ceff, type: 3}
   m_Name: 
@@ -5645,7 +5645,7 @@ MonoBehaviour:
   currentPitch: 0
   currentRoll: 0
   currentYaw: 0
-  distance: 0
+  potentiometerValue: 0
   isFlashButtonDown: 0
   isShutterButtonDown: 0
   isGalleryButtonDown: 0
@@ -24134,6 +24134,22 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7079542410137118025, guid: 83319ab0048a5984c842d2d75b041fab, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.0009103547
+      objectReference: {fileID: 0}
+    - target: {fileID: 7079542410137118025, guid: 83319ab0048a5984c842d2d75b041fab, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.0009103547
+      objectReference: {fileID: 0}
+    - target: {fileID: 7079542410137118025, guid: 83319ab0048a5984c842d2d75b041fab, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.0009103547
+      objectReference: {fileID: 0}
+    - target: {fileID: 7079542410137118025, guid: 83319ab0048a5984c842d2d75b041fab, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.135
+      objectReference: {fileID: 0}
     - target: {fileID: 7079542410959286725, guid: 83319ab0048a5984c842d2d75b041fab, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -24156,7 +24172,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7079542411521236073, guid: 83319ab0048a5984c842d2d75b041fab, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.332
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 7079542411521236073, guid: 83319ab0048a5984c842d2d75b041fab, type: 3}
       propertyPath: m_LocalRotation.w
