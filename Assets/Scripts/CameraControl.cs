@@ -29,7 +29,7 @@ public class CameraControl : MonoBehaviour
 
     private void Start()
     {
-        m_gameManager = FindObjectOfType<GameManager>();
+        // m_gameManager = FindObjectOfType<GameManager>();
         m_mainCamera = Camera.main;
 
         m_camPos = transform.position;
@@ -52,10 +52,10 @@ public class CameraControl : MonoBehaviour
             return;
         }
         // If not in shoot state, it is not allowed to operate the camera.
-        if(m_gameManager.GetGameState() != GameState.Shoot)
-        {
-            return;
-        }
+        // if(m_gameManager.GetGameState() != GameState.Shoot)
+        // {
+        //     return;
+        // }
 
         // If in shoot state, it is free to go.
         // Set new rotation
