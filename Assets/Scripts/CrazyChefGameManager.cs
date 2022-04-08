@@ -15,6 +15,7 @@ public class CrazyChefGameManager : SingletonBehaviour<CrazyChefGameManager> {
     [SerializeField] private AudioClip killerTheme;
     
     // [Header("Config")]
+    private Coroutine activeRoutine;
     
     private IEnumerator Start(){
         yield return new WaitForSeconds(Constants.GameStartToWakeUpDelay);
@@ -28,21 +29,41 @@ public class CrazyChefGameManager : SingletonBehaviour<CrazyChefGameManager> {
             Log.Err("Error Converting Type");
             return;
         };
-        switch (data.Beat){
-            case GameBeat.KillingAct1:
-                AudioManager.Instance.PlayMusic(killerTheme);
-                break;
-            case GameBeat.KillingAct2:
-                break;
-            case GameBeat.KillingAct3:
-                break;
-            case GameBeat.Suspect:
-                break;
-            case GameBeat.Conclusion:
-                break;
-            default:
-                throw new ArgumentOutOfRangeException();
-        }
+        IEnumerator call = data.Beat switch{
+            GameBeat.KillingAct1 => KillingAct1(),
+            GameBeat.KillingAct2 => KillingAct2(),
+            GameBeat.KillingAct3 => KillingAct3(),
+            GameBeat.Suspect => SuspectAct(),
+            GameBeat.Conclusion => ConclusionAct(),
+            _ => throw new ArgumentOutOfRangeException()
+        };
+        if(activeRoutine!= null) StopCoroutine(activeRoutine);
+        activeRoutine = StartCoroutine(call);
+    }
+
+    private IEnumerator KillingAct1(){
+        AudioManager.Instance.PlayMusic(killerTheme);
+        yield return null;
+    }
+    
+    private IEnumerator KillingAct2(){
+        yield return null;
+    }
+    
+    private IEnumerator KillingAct3(){
+        yield return null;
+    }
+    
+    private IEnumerator SuspectAct(){
+        yield return null;
+    }
+    
+    /// <summary>
+    /// Conclusion Beat
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator ConclusionAct(){
+        yield return null;
     }
 }
 
