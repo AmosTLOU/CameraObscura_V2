@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections;
+using Characters;
 using Core;
 using EventSystem;
 using EventSystem.Data;
+using Gameplay;
 using UnityEngine;
 
 public class CrazyChefGameManager : SingletonBehaviour<CrazyChefGameManager> {
@@ -13,11 +15,19 @@ public class CrazyChefGameManager : SingletonBehaviour<CrazyChefGameManager> {
 
     [Header("Audio")] 
     [SerializeField] private AudioClip killerTheme;
+
+    [Header("Killer Paths")] 
+    [SerializeField] private KillerPath killerPath1;
+    [SerializeField] private KillerPath killerPath2;
+    [SerializeField] private KillerPath killerPath3;
+    
     
     // [Header("Config")]
     private Coroutine activeRoutine;
+    private Killer _killer;
     
     private IEnumerator Start(){
+        _killer = CharacterManager.Instance.GetKiller();
         yield return new WaitForSeconds(Constants.GameStartToWakeUpDelay);
         gameStartEvent.Raise();
         yield return new WaitForSeconds(Constants.Beat1EndDelay);
@@ -43,15 +53,18 @@ public class CrazyChefGameManager : SingletonBehaviour<CrazyChefGameManager> {
 
     private IEnumerator KillingAct1(){
         AudioManager.Instance.PlayMusic(killerTheme);
-        yield return null;
+        yield return new WaitForSeconds(Constants.BeatEndDelay);
+        _killer.SetKillPathAndMove(killerPath1);
     }
     
     private IEnumerator KillingAct2(){
-        yield return null;
+        yield return new WaitForSeconds(Constants.BeatEndDelay);
+        _killer.SetKillPathAndMove(killerPath2);
     }
     
     private IEnumerator KillingAct3(){
-        yield return null;
+        yield return new WaitForSeconds(Constants.BeatEndDelay);
+        _killer.SetKillPathAndMove(killerPath3);
     }
     
     private IEnumerator SuspectAct(){

@@ -2,6 +2,7 @@
 using Core;
 using EventSystem;
 using EventSystem.Data;
+using Gameplay;
 using Unity.Burst;
 using UnityEngine;
 using Utility;
@@ -12,10 +13,13 @@ namespace Characters {
         [SerializeField] private GameEvent victimKilledEvent;
         [SerializeField] private GameEvent killerDoneForDayEvent;
         
+        
+
         private Coroutine rampageRoutine;
         private Coroutine killingRoutine;
         private bool isHiding = true;
         private bool _killing = false;
+        private KillerPath _currentPath;
 
         public void OnNightStart(IGameEventData data){
             // killingRoutine = StartCoroutine(KillVictim());
@@ -124,6 +128,15 @@ namespace Characters {
             
             // Add check
             Log.Info("Successfully interrupted");
+        }
+
+        public void SetKillPathAndMove(KillerPath path){
+            _currentPath = path;
+            StartCoroutine(StartKilling());
+        }
+
+        private IEnumerator StartKilling(){
+            yield return null;
         }
     }
 }

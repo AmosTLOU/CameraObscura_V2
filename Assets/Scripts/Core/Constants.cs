@@ -7,6 +7,7 @@
         
         // Delay
         public const float GameStartToWakeUpDelay = 2f;
-        public static float Beat1EndDelay { get; set; }
+        public const float Beat1EndDelay = 1f;
+        public const float BeatEndDelay = 5f;
     }
 }

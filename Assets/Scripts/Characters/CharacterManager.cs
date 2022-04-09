@@ -8,7 +8,8 @@ using CharacterInfo = Characters.Data.CharacterInfo;
 namespace Characters {
     public class CharacterManager : SingletonBehaviour<CharacterManager> {
         [SerializeField] private List<BaseCharacter> characters = new List<BaseCharacter>();
-
+        [SerializeField] private Killer killer;
+        
         private Dictionary<string, BaseCharacter> _characters = new Dictionary<string, BaseCharacter>();
 
         private void Start(){
@@ -19,10 +20,16 @@ namespace Characters {
                 }
                 _characters[id] = character;
             }
+
+            _characters[killer.Info.ID] = killer;
         }
 
-        public BaseCharacter GetCharacter(string id){
+        public BaseCharacter GetCharacter(string id) {
             return _characters[id];
+        }
+
+        public Killer GetKiller(){
+            return killer;
         }
     }
 }
