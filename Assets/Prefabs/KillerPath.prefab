@@ -223,4 +223,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sneakPath: {fileID: 7854660878146128600}
   victim: {fileID: 0}
-  runAwayPath: {fileID: 0}
+  runAwayPath: {fileID: 936957194}

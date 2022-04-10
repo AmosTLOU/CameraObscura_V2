@@ -20,7 +20,7 @@ namespace Characters {
 
         public virtual void Kill(){
             Log.Info($"Character Killed!! {info.name}");
-            _animator.SetBool(Dead, true);
+            // _animator.SetBool(Dead, true);
         }
     }
 }

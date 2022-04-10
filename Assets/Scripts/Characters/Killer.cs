@@ -150,7 +150,6 @@ namespace Characters {
                 Log.Err($"Killer in unexpected state; Current={_state}, Expected = {KillerState.Idle}");
                 return;
             }
-
             _state = KillerState.Sneak;
             _animator.SetBool("idle", false);
             _currentPath = path;

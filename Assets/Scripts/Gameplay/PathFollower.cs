@@ -33,9 +33,9 @@ namespace Gameplay {
                 transform.rotation = pathCreator.path.GetRotationAtDistance(_distanceTravelled, endOfPathInstruction);
             }
 
-            if(Vector3.Magnitude(transform.position - pathCreator.path.GetPoint(pathCreator.path.NumPoints - 1)) < 0.0001f)
-            {
+            if(pathCreator!= null && Vector3.Magnitude(transform.position - pathCreator.path.GetPoint(pathCreator.path.NumPoints - 1)) < 0.0001f) {
                 reachedEnd.Invoke();
+                reachedEnd.RemoveAllListeners();
             }
         }
 
