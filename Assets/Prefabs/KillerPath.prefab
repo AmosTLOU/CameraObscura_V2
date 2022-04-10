@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7854660876947960021
+--- !u!1 &936957192
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7854660876947960020}
-  - component: {fileID: 7854660876947960019}
+  - component: {fileID: 936957193}
+  - component: {fileID: 936957194}
   m_Layer: 0
   m_Name: RunawayPath
   m_TagString: Untagged
@@ -17,27 +17,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7854660876947960020
+--- !u!4 &936957193
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7854660876947960021}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_GameObject: {fileID: 936957192}
+  m_LocalRotation: {x: -0, y: 0.9997426, z: -0, w: 0.02268737}
+  m_LocalPosition: {x: 7.878, y: 7.974, z: 2.253}
+  m_LocalScale: {x: 1.01, y: 1.01, z: 1.01}
   m_Children: []
   m_Father: {fileID: 7854660878277667007}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7854660876947960019
+  m_LocalEulerAnglesHint: {x: 0, y: 177.4, z: 0}
+--- !u!114 &936957194
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7854660876947960021}
+  m_GameObject: {fileID: 936957192}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e5ac92bc18f545cc84cd886ece82b4d, type: 3}
@@ -46,10 +46,13 @@ MonoBehaviour:
   editorData:
     _bezierPath:
       points:
-      - {x: -2, y: 0, z: 0}
-      - {x: -1, y: 0.5, z: 0}
-      - {x: 1, y: -0.5, z: 0}
-      - {x: 2, y: 0, z: 0}
+      - {x: -0.6205749, y: -0.1858706, z: 0.9158778}
+      - {x: -0.40654862, y: -0.22425978, z: 0.8622738}
+      - {x: 0.33487725, y: -0.12235074, z: 0.6329671}
+      - {x: 0.39983168, y: -0.13306965, z: 0.28094223}
+      - {x: 0.43298438, y: -0.13854058, z: 0.10126883}
+      - {x: 0.18824153, y: -0.12678485, z: 0.040812243}
+      - {x: -0.7573557, y: -0.18213949, z: -0.254575}
       isClosed: 0
       space: 0
       controlMode: 0
@@ -59,9 +62,10 @@ MonoBehaviour:
         m_Center: {x: 0, y: 0, z: 0}
         m_Extent: {x: 0, y: 0, z: 0}
       perAnchorNormalsAngle:
-      - 0
-      - 0
-      globalNormalsAngle: 0
+      - 71.47
+      - 70.53
+      - 71.3
+      globalNormalsAngle: 19
       flipNormals: 0
     vertexPathUpToDate: 1
     vertexPathMaxAngleError: 0.3
@@ -72,15 +76,15 @@ MonoBehaviour:
     displayAnchorPoints: 1
     displayControlPoints: 1
     bezierHandleScale: 1
-    globalDisplaySettingsFoldout: 0
+    globalDisplaySettingsFoldout: 1
     keepConstantHandleSize: 0
-    showNormalsInVertexMode: 0
-    showBezierPathInVertexMode: 0
+    showNormalsInVertexMode: 1
+    showBezierPathInVertexMode: 1
     showDisplayOptions: 0
     showPathOptions: 1
-    showVertexPathDisplayOptions: 0
+    showVertexPathDisplayOptions: 1
     showVertexPathOptions: 1
-    showNormals: 0
+    showNormals: 1
     showNormalsHelpInfo: 0
     tabIndex: 0
   initialized: 1
@@ -108,13 +112,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7854660878146128602}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: 0.9997426, z: -0, w: 0.02268737}
+  m_LocalPosition: {x: 7.878, y: 7.974, z: 2.253}
+  m_LocalScale: {x: 1.01, y: 1.01, z: 1.01}
   m_Children: []
   m_Father: {fileID: 7854660878277667007}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 177.4, z: 0}
 --- !u!114 &7854660878146128600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,10 +134,13 @@ MonoBehaviour:
   editorData:
     _bezierPath:
       points:
-      - {x: -2, y: 0, z: 0}
-      - {x: -1, y: 0.5, z: 0}
-      - {x: 1, y: -0.5, z: 0}
-      - {x: 2, y: 0, z: 0}
+      - {x: -0.74841857, y: -0.15771316, z: -0.30204922}
+      - {x: -0.60762346, y: -0.1408454, z: 0.26689407}
+      - {x: 0.10477102, y: -0.16182975, z: -0.5309262}
+      - {x: 0.46081167, y: -0.1366464, z: 0.25580984}
+      - {x: 0.6723211, y: -0.12168599, z: 0.723178}
+      - {x: 1.1825125, y: -0.09682341, z: 0.9807755}
+      - {x: -0.6205749, y: -0.18587062, z: 0.91587776}
       isClosed: 0
       space: 0
       controlMode: 0
@@ -143,9 +150,10 @@ MonoBehaviour:
         m_Center: {x: 0, y: 0, z: 0}
         m_Extent: {x: 0, y: 0, z: 0}
       perAnchorNormalsAngle:
-      - 0
-      - 0
-      globalNormalsAngle: 0
+      - 71
+      - 70.53
+      - 71.3
+      globalNormalsAngle: 19
       flipNormals: 0
     vertexPathUpToDate: 1
     vertexPathMaxAngleError: 0.3
@@ -156,17 +164,17 @@ MonoBehaviour:
     displayAnchorPoints: 1
     displayControlPoints: 1
     bezierHandleScale: 1
-    globalDisplaySettingsFoldout: 0
+    globalDisplaySettingsFoldout: 1
     keepConstantHandleSize: 0
-    showNormalsInVertexMode: 0
-    showBezierPathInVertexMode: 0
-    showDisplayOptions: 0
+    showNormalsInVertexMode: 1
+    showBezierPathInVertexMode: 1
+    showDisplayOptions: 1
     showPathOptions: 1
-    showVertexPathDisplayOptions: 0
+    showVertexPathDisplayOptions: 1
     showVertexPathOptions: 1
-    showNormals: 0
+    showNormals: 1
     showNormalsHelpInfo: 0
-    tabIndex: 0
+    tabIndex: 1
   initialized: 1
 --- !u!1 &7854660878277666992
 GameObject:
@@ -197,7 +205,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7854660878146128601}
-  - {fileID: 7854660876947960020}
+  - {fileID: 936957193}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -215,4 +223,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sneakPath: {fileID: 7854660878146128600}
   victim: {fileID: 0}
-  runAwayPath: {fileID: 7854660876947960019}
+  runAwayPath: {fileID: 0}
