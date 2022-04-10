@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Core;
 using EventSystem;
 using EventSystem.Data;
@@ -12,14 +13,26 @@ namespace Characters {
     public class Killer : BaseCharacter {
         [SerializeField] private GameEvent victimKilledEvent;
         [SerializeField] private GameEvent killerDoneForDayEvent;
-        
-        
 
         private Coroutine rampageRoutine;
         private Coroutine killingRoutine;
         private bool isHiding = true;
         private bool _killing = false;
-        private KillerPath _currentPath;
+        [SerializeField] private KillerPath _currentPath;
+
+        private PathFollower _follower;
+        
+        private void Start(){
+            _follower = GetComponent<PathFollower>();
+            // _follower.pathCreator = _currentPath.sneakPath;
+        }
+
+        private void Update(){
+            // if(Input.GetKeyDown(KeyCode.N)){
+            //     Log.Info("Changing path to runawayPath");
+            //     _follower.pathCreator = _currentPath.runAwayPath;
+            // }
+        }
 
         public void OnNightStart(IGameEventData data){
             // killingRoutine = StartCoroutine(KillVictim());

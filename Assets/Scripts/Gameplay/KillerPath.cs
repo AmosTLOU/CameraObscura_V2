@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace Gameplay {
     public class KillerPath : MonoBehaviour {
-        [SerializeField] private PathCreator sneakPath;
-        [SerializeField] private BaseCharacter victim;
-        [SerializeField] private PathCreator runAwayPath;
+        [SerializeField] public PathCreator sneakPath;
+        [SerializeField] public BaseCharacter victim;
+        [SerializeField] public PathCreator runAwayPath;
     }
 }
