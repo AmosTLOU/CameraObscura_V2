@@ -1,11 +1,13 @@
 ﻿using PathCreation;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Gameplay {
     public class PathFollower : MonoBehaviour {
         public PathCreator pathCreator;
         public EndOfPathInstruction endOfPathInstruction;
         public float speed = 2;
+        public UnityEvent reachedEnd;
         
         private float _distanceTravelled;
 
@@ -17,7 +19,7 @@ namespace Gameplay {
             }
         }
 
-        void UpdatePath(PathCreator newPath){
+        public void UpdatePath(PathCreator newPath){
             pathCreator = newPath;
             _distanceTravelled = newPath.path.GetClosestDistanceAlongPath(transform.position);
         }
@@ -29,6 +31,11 @@ namespace Gameplay {
                 _distanceTravelled += speed * Time.deltaTime;
                 transform.position = pathCreator.path.GetPointAtDistance(_distanceTravelled, endOfPathInstruction);
                 transform.rotation = pathCreator.path.GetRotationAtDistance(_distanceTravelled, endOfPathInstruction);
+            }
+
+            if(Vector3.Magnitude(transform.position - pathCreator.path.GetPoint(pathCreator.path.NumPoints - 1)) < 0.0001f)
+            {
+                reachedEnd.Invoke();
             }
         }
 

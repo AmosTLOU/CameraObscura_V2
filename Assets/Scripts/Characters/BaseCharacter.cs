@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Core;
 using UnityEngine;
 using CharacterInfo = Characters.Data.CharacterInfo;
 
@@ -12,9 +12,15 @@ namespace Characters {
         
         public CharacterInfo Info => info;
         protected Animator _animator;
+        private static readonly int Dead = Animator.StringToHash("dead");
 
         protected void Awake(){
             _animator = GetComponent<Animator>();
+        }
+
+        public virtual void Kill(){
+            Log.Info($"Character Killed!! {info.name}");
+            _animator.SetBool(Dead, true);
         }
     }
 }

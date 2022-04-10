@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using Core;
 using EventSystem;
 using EventSystem.Data;
 using Gameplay;
-using Unity.Burst;
 using UnityEngine;
-using Utility;
-using World;
 
 namespace Characters {
     public class Killer : BaseCharacter {
         [SerializeField] private GameEvent victimKilledEvent;
-        [SerializeField] private GameEvent killerDoneForDayEvent;
+        [SerializeField] private GameEvent killerRanAwayEvent;
 
         private Coroutine rampageRoutine;
         private Coroutine killingRoutine;
@@ -21,7 +17,9 @@ namespace Characters {
         [SerializeField] private KillerPath _currentPath;
 
         private PathFollower _follower;
-        
+        private KillerState _state;
+        private Coroutine _killingRoutine;
+
         private void Start(){
             _follower = GetComponent<PathFollower>();
             // _follower.pathCreator = _currentPath.sneakPath;
@@ -83,7 +81,7 @@ namespace Characters {
             yield return killingRoutine;
             _killing = false;
 
-            killerDoneForDayEvent.Raise();
+            // killerDoneForDayEvent.Raise();
         }
 
         private IEnumerator KillBuilding1Victim(){
@@ -125,15 +123,19 @@ namespace Characters {
 
         public void OnEventCameraFlash(IGameEventData d){
             Utils.TryConvertVal(d, out CameraFlashEventData data);
-            if (!_killing){
+            if (!(_state == KillerState.Sneak || _state == KillerState.Killing)){
                 Log.Debug("Camera Flash during non-killing phase", Constants.TagTimeline);
                 return;
             }
-            
+
             Log.Info("Conditional checking camera flash data at right place");
-            StopCoroutine(killingRoutine);
-            _killing = false;
-            Log.Info("Stopped Killing, Killer Running Away", Constants.TagTimeline);
+            if (killingRoutine != null){
+                StopCoroutine(killingRoutine);
+                killingRoutine = null;
+                StartCoroutine(RunAway());
+            }
+            // _killing = false;
+            // Log.Info("Stopped Killing, Killer Running Away", Constants.TagTimeline);
         }
 
         public void Interrupted(){
@@ -144,12 +146,50 @@ namespace Characters {
         }
 
         public void SetKillPathAndMove(KillerPath path){
+            if (_state != KillerState.Idle){
+                Log.Err($"Killer in unexpected state; Current={_state}, Expected = {KillerState.Idle}");
+                return;
+            }
+
+            _state = KillerState.Sneak;
+            _animator.SetBool("idle", false);
             _currentPath = path;
-            StartCoroutine(StartKilling());
+            _follower.pathCreator = _currentPath.sneakPath;
+            _follower.reachedEnd.AddListener(() => {
+                _killingRoutine = StartCoroutine(StartKilling());
+            });
         }
 
         private IEnumerator StartKilling(){
+            _state = KillerState.Killing;
+            yield return null;
+            _follower.reachedEnd.RemoveAllListeners();
+            _animator.SetTrigger("kill");
+            
+            // Change to animation end callbacks
+            yield return new WaitForSeconds(3f);
+            _killingRoutine = null;
+            _currentPath.victim.Kill();
+            victimKilledEvent.Raise(new VictimKilledEventData{victimId = _currentPath.victim.Info.ID});
+            _state = KillerState.RunningAway;
+            yield return new WaitForSeconds(2f);
+            StartCoroutine(RunAway());
             yield return null;
         }
+
+        private IEnumerator RunAway(){
+            _follower.UpdatePath(_currentPath.runAwayPath);
+            _animator.SetTrigger("run");
+            yield return new WaitForSeconds(3f);
+            _animator.SetBool("idle", true);
+            killerRanAwayEvent.Raise();
+        }
+    }
+
+    internal enum KillerState {
+        Idle,
+        Sneak,
+        Killing,
+        RunningAway
     }
 }
