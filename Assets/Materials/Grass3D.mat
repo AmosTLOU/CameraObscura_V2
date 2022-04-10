@@ -95,7 +95,7 @@ Material:
     m_Floats:
     - _AlphaClip: 0
     - _BendRotationRandom: 0.136
-    - _BladeHeight: 0.18
+    - _BladeHeight: 0.2
     - _BladeHeightRandom: 0.08
     - _BladeWidth: 0.05
     - _BladeWidthRandom: 0.02
