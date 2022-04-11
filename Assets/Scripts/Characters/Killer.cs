@@ -22,6 +22,7 @@ namespace Characters {
 
         private void Start(){
             _follower = GetComponent<PathFollower>();
+            gameObject.SetActive(false);
             // _follower.pathCreator = _currentPath.sneakPath;
         }
 
@@ -150,6 +151,7 @@ namespace Characters {
                 Log.Err($"Killer in unexpected state; Current={_state}, Expected = {KillerState.Idle}");
                 return;
             }
+            gameObject.SetActive(true);
             _state = KillerState.Sneak;
             _animator.SetBool("idle", false);
             _currentPath = path;
@@ -181,7 +183,9 @@ namespace Characters {
             _animator.SetTrigger("run");
             yield return new WaitForSeconds(3f);
             _animator.SetBool("idle", true);
+            _state = KillerState.Idle;
             killerRanAwayEvent.Raise();
+            gameObject.SetActive(false);
         }
     }
 
