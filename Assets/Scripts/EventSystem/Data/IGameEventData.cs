@@ -46,6 +46,8 @@ namespace EventSystem.Data {
     }
     public struct CameraFlashEventData : IGameEventData {
         public bool debug;
-        public Vector2 location;
+        public Photo Photo;
+        // public Vector2 ViewPos;
+        public float CameraFOV;
     }
 }
