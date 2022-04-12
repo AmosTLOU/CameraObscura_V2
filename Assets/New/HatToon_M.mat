@@ -77,7 +77,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2D:
-        m_Texture: {fileID: 2800000, guid: 1bd1f9ec80483974da42ed47cc253f46, type: 3}
+        m_Texture: {fileID: 2800000, guid: 295b795d063ba204c9a0da2e93d70a8b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - shading_gradient:
