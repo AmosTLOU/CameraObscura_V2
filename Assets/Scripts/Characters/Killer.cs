@@ -22,7 +22,7 @@ namespace Characters {
 
         private void Start(){
             _follower = GetComponent<PathFollower>();
-            // gameObject.SetActive(false);
+            gameObject.SetActive(false);
             // _follower.pathCreator = _currentPath.sneakPath;
         }
 
@@ -168,7 +168,7 @@ namespace Characters {
             _animator.SetTrigger("kill");
             
             // Change to animation end callbacks
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(1f);
             _killingRoutine = null;
             _currentPath.victim.Kill();
             victimKilledEvent.Raise(new VictimKilledEventData{victimId = _currentPath.victim.Info.ID});
