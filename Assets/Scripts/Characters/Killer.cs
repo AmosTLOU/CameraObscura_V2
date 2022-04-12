@@ -22,7 +22,7 @@ namespace Characters {
 
         private void Start(){
             _follower = GetComponent<PathFollower>();
-            gameObject.SetActive(false);
+            // gameObject.SetActive(false);
             // _follower.pathCreator = _currentPath.sneakPath;
         }
 

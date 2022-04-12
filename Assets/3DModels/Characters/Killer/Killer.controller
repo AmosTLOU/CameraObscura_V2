@@ -260,7 +260,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Back_Stab
+  m_Name: Stab
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -274,7 +274,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 1827226128182048838, guid: 52856010e85cc8f4b8a30610d9329ff6, type: 3}
+  m_Motion: {fileID: 1827226128182048838, guid: 1eeec1b1673d49f4bb01f059e735c85c, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
