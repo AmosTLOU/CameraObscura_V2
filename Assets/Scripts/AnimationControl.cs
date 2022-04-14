@@ -20,18 +20,18 @@ public class AnimationControl : MonoBehaviour
     public int a;
     public GameObject[] room1Lights;
 
-    PhaseManager m_phaseManager;
-    AudioManager m_audioManager;
+    PhaseManager _phaseManager;
+    AudioManager audioManager;
 
-    int m_current = 0;
-    float m_radius = 0.5f;
-    bool m_killing = false;
+    int current = 0;
+    float radius = 0.5f;
+    bool _killing = false;
 
 
     private void Start()
     {
-        m_phaseManager = FindObjectOfType<PhaseManager>();
-        m_audioManager = FindObjectOfType<AudioManager>();
+        _phaseManager = FindObjectOfType<PhaseManager>();
+        audioManager = FindObjectOfType<AudioManager>();
         KillerAnimator.SetInteger("StateIndex", 0);
         Victim1Animator.SetInteger("StateIndex", 0);
         GoBloodOnWindow1.SetActive(false);
@@ -40,17 +40,17 @@ public class AnimationControl : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log("Current is " + m_current);
+        Debug.Log("Current is " + current);
 
-        if (m_phaseManager.GetPhase() == Phase.Killing1)
+        if (_phaseManager.GetPhase() == Phase.Killing1)
             Killing();
-        else if (Phase.Flee1 <= m_phaseManager.GetPhase() && m_phaseManager.GetPhase() < Phase.Tran2_3 && m_current <= 3)
+        else if (Phase.Flee1 <= _phaseManager.GetPhase() && _phaseManager.GetPhase() < Phase.Tran2_3 && current <= 3)
             RunawayAfterKilling1();
-        else if (Phase.Tran1_2 <= m_phaseManager.GetPhase() && m_phaseManager.GetPhase() < Phase.Tran2_3)
+        else if (Phase.Tran1_2 <= _phaseManager.GetPhase() && _phaseManager.GetPhase() < Phase.Tran2_3)
             TransitionBetween1and2();
-        else if (Phase.Tran2_3 <= m_phaseManager.GetPhase() && m_phaseManager.GetPhase() < Phase.Killing3 && m_current <= 12)
+        else if (Phase.Tran2_3 <= _phaseManager.GetPhase() && _phaseManager.GetPhase() < Phase.Killing3 && current <= 12)
             TransitionBetween2and3();
-        else if (Phase.Killing3 <= m_phaseManager.GetPhase() && m_current <= 18)
+        else if (Phase.Killing3 <= _phaseManager.GetPhase() && current <= 18)
             Killing3();
 
     }
@@ -77,28 +77,28 @@ public class AnimationControl : MonoBehaviour
 
     void RunawayAfterKilling1()
     {
-        m_audioManager.PlaySuspensePiano();
+        audioManager.PlaySuspensePiano();
         KillerAnimator.SetInteger("StateIndex", 2);
-        if (Vector3.Distance(points[m_current].transform.position, KillerTransform.position) < m_radius)
-            m_current++;
-        KillerTransform.position = Vector3.MoveTowards(KillerTransform.position, points[m_current].transform.position, Time.deltaTime * speed);
+        if (Vector3.Distance(points[current].transform.position, KillerTransform.position) < radius)
+            current++;
+        KillerTransform.position = Vector3.MoveTowards(KillerTransform.position, points[current].transform.position, Time.deltaTime * speed);
 
-        if (m_current == 0)
+        if (current == 0)
         {
             a = 0;
         }
-        if (m_current == 1)
+        if (current == 1)
         {
             a = 0;
             GameObject light = GameObject.FindWithTag("Flickering_light");
             //light.GetComponent<light_flickering>().enabled = false;
             light.GetComponent<Light>().intensity = 0;
         }
-        if (m_current == 2)
+        if (current == 2)
         {
             a = -180;
         }
-        if (m_current == 3)
+        if (current == 3)
         {
             a = 90;
         }
@@ -109,7 +109,7 @@ public class AnimationControl : MonoBehaviour
     void TransitionBetween1and2()
     {
         // Flickering lights and Sound of progress
-        m_audioManager.PlayMysterySuspense();
+        audioManager.PlayMysterySuspense();
         foreach (GameObject go in room1Lights)
         {
             go.SetActive(false);
@@ -119,51 +119,51 @@ public class AnimationControl : MonoBehaviour
 
     IEnumerator DelayBeforeFlee()
     {
-        m_killing = true;
+        _killing = true;
         KillerAnimator.SetInteger("StateIndex", 3);
         yield return new WaitForSeconds(2f);
-        m_killing = false;
+        _killing = false;
     }
 
     void TransitionBetween2and3()
     {
-        m_audioManager.PlayCreepyTensionBuildup(8.5f);
-        if (m_killing)
+        audioManager.PlayCreepyTensionBuildup(8.5f);
+        if (_killing)
             return;
 
         KillerAnimator.SetInteger("StateIndex", 2);
         // Killer runs, killer tries to kill but fails, killer flees
-        if (Vector3.Distance(points[m_current].transform.position, KillerTransform.position) < m_radius)
+        if (Vector3.Distance(points[current].transform.position, KillerTransform.position) < radius)
         {
-            m_current++;
-            if (m_current == 12) { 
+            current++;
+            if (current == 12) { 
                 StartCoroutine(DelayBeforeFlee());
                 return;
             }
         }
-        KillerTransform.position = Vector3.MoveTowards(KillerTransform.position, points[m_current].transform.position, Time.deltaTime * speed);
+        KillerTransform.position = Vector3.MoveTowards(KillerTransform.position, points[current].transform.position, Time.deltaTime * speed);
 
-        if (m_current == 4)
+        if (current == 4)
         {
             a = 90;
         }
-        if (m_current == 5)
+        if (current == 5)
         {
             a = -90;
         }
-        if (m_current == 6)
+        if (current == 6)
         {
             a = -180;
         }
-        if (m_current == 7)
+        if (current == 7)
         {
             a = 90;
         }
-        if (m_current == 10)
+        if (current == 10)
         {
             a = -90;
         }
-        if (m_current == 11)
+        if (current == 11)
         {
             a = -180;
         }
@@ -177,7 +177,7 @@ public class AnimationControl : MonoBehaviour
         KillerAnimator.SetInteger("StateIndex", 1);
         yield return new WaitForSeconds(3f);
         GoBloodOnWindow3.SetActive(true);
-        m_audioManager.PlayEndScream();
+        audioManager.PlayEndScream();
         Victim3Animator.SetInteger("StateIndex", 1);
         KillerAnimator.SetInteger("StateIndex", 4);
         endScreenScript.StartAppearing(0);
@@ -187,41 +187,41 @@ public class AnimationControl : MonoBehaviour
     void Killing3()
     {
         // Killing, victim died, killer face towards the player
-        m_audioManager.PlayHeartBeats();
+        audioManager.PlayHeartBeats();
         KillerAnimator.SetInteger("StateIndex", 2);
         // Killer runs, killer tries to kill but fails, killer flees
-        if (Vector3.Distance(points[m_current].transform.position, KillerTransform.position) < m_radius)
+        if (Vector3.Distance(points[current].transform.position, KillerTransform.position) < radius)
         {
-            m_current++;
-            if (m_current == 19)
+            current++;
+            if (current == 19)
             {
                 StartCoroutine(FinalKilling());
                 return;
             }
         }
-        KillerTransform.position = Vector3.MoveTowards(KillerTransform.position, points[m_current].transform.position, Time.deltaTime * speed);
+        KillerTransform.position = Vector3.MoveTowards(KillerTransform.position, points[current].transform.position, Time.deltaTime * speed);
 
-        if (m_current == 13)
+        if (current == 13)
         {
             a = 0;
         }
-        if (m_current == 14)
+        if (current == 14)
         {
             a = 0;
         }
-        if (m_current == 15)
+        if (current == 15)
         {
             a = 90;
         }
-        if (m_current == 16)
+        if (current == 16)
         {
             a = 90;
         }
-        if (m_current == 17)
+        if (current == 17)
         {
             a = -90;
         }
-        if (m_current == 18)
+        if (current == 18)
         {
             a = 0;
             GameObject light = GameObject.FindWithTag("Flickering_light2");

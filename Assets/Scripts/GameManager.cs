@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using EventSystem.Data;
 using UnityEngine;
 
 [HideInInspector]
@@ -22,25 +21,24 @@ public class GameManager : MonoBehaviour
     public AudioClip SFXClick;
     public UnityEngine.Video.VideoPlayer VideoPlayer;
 
-    Camera m_mainCamera;
-    GameState m_gameState;
-    PhaseManager m_phaseManager;
-    PhotoGallery m_photoGallery;
-    float m_lastCaptureTime;
-    bool m_justTaken;
+    Camera _mainCamera;
+    GameState _gameState;
+    PhaseManager _phaseManager;
+    PhotoGallery _photoGallery;
+    float _lastCaptureTime;
+    bool _justTaken;
 
     [SerializeField] private InputHandler inputHandler;
-    [SerializeField] private EventSystem.GameEvent _swipePhotosEvent;
-    
+
     void Start()
     {
-        m_mainCamera = Camera.main;
-        m_gameState = GameState.Shoot;
-        m_phaseManager = FindObjectOfType<PhaseManager>();
-        m_photoGallery = FindObjectOfType<PhotoGallery>();
+        _mainCamera = Camera.main;
+        _gameState = GameState.Shoot;
+        _phaseManager = FindObjectOfType<PhaseManager>();
+        _photoGallery = FindObjectOfType<PhotoGallery>();
 
-        m_lastCaptureTime = float.NegativeInfinity;
-        m_justTaken = false;
+        _lastCaptureTime = float.NegativeInfinity;
+        _justTaken = false;
         
         VideoPlayer.gameObject.SetActive(false);
     }
@@ -48,103 +46,101 @@ public class GameManager : MonoBehaviour
     void LateUpdate()
     {
         // Shoot
-        if (m_gameState == GameState.Shoot)
+        if (_gameState == GameState.Shoot)
         {
             // Open the gallery
             if (Input.GetKeyDown(KeyCode.P) || inputHandler.isGalleryButtonDown)
             {
-                m_gameState = GameState.Gallery;
-                m_photoGallery.EnterGallery();
+                _gameState = GameState.Gallery;
+                _photoGallery.EnterGallery();
                 CanvasShoot.gameObject.SetActive(false);
                 CanvasGallery.gameObject.SetActive(true);
             }
             // Capture/Flash
             else if (Input.GetKeyDown(KeyCode.Space) || inputHandler.isShutterButtonDown)
             {
-                if (RateCapture + m_lastCaptureTime < Time.time)
+                if (RateCapture + _lastCaptureTime < Time.time)
                 {
-                    m_gameState = GameState.Shooting;
+                    _gameState = GameState.Shooting;
                     CanvasShoot.gameObject.SetActive(false);
-                    m_lastCaptureTime = Time.time;
+                    _lastCaptureTime = Time.time;
 
-                    //if(m_phaseManager.GetPhase() == Phase.AboutToKill2)
+                    //if(_phaseManager.GetPhase() == Phase.AboutToKill2)
                     //{
-                    //    m_phaseManager.WaitToMovePhaseForward(Phase.Flee2, 0f);
+                    //    _phaseManager.WaitToMovePhaseForward(Phase.Flee2, 0f);
                     //}
-                    //else if (m_phaseManager.GetPhase() == Phase.AboutToKill3)
+                    //else if (_phaseManager.GetPhase() == Phase.AboutToKill3)
                     //{
-                    //    m_phaseManager.WaitToMovePhaseForward(Phase.Flee3, 0f);
+                    //    _phaseManager.WaitToMovePhaseForward(Phase.Flee3, 0f);
                     //}
 
-                    if (m_phaseManager.GetPhase() == Phase.StandAfterKilling1 && m_mainCamera.fieldOfView <= 10)
+                    if (_phaseManager.GetPhase() == Phase.StandAfterKilling1 && _mainCamera.fieldOfView <= 10)
                     {
-                        m_phaseManager.WaitToMovePhaseForward(m_phaseManager.GetPhase() + 1, 0.1f);
+                        _phaseManager.WaitToMovePhaseForward(_phaseManager.GetPhase() + 1, 0.1f);
                     }
                     
                 }                
             }
         }
         // The moment of Shooting 
-        else if(m_gameState == GameState.Shooting)
+        else if(_gameState == GameState.Shooting)
         {
-            if (!m_justTaken)
+            if (!_justTaken)
             {
                 AudioPlayer.clip = SFXClick;
                 AudioPlayer.Play();
                 VideoPlayer.gameObject.SetActive(true);
-                m_photoGallery.Capture();
+                _photoGallery.Capture();
                 CameraCaptureEvent.Raise();
-                m_justTaken = true;
+                _justTaken = true;
             }
-            if(RateCapture + m_lastCaptureTime < Time.time)
+            if(RateCapture + _lastCaptureTime < Time.time)
             {
-                m_gameState = GameState.Shoot;
-                m_justTaken = false;
+                _gameState = GameState.Shoot;
+                _justTaken = false;
                 VideoPlayer.gameObject.SetActive(false);
                 CanvasShoot.gameObject.SetActive(true);
             }
         }
         // Gallery
-        else if(m_gameState == GameState.Gallery)
+        else if(_gameState == GameState.Gallery)
         {
             // Return to shoot
             if (Input.GetKeyDown(KeyCode.P) || inputHandler.isGalleryButtonDown)
             {
-                m_gameState = GameState.Shoot;
+                _gameState = GameState.Shoot;
                 CanvasShoot.gameObject.SetActive(true);
                 CanvasGallery.gameObject.SetActive(false);
             }
             // Review details of the clue if there is any
             if (Input.GetKeyDown(KeyCode.Space) || inputHandler.isShutterButtonDown)
             {
-                m_photoGallery.OpenOrCloseDetails();
+                _photoGallery.OpenOrCloseDetails();
             }
             // Scroll pictures, left-ward
             else if (Input.GetKeyDown(KeyCode.LeftArrow) || inputHandler.isLeftButtonDown)
             {
-                _swipePhotosEvent.Raise(new SwipePhotoEventData{Left = true});
-                //m_photoGallery.ShowPrevPhoto();
+                _photoGallery.ShowPrevPhoto();
             }
             // Scroll pictures, right-ward
             else if (Input.GetKeyDown(KeyCode.RightArrow) || inputHandler.isRightButtonDown)
             {
-                _swipePhotosEvent.Raise(new SwipePhotoEventData{Left = false});
-                //m_photoGallery.ShowNextPhoto();
+                _photoGallery.ShowNextPhoto();
             }
         }
     }
 
     public GameState GetGameState()
     {
-        return m_gameState;
+        return _gameState;
     }
 
     public void FindClue(Vector3 viewPos, string clueName, Phase phaseBelongTo)
     {
-        m_photoGallery.AddPromptToPhoto(viewPos, clueName, phaseBelongTo);
-        if (m_phaseManager.GetProgress() == 1f)
+        _photoGallery.AddPromptToPhoto(viewPos, clueName, phaseBelongTo);
+        if (_phaseManager.GetProgress() == 1f)
             return;
-        float progress = m_phaseManager.UpdateProgress(clueName);
+        float progress = _phaseManager.UpdateProgress(clueName);
         if (progress == 1f)
         {
             // Pop up prompts
@@ -155,7 +151,7 @@ public class GameManager : MonoBehaviour
 
     public Phase GetPhase()
     {
-        return m_phaseManager.GetPhase();
+        return _phaseManager.GetPhase();
     }
 
     IEnumerator LetGoAppearForAWhile(GameObject go, float timeAppearing)
