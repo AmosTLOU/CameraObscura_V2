@@ -32,8 +32,9 @@ public class PhotoGalleryNew : SingletonBehaviour<PhotoGalleryNew> {
     // Save the screenshot
     public void Capture() {
         // Log.Info("Image Captured!");
-        ScreenCapture.CaptureScreenshot(_pathPhotos + _cntPhoto + ".png");
-        var photo = new Photo(_cntPhoto.ToString());
+        var fileName = _pathPhotos + _cntPhoto + ".png";
+        ScreenCapture.CaptureScreenshot(fileName);
+        var photo = new Photo(fileName);
         _photos.Add(photo);
         _cntPhoto++;
         

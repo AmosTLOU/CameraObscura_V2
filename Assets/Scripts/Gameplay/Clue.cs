@@ -11,6 +11,7 @@ namespace Gameplay {
         [SerializeField] private BaseCharacter characterBelongsTo;
         
         public Photo Photo { get; private set; }
+        public Sprite Image => clueImage;
         
         private bool _clueEnabled = false;
         private bool _found;

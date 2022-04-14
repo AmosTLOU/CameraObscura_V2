@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Core;
+using EventSystem.Data;
 using CharacterInfo = Characters.Data.CharacterInfo;
 using Utility;
 
 public class EvidenceBoard : Core.SingletonBehaviour<EvidenceBoard>
 {
 
-    List<Photo> m_clues;
+    List<Photo> m_clues = new List<Photo>();
     List<CharacterInfo> m_characters;
 
     [SerializeField] GameObject chef;
@@ -24,6 +25,26 @@ public class EvidenceBoard : Core.SingletonBehaviour<EvidenceBoard>
     [SerializeField] float picsDistance;
     [SerializeField] Vector2 pictureSize = new Vector2(50, 50);
 
+    public void OnEventClueFound(IGameEventData eData) {
+        if (!Utils.TryConvertVal(eData, out ClueFoundEventData clueData)){
+            Log.Err("Error converting value");
+            return;
+        }
+        // Todo: @Anna Adding Clue to the list of clues
+        Log.Info($"Clue Found!! File = {clueData.clue.Photo.FileName} ; CharacterId = {clueData.CharacterId}", Constants.TagTimeline);
+    }
+
+    public void AddClue(Photo photo, string characterId){
+        switch (characterId){
+            case "chef":
+                chef.GetComponent<RawImage>().texture = LoadTexture(photo.FileName);
+                break;
+            case "dancer":
+                chef.GetComponent<RawImage>().texture = LoadTexture(photo.FileName);
+                break;
+        }
+    }
+    
     public void AddClues(Photo i_photo)
     {
         if (i_photo.IsSuspect)
