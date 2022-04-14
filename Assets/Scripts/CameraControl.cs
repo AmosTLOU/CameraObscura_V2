@@ -1,4 +1,5 @@
 using UnityEngine;
+using Node = UnityEngine.XR.XRNode;
 
 public class CameraControl : MonoBehaviour
 {
@@ -9,10 +10,8 @@ public class CameraControl : MonoBehaviour
     public float SpeedRotateZ;
     public float MinFOV;
     public float MaxFOV;
-    public bool IsKbMouseEnabled;
 
-    [SerializeField]
-    InputHandler inputHandler;
+    [SerializeField] InputHandler inputHandler;
 
     GameManager m_gameManager;
     Camera m_mainCamera;
@@ -57,11 +56,21 @@ public class CameraControl : MonoBehaviour
 
         // If in shoot state, it is free to go.
         // Set new rotation
-        var rotationValues = inputHandler.GetRotationValues();
-        float offset_r_y = IsKbMouseEnabled ? Input.GetAxis("Mouse X") : -rotationValues.z;
-        float offset_r_x = IsKbMouseEnabled ? Input.GetAxis("Mouse Y") : -rotationValues.x;
-        m_camRot.x -= SpeedRotateXY * offset_r_x * Time.deltaTime;
-        m_camRot.y += SpeedRotateXY * offset_r_y * Time.deltaTime;
+        // If in shoot state, it is free to go.
+        // Set new rotation
+        if(inputHandler.IsHeadsetMounted())
+        {
+            Quaternion centerEyeRotation = Quaternion.identity;
+            if (OVRNodeStateProperties.GetNodeStatePropertyQuaternion(Node.CenterEye, NodeStatePropertyType.Orientation, OVRPlugin.Node.EyeCenter, OVRPlugin.Step.Render, out centerEyeRotation))
+                m_camRot = centerEyeRotation.eulerAngles;
+        }
+        else
+        {
+            float offset_r_y = Input.GetAxis("Mouse X");
+            float offset_r_x = Input.GetAxis("Mouse Y");
+            m_camRot.x -= SpeedRotateXY * offset_r_x * Time.deltaTime;
+            m_camRot.y += SpeedRotateXY * offset_r_y * Time.deltaTime;
+        }
 
         // Set new position
         float offset_pos_x = Input.GetAxis("Horizontal");
@@ -73,7 +82,14 @@ public class CameraControl : MonoBehaviour
 
         // Set new FOV (zoom)
         float offset_zoom = Input.GetAxis("Mouse ScrollWheel");
-        m_camFOV -= SpeedZoom * offset_zoom * Time.deltaTime; ;
+        if(inputHandler.IsHeadsetMounted())
+        {
+            m_camFOV = inputHandler.GetZoomValue()+MinFOV;
+        }
+        else
+        {
+            m_camFOV -= SpeedZoom * offset_zoom * Time.deltaTime;
+        }
         m_camFOV = Mathf.Clamp(m_camFOV, MinFOV, MaxFOV);
 
         transform.eulerAngles = m_camRot;

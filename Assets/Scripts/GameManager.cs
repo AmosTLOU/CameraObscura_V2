@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     float m_lastCaptureTime;
     bool m_justTaken;
 
-    [SerializeField] private InputHandler inputHandler;
+    // [SerializeField] private InputHandler inputHandler;
     [SerializeField] private EventSystem.GameEvent _swipePhotosEvent;
     
     void Start()
@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
         if (m_gameState == GameState.Shoot)
         {
             // Open the gallery
-            if (Input.GetKeyDown(KeyCode.P) || inputHandler.isGalleryButtonDown)
+            if (Input.GetKeyDown(KeyCode.P) )//|| inputHandler.isGalleryButtonDown)
             {
                 m_gameState = GameState.Gallery;
                 m_photoGallery.EnterGallery();
@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
                 CanvasGallery.gameObject.SetActive(true);
             }
             // Capture/Flash
-            else if (Input.GetKeyDown(KeyCode.Space) || inputHandler.isShutterButtonDown)
+            else if (Input.GetKeyDown(KeyCode.Space))// || inputHandler.isShutterButtonDown)
             {
                 if (RateCapture + m_lastCaptureTime < Time.time)
                 {
@@ -109,25 +109,25 @@ public class GameManager : MonoBehaviour
         else if(m_gameState == GameState.Gallery)
         {
             // Return to shoot
-            if (Input.GetKeyDown(KeyCode.P) || inputHandler.isGalleryButtonDown)
+            if (Input.GetKeyDown(KeyCode.P))// || inputHandler.isGalleryButtonDown)
             {
                 m_gameState = GameState.Shoot;
                 CanvasShoot.gameObject.SetActive(true);
                 CanvasGallery.gameObject.SetActive(false);
             }
             // Review details of the clue if there is any
-            if (Input.GetKeyDown(KeyCode.Space) || inputHandler.isShutterButtonDown)
+            if (Input.GetKeyDown(KeyCode.Space))// || inputHandler.isShutterButtonDown)
             {
                 m_photoGallery.OpenOrCloseDetails();
             }
             // Scroll pictures, left-ward
-            else if (Input.GetKeyDown(KeyCode.LeftArrow) || inputHandler.isLeftButtonDown)
+            else if (Input.GetKeyDown(KeyCode.LeftArrow))// || inputHandler.isLeftButtonDown)
             {
                 _swipePhotosEvent.Raise(new SwipePhotoEventData{Left = true});
                 //m_photoGallery.ShowPrevPhoto();
             }
             // Scroll pictures, right-ward
-            else if (Input.GetKeyDown(KeyCode.RightArrow) || inputHandler.isRightButtonDown)
+            else if (Input.GetKeyDown(KeyCode.RightArrow))// || inputHandler.isRightButtonDown)
             {
                 _swipePhotosEvent.Raise(new SwipePhotoEventData{Left = false});
                 //m_photoGallery.ShowNextPhoto();
