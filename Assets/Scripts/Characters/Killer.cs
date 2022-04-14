@@ -22,7 +22,7 @@ namespace Characters {
 
         private void Start(){
             _follower = GetComponent<PathFollower>();
-            gameObject.SetActive(false);
+            // gameObject.SetActive(false);
             // _follower.pathCreator = _currentPath.sneakPath;
         }
 
@@ -123,7 +123,7 @@ namespace Characters {
         #endregion
 
         public void OnEventCameraFlash(IGameEventData d){
-            Utils.TryConvertVal(d, out CameraFlashEventData data);
+            Utils.TryConvertVal(d, out CameraClickEventData data);
             if (!(_state == KillerState.Sneak || _state == KillerState.Killing)){
                 Log.Debug("Camera Flash during non-killing phase", Constants.TagTimeline);
                 return;

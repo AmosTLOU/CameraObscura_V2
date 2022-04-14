@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Core;
 using EventSystem;
@@ -30,16 +31,24 @@ public class PhotoGalleryNew : SingletonBehaviour<PhotoGalleryNew> {
 
     // Save the screenshot
     public void Capture() {
-        Log.Info("Image Captured!");
+        // Log.Info("Image Captured!");
         ScreenCapture.CaptureScreenshot(_pathPhotos + _cntPhoto + ".png");
         var photo = new Photo(_cntPhoto.ToString());
         _photos.Add(photo);
         _cntPhoto++;
         
-        cameraClickEvent.Raise(new CameraFlashEventData {
+        cameraClickEvent.Raise(new CameraClickEventData {
             Photo = photo,
-            CameraFOV = _mainCamera.fieldOfView
+            CameraFOV = _mainCamera.fieldOfView,
+            Cam = _mainCamera,
+            Flash = _flashEnabled
         });
+    }
+
+    private void Update(){
+        if(Input.GetKeyDown(KeyCode.Space)){
+            Capture();
+        }
     }
 
     public void OnBeatStartEvent(IGameEventData data) {

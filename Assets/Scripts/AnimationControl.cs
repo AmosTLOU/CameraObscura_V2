@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class AnimationControl : MonoBehaviour
 {
-
     public GameObject GoBloodOnWindow1;
     public GameObject GoBloodOnWindow3;
     public GameObject[] points;

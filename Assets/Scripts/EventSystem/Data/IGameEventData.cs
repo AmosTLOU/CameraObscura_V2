@@ -40,14 +40,12 @@ namespace EventSystem.Data {
     public struct VictimKilledEventData : IGameEventData {
         public string victimId;
     }
-
     public struct CameraClickEventData : IGameEventData {
-        public bool debug;
-    }
-    public struct CameraFlashEventData : IGameEventData {
         public bool debug;
         public Photo Photo;
         // public Vector2 ViewPos;
         public float CameraFOV;
+        public Camera Cam;
+        public bool Flash;
     }
 }
