@@ -22,7 +22,7 @@ public class EB_Test : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        p_banana = new Photo(Application.dataPath + "/SavedFiles/Photos/banana");
+        p_banana = new Photo(Application.dataPath + "/SavedFiles/Photos/banana.png");
         p_banana.SuspectName = "Chef";
 
         p_knife = new Photo(Application.dataPath + "/SavedFiles/Photos/knife");

@@ -32,15 +32,19 @@ public class EvidenceBoard : Core.SingletonBehaviour<EvidenceBoard>
         }
         // Todo: @Anna Adding Clue to the list of clues
         Log.Info($"Clue Found!! File = {clueData.clue.Photo.FileName} ; CharacterId = {clueData.CharacterId}", Constants.TagTimeline);
+        StartCoroutine(AddClue(clueData.clue.Photo, clueData.CharacterId));
     }
 
-    public void AddClue(Photo photo, string characterId){
+
+    IEnumerator AddClue(Photo photo, string characterId){
+
+        yield return new WaitForSeconds(2);
         switch (characterId){
             case "chef":
-                chef.GetComponent<RawImage>().texture = LoadTexture(photo.FileName);
+                AddPhotoToVictim(chef, photo);
                 break;
             case "dancer":
-                chef.GetComponent<RawImage>().texture = LoadTexture(photo.FileName);
+                AddPhotoToVictim(dancer, photo);
                 break;
         }
     }
@@ -153,7 +157,7 @@ public class EvidenceBoard : Core.SingletonBehaviour<EvidenceBoard>
     Texture2D LoadTexture(string i_fileName)
     {
         byte[] bytes;
-        bytes = System.IO.File.ReadAllBytes(i_fileName + ".png");
+        bytes = System.IO.File.ReadAllBytes(i_fileName);
         Texture2D textureLoad = new Texture2D(1, 1);
         textureLoad.LoadImage(bytes);
         if (textureLoad)
