@@ -32,7 +32,7 @@ public class CrazyChefGameManager : SingletonBehaviour<CrazyChefGameManager> {
         yield return new WaitForSeconds(Constants.GameStartToWakeUpDelay);
         gameStartEvent.Raise();
         yield return new WaitForSeconds(Constants.Beat1EndDelay);
-        beatStartEvent.Raise(new BeatStartEventData{Beat = GameBeat.Suspect});
+        beatStartEvent.Raise(new BeatStartEventData{Beat = GameBeat.KillingAct1});
     }
 
     public void OnEventKillerRanAway(IGameEventData data) {

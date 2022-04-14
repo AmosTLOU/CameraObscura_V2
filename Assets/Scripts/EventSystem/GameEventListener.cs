@@ -14,7 +14,7 @@ namespace EventSystem {
 
         private void OnEnable() {
             Log.Info("event listener enable func");
-            gameEvent.RegisterListener(this);
+            gameEvent?.RegisterListener(this);
         }
 
         private void OnDisable() {
