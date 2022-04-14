@@ -5362,7 +5362,6 @@ MonoBehaviour:
   SpeedRotateZ: 50
   MinFOV: 10
   MaxFOV: 60
-  IsKbMouseEnabled: 1
   inputHandler: {fileID: 1942751628}
 --- !u!81 &1045345216
 AudioListener:
@@ -5405,7 +5404,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: 15b442a9023b35d489d93d92f5d87af9, type: 2}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -6077,6 +6076,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8de9252346990354b99cc3e0cd62f897, type: 3}
       propertyPath: m_Name
       value: Player Room
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8de9252346990354b99cc3e0cd62f897, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8de9252346990354b99cc3e0cd62f897, type: 3}
@@ -8721,15 +8724,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20b2dbb62f41d5b47849946703e0ceff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentPitch: 0
-  currentRoll: 0
-  currentYaw: 0
-  distance: 0
-  isFlashButtonDown: 0
   isShutterButtonDown: 0
-  isGalleryButtonDown: 0
-  isLeftButtonDown: 0
-  isRightButtonDown: 0
+  potentiometerValue: 0
 --- !u!1001 &1952982534
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9305,6 +9301,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3667825465465734118, guid: 226aa234041d2be48881aab9632ea78e, type: 3}
   m_PrefabInstance: {fileID: 2115828883}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2783806645956396112
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1116817683455079241, guid: 4653bda1aca962141bc0ba8ce17e57c6, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1116817683455079241, guid: 4653bda1aca962141bc0ba8ce17e57c6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1116817683455079241, guid: 4653bda1aca962141bc0ba8ce17e57c6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1116817683455079241, guid: 4653bda1aca962141bc0ba8ce17e57c6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1116817683455079241, guid: 4653bda1aca962141bc0ba8ce17e57c6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1116817683455079241, guid: 4653bda1aca962141bc0ba8ce17e57c6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1116817683455079241, guid: 4653bda1aca962141bc0ba8ce17e57c6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1116817683455079241, guid: 4653bda1aca962141bc0ba8ce17e57c6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1116817683455079241, guid: 4653bda1aca962141bc0ba8ce17e57c6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1116817683455079241, guid: 4653bda1aca962141bc0ba8ce17e57c6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1116817683455079241, guid: 4653bda1aca962141bc0ba8ce17e57c6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2530547485435004661, guid: 4653bda1aca962141bc0ba8ce17e57c6, type: 3}
+      propertyPath: m_Name
+      value: VRPlayerController
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4653bda1aca962141bc0ba8ce17e57c6, type: 3}
 --- !u!1001 &7854660877265405863
 PrefabInstance:
   m_ObjectHideFlags: 0
