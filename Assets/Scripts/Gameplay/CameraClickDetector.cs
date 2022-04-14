@@ -8,7 +8,7 @@ using UnityEngine.Events;
 namespace Gameplay {
     public class CameraClickDetector : MonoBehaviour {
         [SerializeField] private GameEvent clickEvent;
-        [SerializeField] private float maxFov;
+        [SerializeField] private float maxFov = 15;
         [SerializeField] [Range(0,1)] private float detectRange;
         [SerializeField] private UnityEvent<CameraClickEventData> onDetected = new UnityEvent<CameraClickEventData>();
 

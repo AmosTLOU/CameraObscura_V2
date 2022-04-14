@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Gameplay;
+using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 
 namespace EventSystem.Data {
@@ -48,4 +49,10 @@ namespace EventSystem.Data {
         public Camera Cam;
         public bool Flash;
     }
+
+    public struct ClueFoundEventData : IGameEventData {
+        public Clue clue;
+        public string CharacterId;
+    }
+    
 }
