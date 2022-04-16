@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2067558249285930164}
   - component: {fileID: 4275470807675517054}
   - component: {fileID: 247916105608368882}
+  - component: {fileID: 5411295115725279701}
   m_Layer: 0
   m_Name: Fotel3
   m_TagString: Untagged
@@ -56,10 +57,11 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 79764e7ca9884494cbe558b2bdb1d30b, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -80,6 +82,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &247916105608368882
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -94,3 +97,24 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -4414309498750580773, guid: 89f0d4d8bf7c4b842a84a56a9f585be1, type: 3}
+--- !u!114 &5411295115725279701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2329903055860046251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4181f69144dd385478a8f9787e627d77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: 7d13442c132adfb45b9c195edfa3571e, type: 2}
+  instanceMaterial: 1
+  meshCenter: {x: 0, y: 0, z: 0}
+  maxLights: 6
+  raycast: 1
+  raycastMask:
+    serializedVersion: 2
+    m_Bits: 0
+  raycastFadeSpeed: 10

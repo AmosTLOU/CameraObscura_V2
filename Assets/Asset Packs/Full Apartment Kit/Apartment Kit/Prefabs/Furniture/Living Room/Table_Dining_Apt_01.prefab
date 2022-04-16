@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3911078225927244122}
   - component: {fileID: 7113544162603719587}
   - component: {fileID: 8991444742491562132}
+  - component: {fileID: 8814715227479944054}
   m_Layer: 0
   m_Name: Table Top
   m_TagString: Untagged
@@ -60,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6d3ba1df7fa074c45b26f73faef7608e, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -95,6 +96,27 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.2251778, y: 0.07049096, z: 2.2251778}
   m_Center: {x: 0.00000017881393, y: 1.0744004, z: -0.00000017881393}
+--- !u!114 &8814715227479944054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207897414041573046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4181f69144dd385478a8f9787e627d77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: 3adf208f1e7957948b5c61fd9037d333, type: 2}
+  instanceMaterial: 1
+  meshCenter: {x: 0, y: 0, z: 0}
+  maxLights: 6
+  raycast: 1
+  raycastMask:
+    serializedVersion: 2
+    m_Bits: 0
+  raycastFadeSpeed: 10
 --- !u!1 &8228670744583830499
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,6 +129,7 @@ GameObject:
   - component: {fileID: 2485621726453080696}
   - component: {fileID: 1708684590274505368}
   - component: {fileID: 5717505516186086752}
+  - component: {fileID: 3332421760781470542}
   m_Layer: 0
   m_Name: Table_Dining_Apt_01
   m_TagString: Untagged
@@ -156,7 +179,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2149baccf21e31043a0e66c87a72bfcd, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -191,3 +214,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.84, y: 1.0385915, z: 0.84}
   m_Center: {x: 0, y: 0.5198595, z: 0}
+--- !u!114 &3332421760781470542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8228670744583830499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4181f69144dd385478a8f9787e627d77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: 873eb708cd2b355489cc8fad5237fd22, type: 2}
+  instanceMaterial: 1
+  meshCenter: {x: 0, y: 0, z: 0}
+  maxLights: 6
+  raycast: 1
+  raycastMask:
+    serializedVersion: 2
+    m_Bits: 0
+  raycastFadeSpeed: 10

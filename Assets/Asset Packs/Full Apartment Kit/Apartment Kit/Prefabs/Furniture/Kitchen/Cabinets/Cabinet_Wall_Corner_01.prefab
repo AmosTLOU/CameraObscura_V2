@@ -176,6 +176,7 @@ GameObject:
   - component: {fileID: 2116746182}
   - component: {fileID: 2116746181}
   - component: {fileID: 2116746180}
+  - component: {fileID: 734105456272260689}
   m_Layer: 0
   m_Name: Plane.002
   m_TagString: Untagged
@@ -225,7 +226,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5bdd1af6958bd9143a8bc920d98238b3, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -294,6 +295,27 @@ MonoBehaviour:
   openandclose: {fileID: 2116746181}
   open: 0
   Player: {fileID: 0}
+--- !u!114 &734105456272260689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 907075402946155058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4181f69144dd385478a8f9787e627d77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: 9be8e2aff21467f46b148956237808d6, type: 2}
+  instanceMaterial: 1
+  meshCenter: {x: 0, y: 0, z: 0}
+  maxLights: 6
+  raycast: 1
+  raycastMask:
+    serializedVersion: 2
+    m_Bits: 0
+  raycastFadeSpeed: 10
 --- !u!1 &7853925160496783728
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,6 +330,7 @@ GameObject:
   - component: {fileID: 1751959427}
   - component: {fileID: 1751959426}
   - component: {fileID: 1751959425}
+  - component: {fileID: 533689283732826282}
   m_Layer: 0
   m_Name: Door_L
   m_TagString: Untagged
@@ -357,7 +380,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5bdd1af6958bd9143a8bc920d98238b3, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -426,6 +449,27 @@ MonoBehaviour:
   openandclose1: {fileID: 1751959426}
   open: 0
   Player: {fileID: 0}
+--- !u!114 &533689283732826282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7853925160496783728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4181f69144dd385478a8f9787e627d77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: 9be8e2aff21467f46b148956237808d6, type: 2}
+  instanceMaterial: 1
+  meshCenter: {x: 0, y: 0, z: 0}
+  maxLights: 6
+  raycast: 1
+  raycastMask:
+    serializedVersion: 2
+    m_Bits: 0
+  raycastFadeSpeed: 10
 --- !u!1 &8029129188628427996
 GameObject:
   m_ObjectHideFlags: 0
@@ -521,6 +565,7 @@ GameObject:
   - component: {fileID: 1034749827}
   - component: {fileID: 1034749826}
   - component: {fileID: 1034749825}
+  - component: {fileID: 4588903127339741117}
   m_Layer: 0
   m_Name: Door_R.001
   m_TagString: Untagged
@@ -570,7 +615,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5bdd1af6958bd9143a8bc920d98238b3, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -640,6 +685,27 @@ MonoBehaviour:
   openandclose: {fileID: 1034749826}
   open: 0
   Player: {fileID: 0}
+--- !u!114 &4588903127339741117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8173566054551189239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4181f69144dd385478a8f9787e627d77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: 9be8e2aff21467f46b148956237808d6, type: 2}
+  instanceMaterial: 1
+  meshCenter: {x: 0, y: 0, z: 0}
+  maxLights: 6
+  raycast: 1
+  raycastMask:
+    serializedVersion: 2
+    m_Bits: 0
+  raycastFadeSpeed: 10
 --- !u!1 &8286077048136229997
 GameObject:
   m_ObjectHideFlags: 0
@@ -652,6 +718,7 @@ GameObject:
   - component: {fileID: 7977829042647964534}
   - component: {fileID: 751402469560137725}
   - component: {fileID: 4579037469988632223}
+  - component: {fileID: 804072097378796021}
   m_Layer: 0
   m_Name: Cabinet_Wall_Corner_01
   m_TagString: Untagged
@@ -703,7 +770,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5bdd1af6958bd9143a8bc920d98238b3, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -739,3 +806,24 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 6153887777808292893, guid: 2a83511a782a6aa4dafed1f5a2bd3803, type: 3}
+--- !u!114 &804072097378796021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8286077048136229997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4181f69144dd385478a8f9787e627d77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: 9be8e2aff21467f46b148956237808d6, type: 2}
+  instanceMaterial: 1
+  meshCenter: {x: 0, y: 0, z: 0}
+  maxLights: 6
+  raycast: 1
+  raycastMask:
+    serializedVersion: 2
+    m_Bits: 0
+  raycastFadeSpeed: 10
