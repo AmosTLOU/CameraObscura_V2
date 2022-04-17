@@ -15371,7 +15371,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -870687502382912893, guid: 8acb73cf2dbeb9946bbb3174b1acaec2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.776
+      value: -5.448
       objectReference: {fileID: 0}
     - target: {fileID: -870687502382912893, guid: 8acb73cf2dbeb9946bbb3174b1acaec2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -15530,6 +15530,7 @@ GameObject:
   - component: {fileID: 347850511}
   - component: {fileID: 347850510}
   - component: {fileID: 347850509}
+  - component: {fileID: 347850512}
   m_Layer: 0
   m_Name: blood_PS
   m_TagString: Untagged
@@ -20326,6 +20327,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: -104.455, z: 0}
+--- !u!114 &347850512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347850508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3673d585b5f26e24d88c5a322e24dae9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blood: {fileID: 125743297}
 --- !u!1 &687288296
 GameObject:
   m_ObjectHideFlags: 0
@@ -20378,7 +20392,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: df58546c56e965d4686b219de653b72a, type: 2}
+  - {fileID: 2100000, guid: b24edc46b32eedd4fb83d23c3055ef91, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -20438,7 +20452,7 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -20507,7 +20521,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1
+      scalar: 0.5
       minScalar: 0.3
       maxCurve:
         serializedVersion: 2
@@ -20560,7 +20574,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 20
       minScalar: 3
       maxCurve:
         serializedVersion: 2
@@ -20994,7 +21008,7 @@ ParticleSystem:
     randomizeRotationDirection: 0
     maxNumParticles: 1000
     size3D: 0
-    rotation3D: 1
+    rotation3D: 0
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
@@ -21257,7 +21271,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 40
+      scalar: 20
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -30552,6 +30566,7 @@ GameObject:
   - component: {fileID: 1412640584}
   - component: {fileID: 1412640583}
   - component: {fileID: 1412640582}
+  - component: {fileID: 1412640585}
   m_Layer: 0
   m_Name: feather
   m_TagString: Untagged
@@ -35339,7 +35354,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1412640581}
   m_LocalRotation: {x: -0, y: -0.7904514, z: -0, w: 0.61252475}
-  m_LocalPosition: {x: -2.449, y: 3.24, z: -4.18}
+  m_LocalPosition: {x: -2.449, y: 3.24, z: -4.58}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 687288297}
@@ -35348,6 +35363,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: -104.455, z: 0}
+--- !u!114 &1412640585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412640581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3673d585b5f26e24d88c5a322e24dae9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blood: {fileID: 687288299}
 --- !u!1 &1473985409 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2601361324493992913, guid: 8acb73cf2dbeb9946bbb3174b1acaec2, type: 3}
