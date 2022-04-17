@@ -3,7 +3,67 @@ guid: a68e6c9164d64da43ad21c858b256dd5
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Brick_3_Dark_1
+    second: {fileID: 2100000, guid: 80f6c1a602e94c34d9e5a7769021f614, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Brick_Building_4
+    second: {fileID: 2100000, guid: 4b03426fa7e97f64f81f5215781a7756, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Default_Material
+    second: {fileID: 2100000, guid: 6e16de5fac7ab64489119b49f7593433, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal
+    second: {fileID: 2100000, guid: 8d7acee5b5cbbf2439ac59c650ca2043, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal_2
+    second: {fileID: 2100000, guid: f7397c191633fc44b86c6636dfdc5ccd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tile
+    second: {fileID: 2100000, guid: 11827bfe152f735479ea877bc556c2ff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wallpaper_Chef
+    second: {fileID: 2100000, guid: 078073fe9f0b0b34395fc6936a5d5b63, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wallpaper_Chef_2
+    second: {fileID: 2100000, guid: 944bc40460fe47144a2a6072ae01cb4a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Window
+    second: {fileID: 2100000, guid: 8c649bde6eea3ae458e3412e900dd1dd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WindowTrim
+    second: {fileID: 2100000, guid: 010b13d5f0a581045b8a5990a7ba2ceb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: df185d73079ebac429a817c451914795, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wood
+    second: {fileID: 2100000, guid: c24f73b2cb0ceeb42bccef87617b2ed6, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -3,7 +3,57 @@ guid: 839972fe83418b045993f5584dd68e92
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Brick_3_Dark_2
+    second: {fileID: 2100000, guid: 44e9ee2c50cbad747a53737279d47a3e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Brick_Building_1
+    second: {fileID: 2100000, guid: f1b6053fa2230c342865261d1d40d210, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Brick_Building_2
+    second: {fileID: 2100000, guid: 38e9bce0b1b9bf64498ab852a59354c4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wallpaper_Grey_3
+    second: {fileID: 2100000, guid: b6e800fe6f08b394bae9040db87553b8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wallpaper_Grey_4
+    second: {fileID: 2100000, guid: 55dfe0235fde6984b9a31e373999103a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wallpaper_Grey_5
+    second: {fileID: 2100000, guid: d6acb7ccb2dd59a459c640d829efd8ae, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Window
+    second: {fileID: 2100000, guid: f008e4396172fb544b911648ce47f884, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WindowTrim
+    second: {fileID: 2100000, guid: 561b9954e1d782d479d0f0d157376046, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wood
+    second: {fileID: 2100000, guid: c22aa8300c6990145a158537c53a6aef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wood2
+    second: {fileID: 2100000, guid: 29f96bc336be3c14cb2cd50a204c4e1c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
