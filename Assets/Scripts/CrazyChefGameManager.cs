@@ -5,6 +5,7 @@ using Core;
 using EventSystem;
 using EventSystem.Data;
 using Gameplay;
+using UI;
 using UnityEngine;
 
 public class CrazyChefGameManager : SingletonBehaviour<CrazyChefGameManager> {
@@ -20,13 +21,15 @@ public class CrazyChefGameManager : SingletonBehaviour<CrazyChefGameManager> {
     [SerializeField] private KillerPath killerPath1;
     [SerializeField] private KillerPath killerPath2;
     [SerializeField] private KillerPath killerPath3;
+
+    [Header("Config")]
+    [SerializeField] private float suspectPhaseTimeout = 120f;
     
-    
-    // [Header("Config")]
     private Coroutine activeRoutine;
     private Killer _killer;
     private GameBeat _currentBeat;
-    
+    private bool _suspectPhaseEnded = false;
+
     private IEnumerator Start(){
         _killer = CharacterManager.Instance.GetKiller();
         yield return new WaitForSeconds(Constants.GameStartToWakeUpDelay);
@@ -86,6 +89,23 @@ public class CrazyChefGameManager : SingletonBehaviour<CrazyChefGameManager> {
     
     private IEnumerator SuspectAct(){
         yield return null;
+        // Wait for the windows to open
+        yield return new WaitForSeconds(5f);
+        HUDManager.Instance.StartTimer(suspectPhaseTimeout, SuspectPhaseTimedOut);
+    }
+    
+    private void SuspectPhaseTimedOut() {
+        // Timeout Queue
+        if (_currentBeat != GameBeat.Suspect || _suspectPhaseEnded) return;
+        _suspectPhaseEnded = true;
+        HUDManager.Instance.StopTimer();
+        beatStartEvent.Raise(new BeatStartEventData{Beat = GameBeat.Conclusion});
+    }
+
+    public void OnEventAllCluesFound() {
+        // All Clues Found
+        if (_currentBeat != GameBeat.Suspect || _suspectPhaseEnded) return;
+        beatStartEvent.Raise(new BeatStartEventData{Beat = GameBeat.Conclusion});
     }
     
     /// <summary>
@@ -94,6 +114,7 @@ public class CrazyChefGameManager : SingletonBehaviour<CrazyChefGameManager> {
     /// <returns></returns>
     private IEnumerator ConclusionAct(){
         yield return null;
+        // Transition to game camera
     }
 }
 
