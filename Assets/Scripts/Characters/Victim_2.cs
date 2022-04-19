@@ -2,7 +2,7 @@
 using EventSystem.Data;
 
 namespace Characters {
-    public class SecondVictim : BaseCharacter {
+    public class Victim_2 : BaseCharacter {
         public void TakeNap(IGameEventData data){
             Utils.TryConvertVal(data, out NightStartEventData nightStart);
             if (nightStart.dayNumber != 1){
