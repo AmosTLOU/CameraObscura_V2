@@ -151,6 +151,7 @@ namespace Characters {
                 Log.Err($"Killer in unexpected state; Current={_state}, Expected = {KillerState.Idle}");
                 return;
             }
+            Log.Info("killer sneaking in!", Constants.TagTimeline);
             gameObject.SetActive(true);
             _state = KillerState.Sneak;
             _animator.SetBool("idle", false);
@@ -171,6 +172,7 @@ namespace Characters {
             yield return new WaitForSeconds(1f);
             _killingRoutine = null;
             _currentPath.victim.Kill();
+            Log.Info("killer killed the victim", Constants.TagTimeline);
             victimKilledEvent.Raise(new VictimKilledEventData{victimId = _currentPath.victim.Info.ID});
             _state = KillerState.RunningAway;
             yield return new WaitForSeconds(2f);
@@ -179,6 +181,7 @@ namespace Characters {
         }
 
         private IEnumerator RunAway(){
+            Log.Info("killer running away", Constants.TagTimeline);
             _follower.UpdatePath(_currentPath.runAwayPath);
             _animator.SetTrigger("run");
             yield return new WaitForSeconds(3f);

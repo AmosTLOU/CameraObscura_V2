@@ -59,6 +59,7 @@ public class CrazyChefGameManager : SingletonBehaviour<CrazyChefGameManager> {
             return;
         };
         _currentBeat = data.Beat;
+        Log.Info($"Starting New Act = {data.Beat}".Size(20).Color("White"));
         IEnumerator call = data.Beat switch{
             GameBeat.KillingAct1 => KillingAct1(),
             GameBeat.KillingAct2 => KillingAct2(),
@@ -92,7 +93,7 @@ public class CrazyChefGameManager : SingletonBehaviour<CrazyChefGameManager> {
     
     private IEnumerator SuspectAct(){
         yield return null;
-        Log.Info("Starting Suspect Act".Size(20).Color("White"));
+        // Log.Info("Starting Suspect Act".Size(20).Color("White"));
         // Wait for the windows to open
         yield return new WaitForSeconds(5f);
         HUDManager.Instance.StartTimer(suspectPhaseTimeout, SuspectPhaseTimedOut);
