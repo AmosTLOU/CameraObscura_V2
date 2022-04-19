@@ -7,6 +7,7 @@ using EventSystem.Data;
 using Gameplay;
 using UI;
 using UnityEngine;
+using Utility;
 
 public class CrazyChefGameManager : SingletonBehaviour<CrazyChefGameManager> {
 
@@ -30,12 +31,14 @@ public class CrazyChefGameManager : SingletonBehaviour<CrazyChefGameManager> {
     private GameBeat _currentBeat;
     private bool _suspectPhaseEnded = false;
 
+    [SerializeField] private GameBeat _startGameBeat = GameBeat.KillingAct1;
+
     private IEnumerator Start(){
         _killer = CharacterManager.Instance.GetKiller();
         yield return new WaitForSeconds(Constants.GameStartToWakeUpDelay);
         gameStartEvent.Raise();
         yield return new WaitForSeconds(Constants.Beat1EndDelay);
-        beatStartEvent.Raise(new BeatStartEventData{Beat = GameBeat.Suspect});
+        beatStartEvent.Raise(new BeatStartEventData{Beat = _startGameBeat});
     }
 
     public void OnEventKillerRanAway(IGameEventData data) {
@@ -71,24 +74,25 @@ public class CrazyChefGameManager : SingletonBehaviour<CrazyChefGameManager> {
     private IEnumerator KillingAct1(){
         AudioManager.Instance.PlayMusic(killerTheme);
         yield return new WaitForSeconds(Constants.BeatEndDelay);
-        Log.Info("Starting Killer Act 1");
+        Log.Info("Starting Killer Act 1".Size(20).Color("White"));
         _killer.SetKillPathAndMove(killerPath1);
     }
     
     private IEnumerator KillingAct2(){
         yield return new WaitForSeconds(Constants.BeatEndDelay);
-        Log.Info("Starting Killer Act 2");
+        Log.Info("Starting Killer Act 2".Size(20).Color("White"));
         _killer.SetKillPathAndMove(killerPath2);
     }
     
     private IEnumerator KillingAct3(){
         yield return new WaitForSeconds(Constants.BeatEndDelay);
-        Log.Info("Starting Killer Act 3");
+        Log.Info("Starting Killer Act 3".Size(20).Color("White"));
         _killer.SetKillPathAndMove(killerPath3);
     }
     
     private IEnumerator SuspectAct(){
         yield return null;
+        Log.Info("Starting Suspect Act".Size(20).Color("White"));
         // Wait for the windows to open
         yield return new WaitForSeconds(5f);
         HUDManager.Instance.StartTimer(suspectPhaseTimeout, SuspectPhaseTimedOut);
@@ -114,6 +118,7 @@ public class CrazyChefGameManager : SingletonBehaviour<CrazyChefGameManager> {
     /// <returns></returns>
     private IEnumerator ConclusionAct(){
         yield return null;
+        Log.Info("Starting Conclusion Act".Size(20).Color("White"));
         // Transition to game camera
     }
 }
