@@ -456,6 +456,7 @@ GameObject:
   - component: {fileID: 2108277018538506997}
   - component: {fileID: 2108277018538506993}
   - component: {fileID: 2108277018538506992}
+  - component: {fileID: 1452519380}
   m_Layer: 5
   m_Name: Evidence Board
   m_TagString: Untagged
@@ -576,7 +577,7 @@ MonoBehaviour:
   others: {fileID: 2108277017643808930}
   photoPrefab: {fileID: 6019920671901697678, guid: f5b1bbb548ade18498a00dbf7e77786f, type: 3}
   picsDistance: 80
-  pictureSize: {x: 50, y: 50}
+  pictureSize: {x: 80, y: 60}
 --- !u!114 &2108277018538506992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -594,6 +595,34 @@ MonoBehaviour:
   shoes: 0
   chef: 0
   book: 0
+--- !u!114 &1452519380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108277018538507002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: face663feee84290be4ebd7112761273, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 54d0166d9198ba14a8893fe793e095a6, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2108277018538506993}
+        m_TargetAssemblyTypeName: EvidenceBoard, Assembly-CSharp
+        m_MethodName: OnEventClueFound
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2108277018744514018
 GameObject:
   m_ObjectHideFlags: 0
@@ -1287,7 +1316,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4438071355171174127, guid: ad3792e8dd7ca1a47b01bc879ca1160e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 96.4
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 4438071355171174127, guid: ad3792e8dd7ca1a47b01bc879ca1160e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1370,7 +1399,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4438071355171174127, guid: ad3792e8dd7ca1a47b01bc879ca1160e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -148.5
+      value: -151
       objectReference: {fileID: 0}
     - target: {fileID: 4438071355171174127, guid: ad3792e8dd7ca1a47b01bc879ca1160e, type: 3}
       propertyPath: m_LocalPosition.y
