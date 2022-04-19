@@ -26,7 +26,7 @@ namespace UI {
             if (!_running) return;
             _elapsedTime += Time.deltaTime;
             var frac = _elapsedTime / _maxTime;
-            fillImageRef.fillAmount = frac;
+            fillImageRef.fillAmount = 1 - frac;
             if (frac < lowPercentage) fillImageRef.sprite = fillSpriteLow;
         }
         
