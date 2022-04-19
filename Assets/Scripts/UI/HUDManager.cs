@@ -12,12 +12,20 @@ namespace UI {
         [SerializeField] private GameEvent timeoutEvent;
         [SerializeField] private GameEvent gameOverEvent;
 
-        [SerializeField] private List<LifeDisplay> lives;
+        [SerializeField] private GameObject livesParent;
+        [SerializeField] private LifeDisplay lifePrefab;
 
+        [SerializeField] private int numLives;
+
+        private List<LifeDisplay> _lives = new List<LifeDisplay>(); 
         private int _livesLost = 0;
         private void Start() {
-            
+            for (var i = 0; i < numLives; i++){
+                var life = Instantiate(lifePrefab, livesParent.transform);
+                _lives.Add(life);
+            }
         }
+        
         public void StartTimer(float seconds, Action cb) {
             timer.StartTimer(seconds, cb);
         }
@@ -31,8 +39,8 @@ namespace UI {
             if (!Utils.TryConvertVal(data, out VictimKilledEventData vData)) {
                 return;
             }
-            lives[_livesLost].Dead();
-            if (++_livesLost >= lives.Count) {
+            _lives[_livesLost].Dead();
+            if (++_livesLost >= _lives.Count) {
                 gameOverEvent.Raise();
             }
         }

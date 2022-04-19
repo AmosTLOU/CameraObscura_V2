@@ -13,12 +13,13 @@ namespace UI {
         private bool dead = false;
 
         private void Start() {
-            throw new NotImplementedException();
+           // throw new NotImplementedException();
         }
 
         public void Dead() {
             displayImage.sprite = deadSprite;
-            crossedOffSprite.enabled = true;
+            crossedOffSprite.gameObject.SetActive(true);
+            crossedOffSprite.GetComponent<Animation>().Play();
         }
         
     }
