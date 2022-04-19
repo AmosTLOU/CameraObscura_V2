@@ -10,11 +10,11 @@ public class CameraInterfaceDisplay : MonoBehaviour
     public Slider ProgressBar;
     public CameraControl InstanceCameraControl;
 
-    PhaseManager m_phaseManager;
+    PhaseManager _phaseManager;
 
     void Start()
     {
-        m_phaseManager = FindObjectOfType<PhaseManager>();
+        _phaseManager = FindObjectOfType<PhaseManager>();
     }
 
     void Update()
@@ -23,7 +23,7 @@ public class CameraInterfaceDisplay : MonoBehaviour
         TimeAndDate.text = System.DateTime.Now.ToString();
         // Show the extent of zoom in/out with a slider
         IndicatorZoom.value = (InstanceCameraControl.MaxFOV - Camera.main.fieldOfView) / (InstanceCameraControl.MaxFOV - InstanceCameraControl.MinFOV);
-        ProgressBar.value = m_phaseManager.GetProgress();
-        RoomIndex.text = "ROOM" + (m_phaseManager.GetRoomIndex() + 1);
+        ProgressBar.value = _phaseManager.GetProgress();
+        RoomIndex.text = "ROOM" + (_phaseManager.GetRoomIndex() + 1);
     }
 }
