@@ -221,7 +221,7 @@ namespace AwesomeToon
                     break;
 
                 default:
-                    Debug.Log("Lighting type '" + light.type + "' not supported by Awesome Toon Helper (" + light.name + ").");
+                   // Debug.Log("Lighting type '" + light.type + "' not supported by Awesome Toon Helper (" + light.name + ").");
                     lightSet.atten = 0f;
                     break;
             }
@@ -243,12 +243,12 @@ namespace AwesomeToon
             RaycastHit hit;
             if (Physics.Raycast(posAbs, dir, out hit, dist, raycastMask))
             {
-                Debug.DrawRay(posAbs, dir.normalized * hit.distance, Color.red);
+             //   Debug.DrawRay(posAbs, dir.normalized * hit.distance, Color.red);
                 return -0.1f;
             }
             else
             {
-                Debug.DrawRay(posAbs, dir.normalized * dist, Color.green);
+             //   Debug.DrawRay(posAbs, dir.normalized * dist, Color.green);
                 return 1.1f;
             }
         }

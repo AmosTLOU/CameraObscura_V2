@@ -1,12 +1,87 @@
 fileFormatVersion: 2
-guid: cfc393263ebb6ca4486c5acbe32fd387
+guid: 0066327955f643443b6b8f300ad42311
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
       74: 1827226128182048838
     second: Take 001
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Brick_3_Dark_1
+    second: {fileID: 2100000, guid: a1c72b08f5264314ab94bc607813145f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Brick_3_Dark_2
+    second: {fileID: 2100000, guid: 8bf6b632ec5ecdb4484fc112100d783a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Brick_Building_1
+    second: {fileID: 2100000, guid: 9a98dda808451b04aacba0f180bca39c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal_2
+    second: {fileID: 2100000, guid: 2d257e6eca75e1c4ba2c8f5e03594df4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stairway
+    second: {fileID: 2100000, guid: b735574c0cc137842b64bba1e2bb93db, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wallpaper_Dancer
+    second: {fileID: 2100000, guid: 898116b44089d6244abf6fb241e5b409, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wallpaper_Grey_2
+    second: {fileID: 2100000, guid: a57c9eb97a3e56e4c9aa3e6dfe3167bb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wallpaper_Grey_3
+    second: {fileID: 2100000, guid: e8854fc7c05e6b347b473199850bc7ff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wallpaper_Grey_4
+    second: {fileID: 2100000, guid: 95e72f831d4cb6c46a723cd793c8a6bb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wallpaper_Grey_5
+    second: {fileID: 2100000, guid: cd7aee9ee55cc6b468e5b44a90b771d4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wallpaper_Grey_6
+    second: {fileID: 2100000, guid: 7929debd98f544042bc55df8b9078279, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Window
+    second: {fileID: 2100000, guid: 2fb2c46fbc918e049aaf28c73fb5a1fb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WindowTrim
+    second: {fileID: 2100000, guid: d46decaa0d950f54e9bb865c301b982c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wood
+    second: {fileID: 2100000, guid: eb6fd42fca36519459521e983c914eab, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wood2
+    second: {fileID: 2100000, guid: c41934a5477379e4b9edf3111542c732, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -48,7 +123,7 @@ ModelImporter:
     importLights: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1
@@ -60,11 +135,11 @@ ModelImporter:
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
-    secondaryUVAreaDistortion: 15.000001
+    secondaryUVAreaDistortion: 15
     secondaryUVHardAngle: 88
     secondaryUVMarginMethod: 1
-    secondaryUVMinLightmapResolution: 40
-    secondaryUVMinObjectScale: 1
+    secondaryUVMinLightmapResolution: 25
+    secondaryUVMinObjectScale: 10
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
