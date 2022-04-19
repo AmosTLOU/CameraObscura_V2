@@ -11,20 +11,26 @@ namespace Characters {
             Log.Info("Taking Nap");
         }
 
-        public void Killed(IGameEventData d){
-            Utils.TryConvertVal(d, out VictimKilledEventData data);
-            if (data.victimId.Equals(Info.ID)) {
-                Log.Info("Killed");
-            } else {
-                Log.Info("someone else killed");
-            }
-        }
+        //public void Killed(IGameEventData d){
+        //    Utils.TryConvertVal(d, out VictimKilledEventData data);
+        //    if (data.victimId.Equals(Info.ID)) {
+        //        Log.Info("Killed");
+        //    } else {
+        //        Log.Info("someone else killed");
+        //    }
+        //}
 
-        public void Interrupted(){
-            Log.Info("Checking for interrupted");
-            
-            // Add check
-            Log.Info("Successfully interrupted");
+        //public void Interrupted(){
+        //    Log.Info("Checking for interrupted");
+
+        //    // Add check
+        //    Log.Info("Successfully interrupted");
+        //}
+
+        public override void Kill()
+        {
+            Log.Info($"Character {Info.name} Got Killed!! ");
+            _animator.SetTrigger("Killed");
         }
     }
 }

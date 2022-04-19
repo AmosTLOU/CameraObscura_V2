@@ -169,7 +169,7 @@ namespace Characters {
             _animator.SetTrigger("kill");
             
             // Change to animation end callbacks
-            yield return new WaitForSeconds(1f);
+            //yield return new WaitForSeconds(1f);
             _killingRoutine = null;
             _currentPath.victim.Kill();
             Log.Info("killer killed the victim", Constants.TagTimeline);
