@@ -152,9 +152,9 @@ Material:
     - Color_D840FCE7: {r: 1, g: 1, b: 1, a: 0}
     - Vector2_a17cb90b698440a49e0714bc53a2b516: {r: 1, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0, g: 0, b: 0, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _L1_color: {r: 1, g: 1, b: 1, a: 0}
+    - _L1_color: {r: 0.4811321, g: 0.29566777, b: 0.12028302, a: 1}
     - _L1_dir: {r: -0.41, g: 0, b: 0, a: 0}
     - _L2_color: {r: 0, g: 0, b: 0, a: 0}
     - _L2_dir: {r: 0, g: 0, b: 0, a: 0}
