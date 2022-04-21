@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 936957192}
   m_LocalRotation: {x: -0, y: 0.9997426, z: -0, w: 0.02268737}
-  m_LocalPosition: {x: 7.878, y: 7.974, z: 2.253}
+  m_LocalPosition: {x: 7.881, y: 7.974, z: 2.185}
   m_LocalScale: {x: 1.01, y: 1.01, z: 1.01}
   m_Children: []
   m_Father: {fileID: 7854660878277667007}
@@ -113,7 +113,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7854660878146128602}
   m_LocalRotation: {x: -0, y: 0.9997426, z: -0, w: 0.02268737}
-  m_LocalPosition: {x: 7.878, y: 7.974, z: 2.253}
+  m_LocalPosition: {x: 7.881, y: 7.974, z: 2.185}
   m_LocalScale: {x: 1.01, y: 1.01, z: 1.01}
   m_Children: []
   m_Father: {fileID: 7854660878277667007}
@@ -139,8 +139,8 @@ MonoBehaviour:
       - {x: 0.10477102, y: -0.16182975, z: -0.5309262}
       - {x: 0.46081167, y: -0.1366464, z: 0.25580984}
       - {x: 0.6723211, y: -0.12168599, z: 0.723178}
-      - {x: 1.1825125, y: -0.09682341, z: 0.9807755}
-      - {x: -0.6205749, y: -0.18587062, z: 0.91587776}
+      - {x: 1.206011, y: -0.114473, z: 1.2541366}
+      - {x: -0.70623565, y: -0.23328191, z: 0.9245851}
       isClosed: 0
       space: 0
       controlMode: 0
@@ -174,7 +174,7 @@ MonoBehaviour:
     showVertexPathOptions: 1
     showNormals: 1
     showNormalsHelpInfo: 0
-    tabIndex: 1
+    tabIndex: 0
   initialized: 1
 --- !u!1 &7854660878277666992
 GameObject:
@@ -221,6 +221,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b6865a906b7415fb6f621dd346c66ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sneakPath: {fileID: 7854660878146128600}
+  sneakPath: {fileID: 0}
   victim: {fileID: 0}
   runAwayPath: {fileID: 936957194}
