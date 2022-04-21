@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8858d19a400847578689e1a4e43e7e0e, type: 3}
   m_Name: Victim_2
   m_EditorClassIdentifier: 
-  id: 
-  characterName: 
+  id: vic2
+  characterName: Girl2
   image: {fileID: 0}
   isSuspect: 0
   dead: 0
