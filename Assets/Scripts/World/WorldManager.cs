@@ -10,9 +10,6 @@ namespace World {
         
         private Dictionary<string, BaseHouse> _houses = new Dictionary<string, BaseHouse>();
 
-        [SerializeField] private GameEvent gameStartEvent;
-        [SerializeField] private GameEvent nightStartEvent;
-
         private void Start(){
             foreach (var house in houses){
                 var id = house.Info.ID;
@@ -22,7 +19,7 @@ namespace World {
                 _houses[id] = house;
             }
 
-            gameStartEvent.Raise(new MiniGameStateEventData{NewGame = true});
+            // gameStartEvent.Raise(new MiniGameStateEventData{NewGame = true});
             // nightStartEvent.Raise(new NightStartEventData{dayNumber = 1});
         }
         
