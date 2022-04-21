@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5801596632656248569}
   - component: {fileID: 5801596632656248568}
+  - component: {fileID: 706556276}
   m_Layer: 0
   m_Name: House
   m_TagString: Untagged
@@ -50,6 +51,34 @@ MonoBehaviour:
   - {fileID: 7151707171367556553}
   - {fileID: 6226554771634538672}
   - {fileID: 3450982992693293376}
+--- !u!114 &706556276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5801596632656248570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: face663feee84290be4ebd7112761273, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: e4c156d9720ccc042a0ad28c38f972b4, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5801596632656248568}
+        m_TargetAssemblyTypeName: World.BaseHouse, Assembly-CSharp
+        m_MethodName: OnEventBeatStart
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5801596633811194980
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,9 +125,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eab8ca733cd64d0ab84f01dc7665c74c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  houses: []
-  gameStartEvent: {fileID: 0}
-  nightStartEvent: {fileID: 0}
+  houses:
+  - {fileID: 5801596632656248568}
 --- !u!1001 &2283735988315775558
 PrefabInstance:
   m_ObjectHideFlags: 0
