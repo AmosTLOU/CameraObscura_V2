@@ -19,7 +19,7 @@ namespace UI {
         public void Dead() {
             displayImage.sprite = deadSprite;
             crossedOffSprite.gameObject.SetActive(true);
-            crossedOffSprite.GetComponent<Animation>().Play();
+            GetComponent<Animator>().SetTrigger("dead");
         }
         
     }

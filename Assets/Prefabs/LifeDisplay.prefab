@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4079873253920651644
 RectTransform:
   m_ObjectHideFlags: 0
@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7224506471793034192, guid: c78019ea7a929aa46b71b702ebf618de, type: 3}
+  m_Sprite: {fileID: 3782279913569962131, guid: c78019ea7a929aa46b71b702ebf618de, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 4079873254007587699}
   - component: {fileID: 4079873254007587696}
   - component: {fileID: 4079873254007587697}
+  - component: {fileID: 8518361772941844280}
   m_Layer: 0
   m_Name: LifeDisplay
   m_TagString: Untagged
@@ -186,6 +187,25 @@ MonoBehaviour:
   deadSprite: {fileID: 21300000, guid: 956663632ecb885418e02191d863ff5f, type: 3}
   displayImage: {fileID: 4079873254252287151}
   crossedOffSprite: {fileID: 4079873253920651647}
+--- !u!95 &8518361772941844280
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4079873254007587711}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d9abef5a44b18a34ca3864cc1ffef569, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4079873254252287149
 GameObject:
   m_ObjectHideFlags: 0

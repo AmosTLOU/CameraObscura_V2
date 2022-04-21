@@ -1,6 +1,7 @@
+using Core;
 using UnityEngine;
 
-public class CameraControl : MonoBehaviour
+public class CameraControl : SingletonBehaviour<CameraControl>
 {
     public float MaxOffsetPosX;
     public float MaxOffsetPosY;
@@ -39,6 +40,12 @@ public class CameraControl : MonoBehaviour
         m_camInitialFOV = m_mainCamera.fieldOfView;
     }
 
+    public void ResetView(){
+        m_camRot = m_camInitialRot;
+        m_camPos = m_camInitialPos;
+        m_camFOV = m_camInitialFOV;
+        return;
+    }
     private void Update()
     {
         // Reset to initial status

@@ -40,6 +40,8 @@ public class CrazyChefGameManager : SingletonBehaviour<CrazyChefGameManager> {
         while (!MenuInputManager.Instance.ready){
             yield return null;
         }
+        MenuInputManager.Instance.gameObject.SetActive(false);
+        CameraControl.Instance.ResetView();
         yield return new WaitForSeconds(Constants.Beat1EndDelay);
         beatStartEvent.Raise(new BeatStartEventData{Beat = _startGameBeat});
     }
