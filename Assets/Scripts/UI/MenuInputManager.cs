@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Core;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MenuInputManager : MonoBehaviour
+public class MenuInputManager : SingletonBehaviour<MenuInputManager>
 {
     //public Texture2D TextureCursor;
     public Image ImageCursor;
@@ -11,6 +12,7 @@ public class MenuInputManager : MonoBehaviour
 
     private int m_layer;
 
+    public bool ready = false;
     // Start is called before the first frame update
     void Start()
     {

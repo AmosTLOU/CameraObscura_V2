@@ -37,6 +37,9 @@ public class CrazyChefGameManager : SingletonBehaviour<CrazyChefGameManager> {
         _killer = CharacterManager.Instance.GetKiller();
         yield return new WaitForSeconds(Constants.GameStartToWakeUpDelay);
         gameStartEvent.Raise();
+        while (!MenuInputManager.Instance.ready){
+            yield return null;
+        }
         yield return new WaitForSeconds(Constants.Beat1EndDelay);
         beatStartEvent.Raise(new BeatStartEventData{Beat = _startGameBeat});
     }
