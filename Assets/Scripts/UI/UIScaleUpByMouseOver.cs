@@ -6,7 +6,6 @@ using UnityEngine.EventSystems;
 
 public class UIScaleUpByMouseOver : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public Button ButtonSelf;
     public Sprite SpriteMouseAway;
     public Sprite SpriteMouseOver;    
 
@@ -16,9 +15,8 @@ public class UIScaleUpByMouseOver : MonoBehaviour, IPointerEnterHandler, IPointe
     // Start is called before the first frame update
     void Start()
     {
-        ButtonSelf.image.sprite = SpriteMouseAway;
-        m_sizeMouseAway = new Vector2(ButtonSelf.image.rectTransform.rect.width,
-            ButtonSelf.image.rectTransform.rect.height);
+        m_sizeMouseAway = new Vector2(GetComponent<Image>().rectTransform.rect.width,
+            GetComponent<Image>().rectTransform.rect.height);
         m_sizeMouseOver = new Vector2(m_sizeMouseAway.x * 1.2f, m_sizeMouseAway.y * 1.2f);
     }
 
@@ -31,13 +29,13 @@ public class UIScaleUpByMouseOver : MonoBehaviour, IPointerEnterHandler, IPointe
     public void OnPointerEnter(PointerEventData eventData)
     {
         //Debug.Log(button.image.rectTransform.rect.width + " " + button.image.rectTransform.rect.height);
-        ButtonSelf.image.sprite = SpriteMouseOver;
+        GetComponent<Image>().sprite = SpriteMouseOver;
         //ButtonSelf.image.rectTransform.sizeDelta = m_sizeMouseOver;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        ButtonSelf.image.sprite = SpriteMouseAway;
+        GetComponent<Image>().sprite = SpriteMouseAway;
         //ButtonSelf.image.rectTransform.sizeDelta = m_sizeMouseAway;
     }
 }
