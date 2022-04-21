@@ -57,9 +57,11 @@ public class CameraControl : MonoBehaviour
 
         // If in shoot state, it is free to go.
         // Set new rotation
-        var rotationValues = inputHandler.GetRotationValues();
-        float offset_r_y = IsKbMouseEnabled ? Input.GetAxis("Mouse X") : -rotationValues.z;
-        float offset_r_x = IsKbMouseEnabled ? Input.GetAxis("Mouse Y") : -rotationValues.x;
+        //var rotationValues = inputHandler.GetRotationValues();
+        //float offset_r_y = IsKbMouseEnabled ? Input.GetAxis("Mouse X") : -rotationValues.z;
+        //float offset_r_x = IsKbMouseEnabled ? Input.GetAxis("Mouse Y") : -rotationValues.x;
+        float offset_r_y = Input.GetAxis("Mouse X");
+        float offset_r_x = Input.GetAxis("Mouse Y");
         m_camRot.x -= SpeedRotateXY * offset_r_x * Time.deltaTime;
         m_camRot.y += SpeedRotateXY * offset_r_y * Time.deltaTime;
 
