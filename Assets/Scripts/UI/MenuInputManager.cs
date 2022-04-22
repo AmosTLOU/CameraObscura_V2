@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class MenuInputManager : SingletonBehaviour<MenuInputManager>
 {
+    public MenuState State;
     public GameObject CanvasHUD;
     public Animator AnimatorClickToStart;
     public RawImage RawImageCamera;
@@ -13,12 +14,11 @@ public class MenuInputManager : SingletonBehaviour<MenuInputManager>
     public Camera SecondCamera;
 
     //public Texture2D TextureCursor;
-    public Image ImageCursor;
+    public Image[] ImageCursor;
     public GameObject[] Layers;   
 
     private int m_layer;
 
-    public bool ready = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,15 +32,29 @@ public class MenuInputManager : SingletonBehaviour<MenuInputManager>
         //Cursor.SetCursor(TextureCursor, centerOfCursor, CursorMode.Auto);
 
         //Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = false;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        Cursor.visible = false;
         Vector3 mousePos = Input.mousePosition;
-        //Debug.Log(mousePos.x + " " + mousePos.y);        
-        ImageCursor.rectTransform.anchoredPosition = new Vector2(mousePos.x, mousePos.y);
+        //Debug.Log(mousePos.x + " " + mousePos.y);
+        for (int i = 0; i < ImageCursor.Length; i++)
+        {
+            ImageCursor[i].rectTransform.anchoredPosition = new Vector2(mousePos.x, mousePos.y);
+        }
+        if (State == MenuState.Idle)
+        {
+            ImageCursor[0].gameObject.SetActive(true);
+            ImageCursor[1].gameObject.SetActive(false);
+        }
+        else
+        {
+            ImageCursor[1].gameObject.SetActive(true);
+            ImageCursor[0].gameObject.SetActive(false);
+        }
     }
 
     public void ShowLayer(int i_layer)
@@ -58,6 +72,18 @@ public class MenuInputManager : SingletonBehaviour<MenuInputManager>
                 Layers[i].SetActive(false);
             }            
         }
+        if (m_layer == 0)
+            State = MenuState.Idle;
+        else if(m_layer == 1)
+            State = MenuState.Idle;
+        else
+            State = MenuState.Color;
+    }
+
+    IEnumerator SetStateToStartWithDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        State = MenuState.StartGame;
     }
 
     IEnumerator EnlargeScreen()
@@ -76,11 +102,21 @@ public class MenuInputManager : SingletonBehaviour<MenuInputManager>
         }
         CanvasHUD.SetActive(true);
         SecondCamera.gameObject.SetActive(false);
+        yield return StartCoroutine(SetStateToStartWithDelay(1f));
+
         gameObject.SetActive(false);
     }
     public void LoadGame()
     {
         AnimatorClickToStart.SetBool("Start", true);
         StartCoroutine(EnlargeScreen());
-    }
+    }    
+}
+
+public enum MenuState
+{
+    StartGame,
+    Credits,
+    Color,
+    Idle
 }

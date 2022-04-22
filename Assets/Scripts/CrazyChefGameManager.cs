@@ -34,12 +34,13 @@ public class CrazyChefGameManager : SingletonBehaviour<CrazyChefGameManager> {
     [SerializeField] private GameBeat _startGameBeat = GameBeat.KillingAct1;
 
     private IEnumerator Start(){
+        while (MenuInputManager.Instance.State != MenuState.StartGame)
+        {
+            yield return null;
+        }
         _killer = CharacterManager.Instance.GetKiller();
         yield return new WaitForSeconds(Constants.GameStartToWakeUpDelay);
         gameStartEvent.Raise();
-        while (!MenuInputManager.Instance.ready){
-            yield return null;
-        }
         MenuInputManager.Instance.gameObject.SetActive(false);
         CameraControl.Instance.ResetView();
         yield return new WaitForSeconds(Constants.Beat1EndDelay);

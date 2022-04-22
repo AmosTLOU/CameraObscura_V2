@@ -11,13 +11,13 @@ namespace World {
         private Dictionary<string, BaseHouse> _houses = new Dictionary<string, BaseHouse>();
 
         private void Start(){
-            foreach (var house in houses){
-                var id = house.Info.ID;
-                if (_houses.ContainsKey(id)){
-                    Log.Err($"Two houses have the same id {id}");
-                }
-                _houses[id] = house;
-            }
+            //foreach (var house in houses){
+            //    var id = house.Info.ID;
+            //    if (_houses.ContainsKey(id)){
+            //        Log.Err($"Two houses have the same id {id}");
+            //    }
+            //    _houses[id] = house;
+            //}
 
             // gameStartEvent.Raise(new MiniGameStateEventData{NewGame = true});
             // nightStartEvent.Raise(new NightStartEventData{dayNumber = 1});

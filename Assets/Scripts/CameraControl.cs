@@ -56,6 +56,10 @@ public class CameraControl : SingletonBehaviour<CameraControl>
             m_camFOV = m_camInitialFOV;
             return;
         }
+
+        if (MenuInputManager.Instance.State != MenuState.StartGame)
+            return;
+
         // If not in shoot state, it is not allowed to operate the camera.
         // if(m_gameManager.GetGameState() != GameState.Shoot)
         // {
