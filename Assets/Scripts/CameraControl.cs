@@ -101,6 +101,6 @@ public class CameraControl : SingletonBehaviour<CameraControl>
 
         transform.eulerAngles = m_camRot;
         transform.position = m_camPos;
-        Camera.main.fieldOfView = m_camFOV;
+        this.GetComponent<Camera>().fieldOfView = m_camFOV;
     }
 }

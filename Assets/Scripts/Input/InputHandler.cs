@@ -47,7 +47,7 @@ public class InputHandler : MonoBehaviour
 
     public float GetZoomValue()
     {
-        return (potentiometerValue/255)*50;  //255 : potentiometer scale limit | 50 : maxFov - minFov
+        return ((potentiometerValue-80)/160)*50;  //255 : potentiometer scale limit | 50 : maxFov - minFov
     }
 
     private void SetInputData(string[] inputMeta)
