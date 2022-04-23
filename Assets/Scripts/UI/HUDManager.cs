@@ -4,6 +4,7 @@ using Core;
 using EventSystem;
 using EventSystem.Data;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI {
     public class HUDManager : SingletonBehaviour<HUDManager> {
@@ -14,6 +15,7 @@ namespace UI {
 
         [SerializeField] private GameObject livesParent;
         [SerializeField] private LifeDisplay lifePrefab;
+        [SerializeField] private Slider zoomLevelSlider;
 
         [SerializeField] private int numLives;
 
@@ -43,6 +45,11 @@ namespace UI {
             if (++_livesLost >= _lives.Count) {
                 gameOverEvent.Raise();
             }
+        }
+
+        private void Update()
+        {
+            zoomLevelSlider.value = (Camera.main.fieldOfView - CameraControl.Instance.MinFOV) / (CameraControl.Instance.MaxFOV - CameraControl.Instance.MinFOV);
         }
     }
 }

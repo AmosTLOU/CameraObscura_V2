@@ -8,6 +8,8 @@ public class MenuInputManager : SingletonBehaviour<MenuInputManager>
 {
     public MenuState State;
     public GameObject CanvasHUD;
+    public GameObject Credits;
+    public float CreditsFrameCount;
     public Animator AnimatorClickToStart;
     public RawImage RawImageCamera;
     public RenderTexture renderTextureCamera;
@@ -19,10 +21,12 @@ public class MenuInputManager : SingletonBehaviour<MenuInputManager>
 
     private int m_layer;
 
-    // Start is called before the first frame update
     void Start()
     {
+        State = MenuState.Idle;
         CanvasHUD.gameObject.SetActive(false);
+        CreditsFrameCount = 5;
+        Credits.SetActive(false);
         SecondCamera.gameObject.SetActive(true);
         RawImageCamera.gameObject.SetActive(false);
 
@@ -45,15 +49,20 @@ public class MenuInputManager : SingletonBehaviour<MenuInputManager>
         {
             ImageCursor[i].rectTransform.anchoredPosition = new Vector2(mousePos.x, mousePos.y);
         }
-        if (State == MenuState.Idle)
+        if(State == MenuState.LoadGame)
+        {
+            ImageCursor[0].gameObject.SetActive(false);
+            ImageCursor[1].gameObject.SetActive(false);
+        }
+        else if (State == MenuState.Idle)
         {
             ImageCursor[0].gameObject.SetActive(true);
             ImageCursor[1].gameObject.SetActive(false);
         }
         else
         {
-            ImageCursor[1].gameObject.SetActive(true);
             ImageCursor[0].gameObject.SetActive(false);
+            ImageCursor[1].gameObject.SetActive(true);
         }
     }
 
@@ -108,15 +117,32 @@ public class MenuInputManager : SingletonBehaviour<MenuInputManager>
     }
     public void LoadGame()
     {
+        State = MenuState.LoadGame;
         AnimatorClickToStart.SetBool("Start", true);
         StartCoroutine(EnlargeScreen());
     }    
+
+    public void InOrOutCredits(bool enter)
+    {
+        Credits.SetActive(enter);
+        if (enter)
+        {
+            State = MenuState.Credit_Move;
+        }
+        else
+        {
+            State = MenuState.Idle;
+        }
+        
+    }
 }
 
 public enum MenuState
 {
+    LoadGame,
     StartGame,
-    Credits,
+    Credit_Move,
+    Credit_Stop,
     Color,
     Idle
 }
