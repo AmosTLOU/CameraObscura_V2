@@ -9,7 +9,7 @@ public class MenuInputManager : SingletonBehaviour<MenuInputManager>
     public MenuState State;
     public GameObject CanvasHUD;
     public GameObject Credits;
-    public float CreditsFrameCount;
+    public GameObject[] FramesInCredits;
     public Animator AnimatorClickToStart;
     public RawImage RawImageCamera;
     public RenderTexture renderTextureCamera;
@@ -25,7 +25,6 @@ public class MenuInputManager : SingletonBehaviour<MenuInputManager>
     {
         State = MenuState.Idle;
         CanvasHUD.gameObject.SetActive(false);
-        CreditsFrameCount = 5;
         Credits.SetActive(false);
         SecondCamera.gameObject.SetActive(true);
         RawImageCamera.gameObject.SetActive(false);

@@ -52,7 +52,7 @@ public class UIScaleUpByMouseOver : MonoBehaviour, IPointerEnterHandler, IPointe
 
     public void OnPointerClick(PointerEventData pointerEventData)
     {
-        if(name != "Button_Start")
+        if(name != "Button_Start" && name != "Button_Sound")
         {
             mouseOver = false;
             GetComponent<Image>().sprite = SpriteMouseAway;

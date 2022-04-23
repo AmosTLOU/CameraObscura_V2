@@ -12,7 +12,7 @@ public class RollingCredit : MonoBehaviour
     void Start()
     {
         m_recTransform = GetComponent<RectTransform>();
-        speed_natural = 30;
+        speed_natural = 3;
         speed_manual = speed_natural * 60;
         m_width = m_recTransform.lossyScale.x * m_recTransform.sizeDelta.x;
     }
@@ -33,19 +33,19 @@ public class RollingCredit : MonoBehaviour
                 m_recTransform.anchoredPosition += Vector2.left * Time.deltaTime * speed_natural;
         }
 
-        double wing = (m_width * MenuInputManager.Instance.CreditsFrameCount - Screen.width) * 0.5;
-        double leftBoundary = -wing + m_width;
-        double rightBoundary = Screen.width + wing + m_width;
+        double wing = (m_width * MenuInputManager.Instance.FramesInCredits.Length - Screen.width) * 0.5;
+        double leftBoundary = -wing - m_width*0.5;
+        double rightBoundary = Screen.width + wing + m_width * 0.5;
         if (m_recTransform.anchoredPosition.x < leftBoundary)
         {
             m_recTransform.anchoredPosition = new Vector2(
-                m_recTransform.anchoredPosition.x + m_width * MenuInputManager.Instance.CreditsFrameCount,
+                m_recTransform.anchoredPosition.x + m_width * MenuInputManager.Instance.FramesInCredits.Length,
                 m_recTransform.anchoredPosition.y);
         }
         else if (rightBoundary < m_recTransform.anchoredPosition.x)
         {
             m_recTransform.anchoredPosition = new Vector2(
-                m_recTransform.anchoredPosition.x - m_width * MenuInputManager.Instance.CreditsFrameCount,
+                m_recTransform.anchoredPosition.x - m_width * MenuInputManager.Instance.FramesInCredits.Length,
                 m_recTransform.anchoredPosition.y);
         }
     }
