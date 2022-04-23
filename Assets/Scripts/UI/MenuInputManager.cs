@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using Core;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MenuInputManager : SingletonBehaviour<MenuInputManager>
 {
     public MenuState State;
-    public GameObject CanvasHUD;
     public GameObject Credits;
     public GameObject[] FramesInCredits;
     public Animator AnimatorClickToStart;
     public RawImage RawImageCamera;
     public RenderTexture renderTextureCamera;
-    public Camera SecondCamera;
 
     //public Texture2D TextureCursor;
     public Image[] ImageCursor;
@@ -24,9 +23,7 @@ public class MenuInputManager : SingletonBehaviour<MenuInputManager>
     void Start()
     {
         State = MenuState.Idle;
-        CanvasHUD.gameObject.SetActive(false);
         Credits.SetActive(false);
-        SecondCamera.gameObject.SetActive(true);
         RawImageCamera.gameObject.SetActive(false);
 
         ShowLayer(0);
@@ -108,8 +105,6 @@ public class MenuInputManager : SingletonBehaviour<MenuInputManager>
             RawImageCamera.rectTransform.anchoredPosition = Vector2.MoveTowards(v2_centerOfPicture, Vector2.zero, Time.deltaTime * 65);
             yield return null;
         }
-        CanvasHUD.SetActive(true);
-        SecondCamera.gameObject.SetActive(false);
         yield return StartCoroutine(SetStateToStartWithDelay(1f));
 
         gameObject.SetActive(false);
@@ -119,6 +114,7 @@ public class MenuInputManager : SingletonBehaviour<MenuInputManager>
         State = MenuState.LoadGame;
         AnimatorClickToStart.SetBool("Start", true);
         StartCoroutine(EnlargeScreen());
+        SceneManager.LoadScene(1);
     }    
 
     public void InOrOutCredits(bool enter)

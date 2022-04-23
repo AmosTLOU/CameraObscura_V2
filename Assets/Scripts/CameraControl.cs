@@ -27,7 +27,7 @@ public class CameraControl : SingletonBehaviour<CameraControl>
 
     public void ResetView()
     {
-        m_camRot = m_camInitialRot;
+        m_camRot = Vector3.zero;
         m_camPos = m_camInitialPos;
         m_camFOV = m_camInitialFOV;
         return;
@@ -52,14 +52,9 @@ public class CameraControl : SingletonBehaviour<CameraControl>
         // Reset to initial status
         if (Input.GetKeyDown(KeyCode.R))
         {
-            m_camRot = m_camInitialRot;
-            m_camPos = m_camInitialPos;
-            m_camFOV = m_camInitialFOV;
+            ResetView();
             return;
         }
-        
-        if (MenuInputManager.Instance.State != MenuState.StartGame)
-            return;
 
         // If in shoot state, it is free to go.
         // Set new rotation

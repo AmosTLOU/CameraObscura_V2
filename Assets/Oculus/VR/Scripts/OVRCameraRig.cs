@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 using Node = UnityEngine.XR.XRNode;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// A head-tracked stereoscopic virtual reality camera rig.
@@ -171,7 +172,7 @@ public class OVRCameraRig : MonoBehaviour
 		//If we don't, it could mean that tracking is lost, etc. so the pose should not change in the virtual world.
 		//This can be thought of as similar to calling InputTracking GetLocalPosition and Rotation, but only for doing so when the pose is valid.
 		//If false is returned for any of these calls, then a new pose is not valid and thus should not be updated.
-		if (false)
+		if ((SceneManager.GetActiveScene().buildIndex == 0) ? updateEyeAnchors : false)
 		{
 			if (hmdPresent)
 			{
