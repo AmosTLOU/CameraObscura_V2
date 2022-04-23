@@ -4,6 +4,7 @@ using Node = UnityEngine.XR.XRNode;
 
 public class CameraControl : SingletonBehaviour<CameraControl>
 {
+    public bool ignoreHeadset = false;
     public float MaxOffsetPosX;
     public float MaxOffsetPosY;
     public float SpeedZoom;
@@ -88,7 +89,7 @@ public class CameraControl : SingletonBehaviour<CameraControl>
 
         // Set new FOV (zoom)
         float offset_zoom = Input.GetAxis("Mouse ScrollWheel");
-        if(inputHandler.IsHeadsetMounted())
+        if(inputHandler.IsHeadsetMounted() && !ignoreHeadset)
         {
             m_camFOV = inputHandler.GetZoomValue()+MinFOV;
         }
