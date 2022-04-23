@@ -1,5 +1,6 @@
 using Core;
 using UnityEngine;
+using Node = UnityEngine.XR.XRNode;
 
 public class CameraControl : SingletonBehaviour<CameraControl>
 {
@@ -10,10 +11,8 @@ public class CameraControl : SingletonBehaviour<CameraControl>
     public float SpeedRotateZ;
     public float MinFOV;
     public float MaxFOV;
-    public bool IsKbMouseEnabled;
 
-    [SerializeField]
-    InputHandler inputHandler;
+    [SerializeField] InputHandler inputHandler;
 
     GameManager m_gameManager;
     Camera m_mainCamera;
@@ -25,6 +24,13 @@ public class CameraControl : SingletonBehaviour<CameraControl>
     Vector3 m_camInitialRot;
     float m_camInitialFOV;
 
+    public void ResetView()
+    {
+        m_camRot = m_camInitialRot;
+        m_camPos = m_camInitialPos;
+        m_camFOV = m_camInitialFOV;
+        return;
+    }
 
     private void Start()
     {
@@ -40,12 +46,6 @@ public class CameraControl : SingletonBehaviour<CameraControl>
         m_camInitialFOV = m_mainCamera.fieldOfView;
     }
 
-    public void ResetView(){
-        m_camRot = m_camInitialRot;
-        m_camPos = m_camInitialPos;
-        m_camFOV = m_camInitialFOV;
-        return;
-    }
     private void Update()
     {
         // Reset to initial status
@@ -56,25 +56,27 @@ public class CameraControl : SingletonBehaviour<CameraControl>
             m_camFOV = m_camInitialFOV;
             return;
         }
-
+        
         if (MenuInputManager.Instance.State != MenuState.StartGame)
             return;
 
-        // If not in shoot state, it is not allowed to operate the camera.
-        // if(m_gameManager.GetGameState() != GameState.Shoot)
-        // {
-        //     return;
-        // }
-
         // If in shoot state, it is free to go.
         // Set new rotation
-        //var rotationValues = inputHandler.GetRotationValues();
-        //float offset_r_y = IsKbMouseEnabled ? Input.GetAxis("Mouse X") : -rotationValues.z;
-        //float offset_r_x = IsKbMouseEnabled ? Input.GetAxis("Mouse Y") : -rotationValues.x;
-        float offset_r_y = Input.GetAxis("Mouse X");
-        float offset_r_x = Input.GetAxis("Mouse Y");
-        m_camRot.x -= SpeedRotateXY * offset_r_x * Time.deltaTime;
-        m_camRot.y += SpeedRotateXY * offset_r_y * Time.deltaTime;
+        // If in shoot state, it is free to go.
+        // Set new rotation
+        if(inputHandler.IsHeadsetMounted())
+        {
+            Quaternion centerEyeRotation = Quaternion.identity;
+            if (OVRNodeStateProperties.GetNodeStatePropertyQuaternion(Node.CenterEye, NodeStatePropertyType.Orientation, OVRPlugin.Node.EyeCenter, OVRPlugin.Step.Render, out centerEyeRotation))
+                m_camRot = centerEyeRotation.eulerAngles;
+        }
+        else
+        {
+            float offset_r_y = Input.GetAxis("Mouse X");
+            float offset_r_x = Input.GetAxis("Mouse Y");
+            m_camRot.x -= SpeedRotateXY * offset_r_x * Time.deltaTime;
+            m_camRot.y += SpeedRotateXY * offset_r_y * Time.deltaTime;
+        }
 
         // Set new position
         float offset_pos_x = Input.GetAxis("Horizontal");
@@ -86,7 +88,14 @@ public class CameraControl : SingletonBehaviour<CameraControl>
 
         // Set new FOV (zoom)
         float offset_zoom = Input.GetAxis("Mouse ScrollWheel");
-        m_camFOV -= SpeedZoom * offset_zoom * Time.deltaTime; ;
+        if(inputHandler.IsHeadsetMounted())
+        {
+            m_camFOV = inputHandler.GetZoomValue()+MinFOV;
+        }
+        else
+        {
+            m_camFOV -= SpeedZoom * offset_zoom * Time.deltaTime;
+        }
         m_camFOV = Mathf.Clamp(m_camFOV, MinFOV, MaxFOV);
 
         transform.eulerAngles = m_camRot;

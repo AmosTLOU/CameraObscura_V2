@@ -5,21 +5,16 @@ using System.IO.Ports;
 
 public class InputHandler : MonoBehaviour
 {
-    [SerializeField] private float currentPitch = 0f;
-    [SerializeField] private float currentRoll = 0f;
-    [SerializeField] private float currentYaw = 0f;
-    [SerializeField] private float distance = 0f;
-    public bool isFlashButtonDown = false;
     public bool isShutterButtonDown = false;
-    public bool isGalleryButtonDown = false;
-    public bool isLeftButtonDown = false;
-    public bool isRightButtonDown = false;
-
-    private float prevPitch, prevRoll, prevYaw, prevDistance;
+    // public bool isGalleryButtonDown = false;
+    private bool isHeadsetMounted = false;
+    [SerializeField] private float potentiometerValue = 0f;
 
     SerialPort port = new SerialPort("COM3", 115200);
     void Start()
     {
+        OVRManager.HMDMounted += HandleHMDMounted;
+        OVRManager.HMDUnmounted += HandleHMDUnmounted;
         port.Open();
         port.ReadTimeout = 1;
         port.NewLine = "\n";
@@ -27,11 +22,8 @@ public class InputHandler : MonoBehaviour
 
     void FixedUpdate()
     {
-        isFlashButtonDown = false;
-        isGalleryButtonDown = false;
+        // isGalleryButtonDown = false;
         isShutterButtonDown = false;
-        isLeftButtonDown = false;
-        isRightButtonDown = false;
     }
 
     void Update()
@@ -51,14 +43,9 @@ public class InputHandler : MonoBehaviour
         }
     }
 
-    public Vector3 GetRotationValues()
-    {
-        return new Vector3(currentPitch-prevPitch, currentRoll-prevRoll, currentYaw-prevYaw);
-    }
-
     public float GetZoomValue()
     {
-        return distance-prevDistance;
+        return (potentiometerValue/255)*50;  //255 : potentiometer scale limit | 50 : maxFov - minFov
     }
 
     private void SetInputData(string[] inputMeta)
@@ -70,42 +57,30 @@ public class InputHandler : MonoBehaviour
                 {
                     isShutterButtonDown = true;
                 }
-                if(inputMeta[1] == "2")
-                {
-                    isFlashButtonDown = true;
-                }
-                if(inputMeta[1] == "3")
-                {
-                    isRightButtonDown = true;
-                }
-                if(inputMeta[1] == "4")
-                {
-                    isGalleryButtonDown = true;
-                }
-                if(inputMeta[1] == "5")
-                {
-                    isLeftButtonDown = true;
-                }
                 break;
-            case "Pitch":
-                prevPitch = currentPitch;
-                currentPitch = float.Parse(inputMeta[1]);
-                break;
-            case "Roll":
-                prevRoll = currentRoll;
-                currentRoll = float.Parse(inputMeta[1]);
-                break;
-            case "Yaw":
-                prevYaw = currentYaw;
-                currentYaw = float.Parse(inputMeta[1]);
-                break;
-            case "Distance":
-                prevDistance = distance;
-                distance = float.Parse(inputMeta[1]);
+            case "Pot":
+                potentiometerValue = float.Parse(inputMeta[1]);
                 break;
             default:
                 print("un-identified input.");
                 break;
         }
+    }
+
+    void HandleHMDMounted()
+    {
+        isHeadsetMounted = true;
+        // CanvasShoot.enabled = true;
+    }
+
+    void HandleHMDUnmounted()
+    {
+        isHeadsetMounted = false;
+        // CanvasShoot.enabled = false;
+    }
+
+    public bool IsHeadsetMounted()
+    {
+        return isHeadsetMounted;
     }
 }
