@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO.Ports;
+using EventSystem;
 
 public class InputHandler : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class InputHandler : MonoBehaviour
     // public bool isGalleryButtonDown = false;
     private bool isHeadsetMounted = false;
     [SerializeField] private float potentiometerValue = 0f;
+    [SerializeField] private GameEvent shutterClickEvent;
 
     SerialPort port = new SerialPort("COM3", 115200);
     void Start()
@@ -56,6 +58,8 @@ public class InputHandler : MonoBehaviour
                 if(inputMeta[1] == "1")
                 {
                     isShutterButtonDown = true;
+                    shutterClickEvent.Raise();
+                    isShutterButtonDown = false;
                 }
                 break;
             case "Pot":
