@@ -4,10 +4,12 @@ using Core;
 using EventSystem;
 using EventSystem.Data;
 using UnityEngine;
+using Utility;
 
 public class PhotoGalleryNew : SingletonBehaviour<PhotoGalleryNew> {
 
     [SerializeField] private GameEvent cameraClickEvent;
+    [SerializeField] private GameEvent shutterClickEvent;
     [SerializeField] private List<Photo> _photos = new List<Photo>();
 
     private bool _flashEnabled = false;
@@ -47,11 +49,12 @@ public class PhotoGalleryNew : SingletonBehaviour<PhotoGalleryNew> {
 
     private void Update(){
         if(Input.GetKeyDown(KeyCode.Space)) {
-            cameraClickEvent.Raise();
+            shutterClickEvent.Raise();
         }
     }
 
     public void OnEventCameraClick(IGameEventData data) {
+        Log.Info("Shutter Click event received".Size(16));
         Capture();
     }
 
