@@ -46,9 +46,13 @@ public class PhotoGalleryNew : SingletonBehaviour<PhotoGalleryNew> {
     }
 
     private void Update(){
-        if(Input.GetKeyDown(KeyCode.Space)){
-            Capture();
+        if(Input.GetKeyDown(KeyCode.Space)) {
+            cameraClickEvent.Raise();
         }
+    }
+
+    public void OnEventCameraClick(IGameEventData data) {
+        Capture();
     }
 
     public void OnBeatStartEvent(IGameEventData data) {
