@@ -57,11 +57,15 @@ public class CameraControl : MonoBehaviour
             return;
         }
 
-        // If in shoot state, it is free to go.
         // Set new rotation
+<<<<<<< Updated upstream
         var rotationValues = inputHandler.GetRotationValues();
         float offset_r_y = IsKbMouseEnabled ? Input.GetAxis("Mouse X") : -rotationValues.z;
         float offset_r_x = IsKbMouseEnabled ? Input.GetAxis("Mouse Y") : -rotationValues.x;
+=======
+        float offset_r_y = Input.GetAxis("Mouse X");
+        float offset_r_x = Input.GetAxis("Mouse Y");
+>>>>>>> Stashed changes
         m_camRot.x -= SpeedRotateXY * offset_r_x * Time.deltaTime;
         m_camRot.y += SpeedRotateXY * offset_r_y * Time.deltaTime;
 
@@ -75,7 +79,11 @@ public class CameraControl : MonoBehaviour
 
         // Set new FOV (zoom)
         float offset_zoom = Input.GetAxis("Mouse ScrollWheel");
+<<<<<<< Updated upstream
         m_camFOV -= SpeedZoom * offset_zoom * Time.deltaTime; ;
+=======
+        m_camFOV -= SpeedZoom * offset_zoom * Time.deltaTime;
+>>>>>>> Stashed changes
         m_camFOV = Mathf.Clamp(m_camFOV, MinFOV, MaxFOV);
 
         transform.eulerAngles = m_camRot;
