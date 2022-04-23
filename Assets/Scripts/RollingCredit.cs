@@ -8,12 +8,14 @@ public class RollingCredit : MonoBehaviour
     private float speed_natural;
     private float speed_manual;
     private float m_width;
+    private bool m_toLeft;
 
     void Start()
     {
         m_recTransform = GetComponent<RectTransform>();
-        speed_natural = 3;
-        speed_manual = speed_natural * 60;
+        m_toLeft = true;
+        speed_natural = 200;
+        speed_manual = speed_natural * 5;
         m_width = m_recTransform.lossyScale.x * m_recTransform.sizeDelta.x;
     }
 
@@ -26,11 +28,15 @@ public class RollingCredit : MonoBehaviour
         if (0.001 < Mathf.Abs(offsetWheel))
         {
             m_recTransform.anchoredPosition += Vector2.left * Time.deltaTime * (offsetWheel < 0 ? -speed_manual : speed_manual);
+            if (offsetWheel < 0)
+                m_toLeft = false;
+            else
+                m_toLeft = true;
         }            
         else
         {
             if(MenuInputManager.Instance.State == MenuState.Credit_Move)
-                m_recTransform.anchoredPosition += Vector2.left * Time.deltaTime * speed_natural;
+                m_recTransform.anchoredPosition += (m_toLeft ? 1 : -1) * Vector2.left * Time.deltaTime * speed_natural;
         }
 
         double wing = (m_width * MenuInputManager.Instance.FramesInCredits.Length - Screen.width) * 0.5;
