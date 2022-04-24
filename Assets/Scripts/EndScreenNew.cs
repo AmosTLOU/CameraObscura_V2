@@ -24,7 +24,7 @@ public class EndScreenNew : SingletonBehaviour<EndScreenNew>
 
         AllElements.gameObject.SetActive(false);
 
-        ShowWinScreen();
+        //ShowWinScreen();
     }
 
     IEnumerator LoadScreen(float i_delay, bool i_lose)
