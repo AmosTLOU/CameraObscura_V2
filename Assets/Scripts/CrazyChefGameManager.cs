@@ -17,6 +17,7 @@ public class CrazyChefGameManager : SingletonBehaviour<CrazyChefGameManager> {
 
     [Header("Audio")] 
     [SerializeField] private AudioClip killerTheme;
+    [SerializeField] private AudioClip suspenseTheme;
 
     [Header("Killer Paths")] 
     [SerializeField] private KillerPath killerPath1;
@@ -98,6 +99,7 @@ public class CrazyChefGameManager : SingletonBehaviour<CrazyChefGameManager> {
     }
     
     private IEnumerator SuspectAct(){
+        AudioManager.Instance.PlayMusic(suspenseTheme);
         yield return null;
         // Log.Info("Starting Suspect Act".Size(20).Color("White"));
         // Wait for the windows to open

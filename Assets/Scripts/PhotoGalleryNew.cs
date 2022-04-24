@@ -10,6 +10,7 @@ public class PhotoGalleryNew : SingletonBehaviour<PhotoGalleryNew> {
 
     [SerializeField] private GameEvent cameraClickEvent;
     [SerializeField] private GameEvent shutterClickEvent;
+    [SerializeField] private AudioClip cameraClickSfx;
     [SerializeField] private List<Photo> _photos = new List<Photo>();
 
     private bool _flashEnabled = false;
@@ -55,6 +56,7 @@ public class PhotoGalleryNew : SingletonBehaviour<PhotoGalleryNew> {
 
     public void OnEventCameraClick(IGameEventData data) {
         Log.Info("Shutter Click event received".Size(16));
+        AudioManager.Instance.PlaySfx(cameraClickSfx);
         Capture();
     }
 

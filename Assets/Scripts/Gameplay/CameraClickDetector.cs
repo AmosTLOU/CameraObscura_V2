@@ -30,11 +30,10 @@ namespace Gameplay {
             if(cData.CameraFOV < maxFov)
             {
                 float extraRange = (1f - detectRange) / 2f;
-                if (extraRange <= viewPos.x  && viewPos.x <= (1f - extraRange) &&
-                    extraRange <= viewPos.y && viewPos.y <= (1f - extraRange)) {
-                    Log.Info("Camera click detected", Constants.TagTimeline);
+                if(Math.Abs(viewPos.x - 0.5) < extraRange && Math.Abs(viewPos.y - 0.5) < extraRange) {
+                    Log.Info($"Camera click detected in {gameObject.name}", Constants.TagTimeline);
                     onDetected.Invoke(cData);
-                } else Log.Info("Detect Range Check failed", Constants.TagTimeline);
+                } else Log.Info($"Detect Range Check failed Extra Range={extraRange} || viewPos = {viewPos}", Constants.TagTimeline);
             } else{
                 Log.Info("FOV condition failed", Constants.TagTimeline);
             }
