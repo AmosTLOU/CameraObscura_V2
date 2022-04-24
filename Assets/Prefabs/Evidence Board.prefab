@@ -990,7 +990,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2108277018538506993}
         m_TargetAssemblyTypeName: EvidenceBoard, Assembly-CSharp
-        m_MethodName: OnClickKiller
+        m_MethodName: OnClickNonKiller
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1135,7 +1135,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2108277018538506993}
         m_TargetAssemblyTypeName: EvidenceBoard, Assembly-CSharp
-        m_MethodName: OnClickNonKiller
+        m_MethodName: OnClickKiller
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
