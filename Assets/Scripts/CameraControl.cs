@@ -65,7 +65,7 @@ public class CameraControl : SingletonBehaviour<CameraControl>
         // Set new rotation
         // If in shoot state, it is free to go.
         // Set new rotation
-        if(inputHandler.IsHeadsetMounted())
+        if(inputHandler.IsHeadsetMounted() && !ignoreHeadset)
         {
             Quaternion centerEyeRotation = Quaternion.identity;
             if (OVRNodeStateProperties.GetNodeStatePropertyQuaternion(Node.CenterEye, NodeStatePropertyType.Orientation, OVRPlugin.Node.EyeCenter, OVRPlugin.Step.Render, out centerEyeRotation))
