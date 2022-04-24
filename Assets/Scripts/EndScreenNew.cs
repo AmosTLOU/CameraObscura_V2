@@ -14,23 +14,28 @@ public class EndScreenNew : SingletonBehaviour<EndScreenNew>
     public AnimationCurve PanelAlphaCurve, TitleAlphaCurve, TitleScaleCurve;
     public float Duration1, Duration2;
 
+    public Image ImageCursor;
+
     private float m_finalY_Buttons;
+    private bool m_gameEnd;
 
     private void Start()
     {
+        m_gameEnd = false;
+
         Vector2 initialV2 = Buttons.GetComponent<RectTransform>().anchoredPosition;
         m_finalY_Buttons = initialV2.y;
         Buttons.GetComponent<RectTransform>().anchoredPosition = new Vector2(initialV2.x, 0);
 
         AllElements.gameObject.SetActive(false);
-
-        //ShowWinScreen();
     }
 
     IEnumerator LoadScreen(float i_delay, bool i_lose)
     {
+        
         yield return new WaitForSeconds(i_delay);
 
+        m_gameEnd = true;
         AllElements.gameObject.SetActive(true);
         Buttons.gameObject.SetActive(true);
         Panel.gameObject.SetActive(true);
@@ -61,13 +66,16 @@ public class EndScreenNew : SingletonBehaviour<EndScreenNew>
             yield return null;
         }
 
-        startTime = Time.time;
-        while (Time.time - startTime < Duration2)
+        if(i_lose)
         {
-            currentTime = Time.time - startTime;
-            Vector2 curV2 = Buttons.GetComponent<RectTransform>().anchoredPosition;
-            Buttons.GetComponent<RectTransform>().anchoredPosition = new Vector2(curV2.x, m_finalY_Buttons * currentTime / Duration2);
-            yield return null;
+            startTime = Time.time;
+            while (Time.time - startTime < Duration2)
+            {
+                currentTime = Time.time - startTime;
+                Vector2 curV2 = Buttons.GetComponent<RectTransform>().anchoredPosition;
+                Buttons.GetComponent<RectTransform>().anchoredPosition = new Vector2(curV2.x, m_finalY_Buttons * currentTime / Duration2);
+                yield return null;
+            }
         }
     }
 
@@ -84,11 +92,32 @@ public class EndScreenNew : SingletonBehaviour<EndScreenNew>
 
     public void RestartGame()
     {
+        m_gameEnd = false;
         SceneManager.LoadScene(0);
     }
 
     public void ExitGame()
     {
         Application.Quit();
+    }
+
+    private void Update()
+    {
+        //if (Input.GetKeyDown(KeyCode.O))
+        //    ShowLoseScreen();
+        //else if (Input.GetKeyDown(KeyCode.P))
+        //    ShowWinScreen();
+
+        if (m_gameEnd)
+        {
+            ImageCursor.gameObject.SetActive(true);
+            Cursor.visible = false;
+            Vector3 mousePos = Input.mousePosition;
+            ImageCursor.rectTransform.anchoredPosition = new Vector2(mousePos.x, mousePos.y);
+        }        
+        else
+        {
+            ImageCursor.gameObject.SetActive(false);
+        }
     }
 }
