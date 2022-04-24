@@ -13,7 +13,10 @@ namespace EventSystem {
         public UnityEvent<IGameEventData> response = new UnityEvent<IGameEventData>();
 
         private void OnEnable() {
-            Log.Info("event listener enable func");
+            // Log.Info("event listener enable func");
+            if (gameEvent == null) {
+                Log.Warn("Game Event is ");
+            }
             gameEvent?.RegisterListener(this);
         }
 
@@ -27,7 +30,7 @@ namespace EventSystem {
         }
 
         public GameEventListener Init(GameEvent gEvent){
-            Log.Info("event listener init func");
+            // Log.Info("event listener init func");
             gameEvent = gEvent;
             gameEvent.UnregisterListener(this);
             gameEvent.RegisterListener(this);

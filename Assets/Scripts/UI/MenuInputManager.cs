@@ -21,6 +21,8 @@ public class MenuInputManager : SingletonBehaviour<MenuInputManager>
 
     private int m_layer;
 
+    [SerializeField] private AudioClip clickSound;
+    
     void Start()
     {
         State = MenuState.Idle;
@@ -97,7 +99,7 @@ public class MenuInputManager : SingletonBehaviour<MenuInputManager>
     IEnumerator EnlargeScreen()
     {
         yield return new WaitForSeconds(1.5f);
-
+        AudioManager.Instance.PlaySfx(clickSound);
         RawImageCamera.gameObject.SetActive(true);
         Vector2 ScreenSize = new Vector2(Screen.width, Screen.height);
         while (RawImageCamera.rectTransform.sizeDelta != ScreenSize)
