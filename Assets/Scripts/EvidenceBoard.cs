@@ -186,4 +186,14 @@ public class EvidenceBoard : Core.SingletonBehaviour<EvidenceBoard>
         rect.localScale = new Vector3(1, 1, 1);
         rect.localPosition = new Vector3(Random.Range(- width + pictureSize.x, width - pictureSize.x), Random.Range(-height + pictureSize.y, height - pictureSize.y), 0);
     }
+
+    public void OnClickKiller()
+    {
+        EndScreenNew.Instance.ShowWinScreen();
+    }
+
+    public void OnClickNonKiller()
+    {
+        EndScreenNew.Instance.ShowLoseScreen();
+    }
 }
