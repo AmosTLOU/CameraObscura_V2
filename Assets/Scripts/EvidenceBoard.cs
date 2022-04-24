@@ -190,10 +190,12 @@ public class EvidenceBoard : Core.SingletonBehaviour<EvidenceBoard>
     public void OnClickKiller()
     {
         EndScreenNew.Instance.ShowWinScreen();
+        FindObjectOfType<MenuInputManager>().CanvasHUD.SetActive(false);
     }
 
     public void OnClickNonKiller()
     {
         EndScreenNew.Instance.ShowLoseScreen();
+        FindObjectOfType<MenuInputManager>().CanvasHUD.SetActive(false);
     }
 }
