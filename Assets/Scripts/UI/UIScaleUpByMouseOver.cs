@@ -40,12 +40,16 @@ public class UIScaleUpByMouseOver : MonoBehaviour, IPointerEnterHandler, IPointe
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (MenuInputManager.Instance.State == MenuState.LoadGame)
+            return;
         mouseOver = true;
         GetComponent<Image>().sprite = SpriteMouseOver;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        if (MenuInputManager.Instance.State == MenuState.LoadGame)
+            return;
         mouseOver = false;
         GetComponent<Image>().sprite = SpriteMouseAway;
     }
