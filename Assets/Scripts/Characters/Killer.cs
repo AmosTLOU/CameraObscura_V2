@@ -3,6 +3,7 @@ using Core;
 using EventSystem;
 using EventSystem.Data;
 using Gameplay;
+using Sirenix.Utilities;
 using UnityEngine;
 
 namespace Characters {
@@ -20,44 +21,31 @@ namespace Characters {
         private KillerState _state;
         private Coroutine _killingRoutine;
 
+        private Clue[] _killerClue;
+
         private void Start(){
             _follower = GetComponent<PathFollower>();
-            // gameObject.SetActive(false);
-            // _follower.pathCreator = _currentPath.sneakPath;
+            gameObject.SetActive(false);
+            _killerClue = GetComponents<Clue>();
         }
         
         public void OnNightStart(IGameEventData data){
             // killingRoutine = StartCoroutine(KillVictim());
         }
 
-        public void OnEventCameraFlash(IGameEventData d){
-            Utils.TryConvertVal(d, out CameraClickEventData data);
-            if (!(_state == KillerState.Sneak || _state == KillerState.Killing)){
+        public void Interrupted(CameraClickEventData data){
+            Log.Info("Checking for interrupted");
+            // Add check
+            if (_state != KillerState.Sneak) {
                 Log.Debug("Camera Flash during non-killing phase", Constants.TagTimeline);
                 return;
             }
-
-            Log.Info("Conditional checking camera flash data at right place");
-            if (killingRoutine != null){
-                StopCoroutine(killingRoutine);
-                killingRoutine = null;
-                StartCoroutine(RunAway());
-            }
-            // _killing = false;
-            // Log.Info("Stopped Killing, Killer Running Away", Constants.TagTimeline);
-        }
-
-        public void Interrupted(){
-            Log.Info("Checking for interrupted");
-            // Add check
-            
-            if (_state == KillerState.Sneak){
-                // StopCoroutine(killingRoutine);
-                killingRoutine = null;
-                _follower.reachedEnd.RemoveAllListeners();
-                StartCoroutine(RunAway());
-                Log.Info("Successfully interrupted");
-            }
+            killingRoutine = null;
+            _follower.reachedEnd.RemoveAllListeners();
+            StartCoroutine(RunAway());
+            Log.Info("Successfully interrupted");
+            // StopCoroutine(killingRoutine);
+           
         }
 
         public void SetKillPathAndMove(KillerPath path){
@@ -66,6 +54,7 @@ namespace Characters {
                 return;
             }
             Log.Info("killer sneaking in!", Constants.TagTimeline);
+            _killerClue.ForEach(c => c.Reset());
             gameObject.SetActive(true);
             _state = KillerState.Sneak;
             _animator.SetBool("idle", false);

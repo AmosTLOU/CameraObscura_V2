@@ -20,7 +20,7 @@ public class CameraControl : SingletonBehaviour<CameraControl>
 
     Vector3 m_camRot;
     Vector3 m_camPos;
-    float m_camFOV;
+    [SerializeField] float m_camFOV;
     Vector3 m_camInitialPos;
     Vector3 m_camInitialRot;
     float m_camInitialFOV;

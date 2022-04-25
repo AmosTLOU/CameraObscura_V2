@@ -26,9 +26,12 @@ namespace UI {
                 var life = Instantiate(lifePrefab, livesParent.transform);
                 _lives.Add(life);
             }
+            timer.gameObject.SetActive(false);
         }
         
         public void StartTimer(float seconds, Action cb) {
+            livesParent.gameObject.SetActive(false);
+            timer.gameObject.SetActive(true);
             timer.StartTimer(seconds, cb);
         }
 

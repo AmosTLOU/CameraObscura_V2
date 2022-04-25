@@ -12,6 +12,7 @@ public class PhotoGalleryNew : SingletonBehaviour<PhotoGalleryNew> {
     [SerializeField] private GameEvent shutterClickEvent;
     [SerializeField] private AudioClip cameraClickSfx;
     [SerializeField] private List<Photo> _photos = new List<Photo>();
+    [SerializeField] private GameObject HUDRef;
 
     private bool _flashEnabled = false;
     private Camera _mainCamera;
@@ -35,7 +36,9 @@ public class PhotoGalleryNew : SingletonBehaviour<PhotoGalleryNew> {
     public void Capture() {
         // Log.Info("Image Captured!");
         var fileName = _pathPhotos + _cntPhoto + ".png";
+        HUDRef.SetActive(false);
         ScreenCapture.CaptureScreenshot(fileName);
+        HUDRef.SetActive(true);
         var photo = new Photo(fileName);
         _photos.Add(photo);
         _cntPhoto++;

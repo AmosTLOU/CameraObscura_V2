@@ -17,7 +17,7 @@ public class CrazyChefGameManager : SingletonBehaviour<CrazyChefGameManager> {
 
     [Header("Audio")] 
     [SerializeField] private AudioClip killerTheme;
-    [SerializeField] private AudioClip suspenseTheme;
+    [SerializeField] private AudioClip suspectTheme;
 
     [Header("Killer Paths")] 
     [SerializeField] private KillerPath killerPath1;
@@ -40,6 +40,7 @@ public class CrazyChefGameManager : SingletonBehaviour<CrazyChefGameManager> {
             yield return null;
         }
         _killer = CharacterManager.Instance.GetKiller();
+        _killer.gameObject.SetActive(false);
         yield return new WaitForSeconds(Constants.GameStartToWakeUpDelay);
         gameStartEvent.Raise();
         MenuInputManager.Instance.gameObject.SetActive(false);
@@ -80,6 +81,7 @@ public class CrazyChefGameManager : SingletonBehaviour<CrazyChefGameManager> {
     }
 
     private IEnumerator KillingAct1(){
+        _killer.gameObject.SetActive(true);
         AudioManager.Instance.PlayMusic(killerTheme);
         yield return new WaitForSeconds(Constants.BeatEndDelay);
         Log.Info("Starting Killer Act 1".Size(20).Color("White"));
@@ -99,7 +101,7 @@ public class CrazyChefGameManager : SingletonBehaviour<CrazyChefGameManager> {
     }
     
     private IEnumerator SuspectAct(){
-        AudioManager.Instance.PlayMusic(suspenseTheme);
+        AudioManager.Instance.PlayMusic(suspectTheme);
         yield return null;
         // Log.Info("Starting Suspect Act".Size(20).Color("White"));
         // Wait for the windows to open

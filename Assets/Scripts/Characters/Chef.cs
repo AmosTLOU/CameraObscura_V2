@@ -1,5 +1,8 @@
 ﻿
 using System;
+using Core;
+using EventSystem.Data;
+using Utility;
 
 namespace Characters {
     public class Chef : BaseCharacter {
@@ -46,6 +49,17 @@ namespace Characters {
         public void IdleAnimation()
         {
             _animator.SetTrigger("Idle");
+        }
+        
+        public void OnEventBeatStart(IGameEventData eventData){
+            if (!Utils.TryConvertVal(eventData, out BeatStartEventData data)){
+                Log.Err("Error Converting Type");
+                return;
+            };
+            Log.Info($"Starting New Act = {data.Beat}".Size(20).Color("White"));
+            if(data.Beat == GameBeat.Suspect) {
+                ChopAnimation();
+            }
         }
     }
 }

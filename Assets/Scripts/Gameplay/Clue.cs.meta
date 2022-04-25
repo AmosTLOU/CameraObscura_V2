@@ -1,3 +1,14 @@
-﻿fileFormatVersion: 2
+fileFormatVersion: 2
 guid: c184507407dc4bbc823f2169e7777912
-timeCreated: 1649956542
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - clueFoundEvent: {fileID: 11400000, guid: 54d0166d9198ba14a8893fe793e095a6, type: 2}
+  - clueImage: {instanceID: 0}
+  - characterBelongsTo: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

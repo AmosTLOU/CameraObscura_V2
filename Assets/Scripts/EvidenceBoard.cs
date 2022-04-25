@@ -31,13 +31,12 @@ public class EvidenceBoard : Core.SingletonBehaviour<EvidenceBoard>
             return;
         }
         // Todo: @Anna Adding Clue to the list of clues
-        Log.Info($"Clue Found!! File = {clueData.clue.Photo.FileName} ; CharacterId = {clueData.CharacterId}", Constants.TagTimeline);
-        StartCoroutine(AddClue(clueData.clue.Photo, clueData.CharacterId));
+        Log.Info($"Clue Found!! File = {clueData.clue.photo.FileName} ; CharacterId = {clueData.CharacterId}", Constants.TagTimeline);
+        StartCoroutine(AddClue(clueData.clue.photo, clueData.CharacterId));
     }
 
 
     IEnumerator AddClue(Photo photo, string characterId){
-
         yield return new WaitForSeconds(2);
         switch (characterId){
             case "chef":

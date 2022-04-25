@@ -22,6 +22,7 @@ namespace Characters {
             }
 
             _characters[killer.Info.ID] = killer;
+            
         }
 
         public BaseCharacter GetCharacter(string id) {
