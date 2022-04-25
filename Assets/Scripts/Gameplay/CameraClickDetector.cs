@@ -33,7 +33,7 @@ namespace Gameplay {
                 if(Math.Abs(viewPos.x - 0.5) < extraRange && Math.Abs(viewPos.y - 0.5) < extraRange) {
                     Log.Trace($"Camera click detected in {gameObject.name}", Constants.TagTimeline);
                     onDetected.Invoke(cData);
-                } else Log.Trace($"Detect Range Check failed Extra Range={extraRange} || viewPos = {viewPos}", Constants.TagTimeline);
+                } else Log.Info($"Detect Range Check failed Extra Range={extraRange} || viewPos = {viewPos}", Constants.TagTimeline);
             } else{
                 Log.Trace("FOV condition failed", Constants.TagTimeline);
             }

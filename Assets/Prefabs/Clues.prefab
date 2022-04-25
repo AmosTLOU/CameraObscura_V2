@@ -1,5 +1,84 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &13033540366008530
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5714943311518697628}
+  - component: {fileID: 6001054433539749525}
+  - component: {fileID: 752127033663759572}
+  m_Layer: 0
+  m_Name: Boa
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5714943311518697628
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13033540366008530}
+  m_LocalRotation: {x: -0, y: 0.31320766, z: -0, w: 0.9496847}
+  m_LocalPosition: {x: 7.0341, y: 6.7462, z: 1.2274}
+  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_Children:
+  - {fileID: 7529886060540755673}
+  m_Father: {fileID: 1143167249074570372}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 36.505, z: 0}
+--- !u!114 &6001054433539749525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13033540366008530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c184507407dc4bbc823f2169e7777912, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clueFoundEvent: {fileID: 11400000, guid: 54d0166d9198ba14a8893fe793e095a6, type: 2}
+  clueImage: {fileID: 0}
+  characterBelongsTo: {fileID: 0}
+  customPath: 
+--- !u!114 &752127033663759572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13033540366008530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a78948d2ff71469ba30b3519646dd4d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickEvent: {fileID: 11400000, guid: 1649f2bd2c923074fac5e3a0f2916d30, type: 2}
+  maxFov: 15
+  detectRange: 0.2
+  onDetected:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6001054433539749525}
+        m_TargetAssemblyTypeName: Gameplay.Clue, Assembly-CSharp
+        m_MethodName: OnDetected
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1143167247339000390
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,6 +191,7 @@ MonoBehaviour:
   clueFoundEvent: {fileID: 11400000, guid: 54d0166d9198ba14a8893fe793e095a6, type: 2}
   clueImage: {fileID: 0}
   characterBelongsTo: {fileID: 0}
+  customPath: 
 --- !u!114 &1143167247339000384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,6 +335,7 @@ MonoBehaviour:
   clueFoundEvent: {fileID: 11400000, guid: 54d0166d9198ba14a8893fe793e095a6, type: 2}
   clueImage: {fileID: 0}
   characterBelongsTo: {fileID: 0}
+  customPath: 
 --- !u!114 &1143167248244390048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,6 +478,7 @@ MonoBehaviour:
   clueFoundEvent: {fileID: 11400000, guid: 54d0166d9198ba14a8893fe793e095a6, type: 2}
   clueImage: {fileID: 0}
   characterBelongsTo: {fileID: 0}
+  customPath: 
 --- !u!114 &1143167248297249008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -539,6 +621,7 @@ MonoBehaviour:
   clueFoundEvent: {fileID: 11400000, guid: 54d0166d9198ba14a8893fe793e095a6, type: 2}
   clueImage: {fileID: 0}
   characterBelongsTo: {fileID: 0}
+  customPath: 
 --- !u!114 &1143167248355629421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -681,6 +764,7 @@ MonoBehaviour:
   clueFoundEvent: {fileID: 11400000, guid: 54d0166d9198ba14a8893fe793e095a6, type: 2}
   clueImage: {fileID: 0}
   characterBelongsTo: {fileID: 0}
+  customPath: 
 --- !u!114 &1143167248372557126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -823,6 +907,7 @@ MonoBehaviour:
   clueFoundEvent: {fileID: 11400000, guid: 54d0166d9198ba14a8893fe793e095a6, type: 2}
   clueImage: {fileID: 0}
   characterBelongsTo: {fileID: 0}
+  customPath: 
 --- !u!114 &1143167248646684139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -965,6 +1050,7 @@ MonoBehaviour:
   clueFoundEvent: {fileID: 11400000, guid: 54d0166d9198ba14a8893fe793e095a6, type: 2}
   clueImage: {fileID: 0}
   characterBelongsTo: {fileID: 0}
+  customPath: 
 --- !u!114 &1143167248693359154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1108,6 +1194,7 @@ MonoBehaviour:
   clueFoundEvent: {fileID: 11400000, guid: 54d0166d9198ba14a8893fe793e095a6, type: 2}
   clueImage: {fileID: 0}
   characterBelongsTo: {fileID: 0}
+  customPath: 
 --- !u!114 &1143167248723512711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1175,7 +1262,7 @@ Transform:
   - {fileID: 1143167248372557125}
   - {fileID: 1143167247339000391}
   - {fileID: 1143167248244390055}
-  - {fileID: 7529886060540755673}
+  - {fileID: 5714943311518697628}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1330,8 +1417,6 @@ GameObject:
   - component: {fileID: 203572176753061855}
   - component: {fileID: 7337739017542044695}
   - component: {fileID: 8072903678620882134}
-  - component: {fileID: 7252044593439548949}
-  - component: {fileID: 5387526358740122055}
   m_Layer: 0
   m_Name: Boa
   m_TagString: Untagged
@@ -1346,13 +1431,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7781797975732340917}
-  m_LocalRotation: {x: -0, y: 0.31320766, z: -0, w: 0.9496847}
-  m_LocalPosition: {x: 7.0479217, y: 5.998, z: 1.149}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.0057749697, y: -0.07482, z: -0.0054795556}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 371061857912971640}
-  m_Father: {fileID: 1143167249074570372}
-  m_RootOrder: 8
+  m_Father: {fileID: 5714943311518697628}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 36.505, z: 0}
 --- !u!33 &203572176753061855
 MeshFilter:
@@ -1416,51 +1501,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7252044593439548949
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7781797975732340917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c184507407dc4bbc823f2169e7777912, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clueFoundEvent: {fileID: 11400000, guid: 54d0166d9198ba14a8893fe793e095a6, type: 2}
-  clueImage: {fileID: 0}
-  characterBelongsTo: {fileID: 0}
---- !u!114 &5387526358740122055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7781797975732340917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a78948d2ff71469ba30b3519646dd4d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clickEvent: {fileID: 11400000, guid: 1649f2bd2c923074fac5e3a0f2916d30, type: 2}
-  maxFov: 15
-  detectRange: 0.2
-  onDetected:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7252044593439548949}
-        m_TargetAssemblyTypeName: Gameplay.Clue, Assembly-CSharp
-        m_MethodName: OnDetected
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1001 &4131850270042698552
 PrefabInstance:
   m_ObjectHideFlags: 0
