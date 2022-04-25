@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using Core;
 using EventSystem;
@@ -13,6 +14,8 @@ public class PhotoGalleryNew : SingletonBehaviour<PhotoGalleryNew> {
     [SerializeField] private AudioClip cameraClickSfx;
     [SerializeField] private List<Photo> _photos = new List<Photo>();
     [SerializeField] private GameObject HUDRef;
+    
+    public UnityEngine.Video.VideoPlayer flashVideo;
 
     private bool _flashEnabled = false;
     private Camera _mainCamera;
@@ -33,12 +36,13 @@ public class PhotoGalleryNew : SingletonBehaviour<PhotoGalleryNew> {
     }
 
     // Save the screenshot
-    public void Capture() {
+    private IEnumerator Capture() {
         // Log.Info("Image Captured!");
         var fileName = _pathPhotos + _cntPhoto + ".png";
         HUDRef.SetActive(false);
+        yield return null;
+        flashVideo.gameObject.SetActive(true);
         ScreenCapture.CaptureScreenshot(fileName);
-        HUDRef.SetActive(true);
         var photo = new Photo(fileName);
         _photos.Add(photo);
         _cntPhoto++;
@@ -49,6 +53,9 @@ public class PhotoGalleryNew : SingletonBehaviour<PhotoGalleryNew> {
             Cam = _mainCamera,
             Flash = _flashEnabled
         });
+        yield return new WaitForSeconds(1f);
+        HUDRef.SetActive(true);
+        flashVideo.gameObject.SetActive(false);
     }
 
     private void Update(){
@@ -60,7 +67,7 @@ public class PhotoGalleryNew : SingletonBehaviour<PhotoGalleryNew> {
     public void OnEventCameraClick(IGameEventData data) {
         Log.Info("Shutter Click event received".Size(16));
         AudioManager.Instance.PlaySfx(cameraClickSfx);
-        Capture();
+        StartCoroutine(Capture());
     }
 
     public void OnBeatStartEvent(IGameEventData data) {
