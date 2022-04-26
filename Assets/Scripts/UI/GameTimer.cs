@@ -27,7 +27,7 @@ namespace UI {
             _elapsedTime += Time.deltaTime;
             var frac = _elapsedTime / _maxTime;
             fillImageRef.fillAmount = 1 - frac;
-            if (frac < lowPercentage) fillImageRef.sprite = fillSpriteLow;
+            if ((1-frac) < lowPercentage) fillImageRef.sprite = fillSpriteLow;
         }
         
         public void Stop() {

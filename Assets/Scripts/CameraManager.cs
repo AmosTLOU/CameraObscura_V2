@@ -7,7 +7,7 @@ using EventSystem.Data;
 using UnityEngine;
 using Utility;
 
-public class PhotoGalleryNew : SingletonBehaviour<PhotoGalleryNew> {
+public class CameraManager : SingletonBehaviour<CameraManager> {
 
     [SerializeField] private GameEvent cameraClickEvent;
     [SerializeField] private GameEvent shutterClickEvent;
@@ -17,7 +17,7 @@ public class PhotoGalleryNew : SingletonBehaviour<PhotoGalleryNew> {
     
     public UnityEngine.Video.VideoPlayer flashVideo;
 
-    private bool _flashEnabled = false;
+    private bool _flashEnabled = true;
     private Camera _mainCamera;
 
     private int _cntPhoto = 0;
@@ -39,9 +39,11 @@ public class PhotoGalleryNew : SingletonBehaviour<PhotoGalleryNew> {
     private IEnumerator Capture() {
         // Log.Info("Image Captured!");
         var fileName = _pathPhotos + _cntPhoto + ".png";
-        HUDRef.SetActive(false);
-        yield return null;
-        flashVideo.gameObject.SetActive(true);
+        if (_flashEnabled) {
+            HUDRef.SetActive(false);
+            yield return null;
+            flashVideo.gameObject.SetActive(true);
+        }
         ScreenCapture.CaptureScreenshot(fileName);
         var photo = new Photo(fileName);
         _photos.Add(photo);
@@ -93,5 +95,8 @@ public class PhotoGalleryNew : SingletonBehaviour<PhotoGalleryNew> {
         _photos[lastIndex].ClueName = clueName;
         _photos[lastIndex].PhaseBelongTo = phaseBelongTo;
     }
-    
+
+    public void DisabledFlash() {
+        _flashEnabled = false;
+    }
 }

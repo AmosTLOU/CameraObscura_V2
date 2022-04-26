@@ -197,4 +197,14 @@ public class EvidenceBoard : Core.SingletonBehaviour<EvidenceBoard>
         EndScreenNew.Instance.ShowLoseScreen();
         FindObjectOfType<MenuInputManager>().CanvasHUD.SetActive(false);
     }
+
+    public void OnChefSelected(CameraClickEventData data) {
+        Log.Info("Chef Selected as Killer");
+        OnClickNonKiller();
+    }
+    
+    public void OnDancerSelected(CameraClickEventData data) {
+        Log.Info("Dancer Selected as killer");
+        OnClickKiller();
+    }
 }

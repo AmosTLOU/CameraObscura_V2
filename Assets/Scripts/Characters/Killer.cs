@@ -22,6 +22,8 @@ namespace Characters {
         private Coroutine _killingRoutine;
 
         private Clue[] _killerClue;
+        private int _maxKillerClues = 1;
+        private int _currentKillerClues = 0;
 
         private void Start(){
             _follower = GetComponent<PathFollower>();
@@ -45,7 +47,6 @@ namespace Characters {
             StartCoroutine(RunAway());
             Log.Info("Successfully interrupted");
             // StopCoroutine(killingRoutine);
-           
         }
 
         public void SetKillPathAndMove(KillerPath path){
@@ -54,7 +55,7 @@ namespace Characters {
                 return;
             }
             Log.Info("killer sneaking in!", Constants.TagTimeline);
-            _killerClue.ForEach(c => c.Reset());
+            if(_currentKillerClues++ < _maxKillerClues) _killerClue.ForEach(c => c.Reset());
             gameObject.SetActive(true);
             _state = KillerState.Sneak;
             _animator.SetBool("idle", false);

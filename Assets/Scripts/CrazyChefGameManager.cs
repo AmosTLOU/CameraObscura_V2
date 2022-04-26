@@ -102,6 +102,7 @@ public class CrazyChefGameManager : SingletonBehaviour<CrazyChefGameManager> {
     
     private IEnumerator SuspectAct(){
         AudioManager.Instance.PlayMusic(suspectTheme);
+        CameraManager.Instance.DisabledFlash();
         yield return null;
         // Log.Info("Starting Suspect Act".Size(20).Color("White"));
         // Wait for the windows to open
