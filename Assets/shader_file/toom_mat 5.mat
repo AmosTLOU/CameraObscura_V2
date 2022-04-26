@@ -102,7 +102,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Vector1_1a9ef70f24d142c3b4f2c3c5cf6e8354: 1
-    - Vector1_5eba27ecdafc4208ab46bf3f35819312: 41
+    - Vector1_5eba27ecdafc4208ab46bf3f35819312: 58
     - Vector1_8278ad9536c846b6972b7f2458982259: 50
     - _AlphaClip: 0
     - _Blend: 0
@@ -131,20 +131,21 @@ Material:
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
-    - scale: 1
+    - scale: 1.49
     m_Colors:
     - Color_00b2d676f3094b5092ca029c875a2575: {r: 456.3032, g: 456.3032, b: 456.3032, a: 0}
     - Color_7abfdfe87fe344dc96b2bae4b4171145: {r: 37.71148, g: 37.71148, b: 37.71148, a: 0}
+    - Vector2_a17cb90b698440a49e0714bc53a2b516: {r: 1, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.4811321, g: 0.47432363, b: 0.47432363, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _L1_color: {r: 1, g: 1, b: 1, a: 0.094692685}
+    - _L1_color: {r: 0.4433962, g: 0.4433962, b: 0.4433962, a: 0.094692685}
     - _L1_dir: {r: -0.7487124, g: 0.38164592, b: -0.54201126, a: 0}
-    - _L2_color: {r: 0, g: 0, b: 0, a: 0.106053896}
+    - _L2_color: {r: 1, g: 1, b: 1, a: 0.106053896}
     - _L2_dir: {r: -0.73904467, g: 0.38721415, b: -0.5512515, a: 0}
-    - _L3_color: {r: 0, g: 0, b: 0, a: 1}
+    - _L3_color: {r: 1, g: 1, b: 1, a: 1}
     - _L3_dir: {r: 0, g: 1, b: 0, a: 0}
-    - _L4_color: {r: 0, g: 0, b: 0, a: 1}
+    - _L4_color: {r: 1, g: 1, b: 1, a: 1}
     - _L4_dir: {r: 0, g: 1, b: 0, a: 0}
     - _L5_color: {r: 0, g: 0, b: 0, a: 1}
     - _L5_dir: {r: 0, g: 1, b: 0, a: 0}

@@ -89,7 +89,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - shading_gradient:
-        m_Texture: {fileID: 2800000, guid: bec936cc2bf8b0d4287e0ba1d69926a5, type: 3}
+        m_Texture: {fileID: 2800000, guid: a1a36fb5cb185f84ea3a225b5ef8e720, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - toonramp:
@@ -154,7 +154,7 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _L1_color: {r: 1, g: 1, b: 1, a: 0}
+    - _L1_color: {r: 0.8113208, g: 0.72436666, b: 0.57022077, a: 1}
     - _L1_dir: {r: -0.41, g: 0, b: 0, a: 0}
     - _L2_color: {r: 0, g: 0, b: 0, a: 0}
     - _L2_dir: {r: 0, g: 0, b: 0, a: 0}
